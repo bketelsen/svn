@@ -3,9 +3,9 @@
 </script>
 
 <main>
-    <div><a href="/yourmom">Your Mom</a></div>
+    <div><a href="/yourmom">Your Mom</a> | <a href="/mymom">My Mom</a></div>
     <slot></slot>
-    <div><a href="/mymom">My Mom</a></div>
+    <div><a href="/">Home</a></div>
 </main>
 
 <style>
