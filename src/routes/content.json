@@ -1,0 +1,48 @@
+{
+  "app": {
+    "config": "/home/bjk/src/github.com/bketelsen/svn/settings.json",
+    "cwd": "./",
+    "src": "src/routes/blog/",
+    "filePattern": "**/*.md",
+    "ignore": "*(icon|input)*",
+    "dist": "./src/routes/content.json",
+    "display": true,
+    "server": false,
+    "port": 3001,
+    "name": "markdown-json",
+    "metadata": true,
+    "version": "1.5.0"
+  },
+  "data": [
+    {
+      "id": "posts__one",
+      "contents": "<p>Every blog starts with a single post. This is yours. Make it great.</p>\n<!-- more -->\n\n<p>This post intentionally left blank.</p>\n<p>Write what you want.</p>\n",
+      "title": "Hello World 👋",
+      "date": "2019-06-11T08:38:00.000Z",
+      "slug": "hello",
+      "excerpt": "<p>Every blog starts with a single post. This is yours. Make it great.</p>",
+      "meta": {
+        "relativePath": "posts/one.html",
+        "createdAt": "2020-11-04T19:04:18.750Z",
+        "lastModified": "2020-11-04T19:04:18.750Z",
+        "size": 219,
+        "formattedSize": "219 Bytes"
+      }
+    },
+    {
+      "id": "posts__two",
+      "contents": "<p>Every blog starts with a single post. This is yours. Make it great.</p>\n<!-- more -->\n\n<p>This post intentionally left blank.</p>\n<p>Write what you want.</p>\n",
+      "title": "Goodbye World 👋",
+      "date": "2019-06-11T08:38:00.000Z",
+      "slug": "goodbye",
+      "excerpt": "<p>Every blog starts with a single post. This is yours. Make it great.</p>",
+      "meta": {
+        "relativePath": "posts/two.html",
+        "createdAt": "2020-11-04T19:46:46.790Z",
+        "lastModified": "2020-11-04T19:46:46.790Z",
+        "size": 223,
+        "formattedSize": "223 Bytes"
+      }
+    }
+  ]
+}
