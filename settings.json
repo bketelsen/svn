@@ -1,10 +1,10 @@
 {
     "name": "markdown-json",
     "cwd": "./",
-    "src": "src/routes/blog/",
+    "src": "./content/",
     "filePattern": "**/*.md",
     "ignore": "*(icon|input)*",
-    "dist": "./src/routes/content.json",
+    "dist": "./src/components/content.json",
     "metadata": true,
     "server": false,
     "port": 3001

@@ -1,5 +1,3 @@
-const { mdsvex } = require('mdsvex')
-
 module.exports = {
 	// By default, `npm run build` will create a standard Node app.
 	// You can create optimized builds for different platforms by

@@ -2,10 +2,10 @@
   "app": {
     "config": "/home/bjk/src/github.com/bketelsen/svn/settings.json",
     "cwd": "./",
-    "src": "src/routes/blog/",
+    "src": "./content/",
     "filePattern": "**/*.md",
     "ignore": "*(icon|input)*",
-    "dist": "./src/routes/content.json",
+    "dist": "./src/components/content.json",
     "display": true,
     "server": false,
     "port": 3001,
@@ -23,8 +23,8 @@
       "excerpt": "<p>Every blog starts with a single post. This is yours. Make it great.</p>",
       "meta": {
         "relativePath": "posts/one.html",
-        "createdAt": "2020-11-04T19:04:18.750Z",
-        "lastModified": "2020-11-04T19:04:18.750Z",
+        "createdAt": "2020-11-04T21:02:04.780Z",
+        "lastModified": "2020-11-04T21:02:04.788Z",
         "size": 219,
         "formattedSize": "219 Bytes"
       }

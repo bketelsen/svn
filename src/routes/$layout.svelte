@@ -1,7 +1,7 @@
 <script>
   import Nav from "$components/Nav.svelte";
   import Footer from "$components/Footer.svelte";
-  import data from "./content.json";
+  import data from "$components/content.json";
   export let segment;
 </script>
 

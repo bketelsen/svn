@@ -1,5 +1,6 @@
 <script context="module">
-  import data from "../content.json";
+  export const prerender = "true";
+  import data from "$components/content.json";
   export async function preload({ params }) {
     const pages = data.data;
     let result = pages.filter((page) => page.slug == params.slug);
