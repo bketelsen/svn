@@ -11,6 +11,18 @@
   export let pages;
 </script>
 
-{#each pages as page}
-  <h3><a href="/blog/{page.slug}">{page.title}</a></h3>
-{/each}
+<div class="row">
+  {#each pages as page}
+    <div class="col-4">
+      <div class="card">
+        <header>
+          <h4>{page.title}</h4>
+        </header>
+        <p>{page.description}</p>
+        <footer class="is-right">
+          <a class="button primary" href="/blog/{page.slug}">Read More</a>
+        </footer>
+      </div>
+    </div>
+  {/each}
+</div>
