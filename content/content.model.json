@@ -1,22 +1,27 @@
 {
-  ":name": "FrontAid CMS Example Model",
-  ":description": "This is a very basic example of a FrontAid CMS model file. Feel free to update it according to your needs.",
-  "custom-field": {
-    ":description": "This example text is used as a description.",
+  ":name": "Brian Ketelsen",
+  "name": {
+    ":description": "Website name",
     ":type": "line"
   },
-  "custom-object": {
-    "custom-line": {
+  "index": {
+    ":description": "Content for the index page",
+    "title": {
       ":type": "line"
     },
-    "custom-text": {
+    "text": {
       ":type": "text"
     }
   },
-  "custom-list": {
+  "blog": {
+    ":description": "List of blog posts",
     ":items": {
-      "custom-list-item": {
+      "title": {
         ":type": "line"
+      },
+      "text": {
+        ":type": "text",
+        ":richtest": true
       }
     }
   }
