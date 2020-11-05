@@ -12,6 +12,7 @@ tags:
   - "go"
   - "azure"
 title: "Learn With Me: Moving Gophercon to Azure"
+section: Blog
 ---
 
 

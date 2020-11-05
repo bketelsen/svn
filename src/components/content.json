@@ -19,6 +19,7 @@
       "contents": "<p>In this first post of (likely) a multi-part series I&#39;m going to discuss how I am using machine learning, AI, and good old-fashioned elbow grease to make sense of the 3000 files in my <code>~/Documents/Unfiled</code> directory.</p>\n<!-- more -->\n\n<h3 id=\"the-problem-statement\">The Problem Statement</h3>\n<p>There are several contributing factors to the problem.  Let&#39;s start with the obvious ones:</p>\n<ul>\n<li>I&#39;m a digital packrat</li>\n<li>I&#39;m a single parent of 3 (and therefore busy)</li>\n<li>I can be lazy sometimes</li>\n<li>I have ADHD, and get easily sidetracked from things I intended to do</li>\n</ul>\n<p>When my dad passed away last year, it got even worse.  Suddenly I was getting all of his mail, bills, correspondence, too.  I didn&#39;t want to lose it; but I sure wasn&#39;t ready to read it all.  So I scanned it and dropped it in the <code>Unfiled</code> folder. </p>\n<p>So now we&#39;re here.  Where <code>here</code> is a place where I can&#39;t find anything I need and my <code>Documents</code> directory is the definition of <code>hot-mess</code>.  </p>\n<h3 id=\"the-goal\">The Goal</h3>\n<p>I&#39;d like to take that folder of 3000 random unclassified documents and sort them into something more clear.  I think sorting them by originating source (Supplier, Vendor, Biller, Organization) is a good first step.  Eventually I&#39;d like to sort them by date group too.  Probably by Year, then Month.</p>\n<p>For a bonus, I&#39;d love to do a <a href=\"https://docs.microsoft.com/en-us/windows/win32/projfs/projected-file-system?WT.mc_id=none-twitter-brketels\">projected filesystem</a> sort of thing in Windows and a <a href=\"https://9p.io/wiki/plan9/Installing_a_Plan_9_File_Server/index.html\">Plan9</a> type server on Mac/Linux using FUSE.  It&#39;d be really convenient to be able to get at documents from a Filesystem interface by using different facets like keywords, dates, categories, etc.  That might fit more cleanly with the way I think, too.  But, again, that&#39;s a stretch goal, because we&#39;ll need all that metadata first.</p>\n<p>If you&#39;re old enough to remember <a href=\"https://arstechnica.com/information-technology/2018/07/the-beos-filesystem/\">BeOS Filesystem</a>, it would have solved nearly all of this.  Someday we&#39;ll get back to the database/filesystem mashup that truly needs to exist.</p>\n<h3 id=\"the-solutions\">The Solution(s)</h3>\n<p>First, there isn&#39;t really a one-step solution to this.  It&#39;s going to take some work, and I can likely automate MOST of that.  But there will still be a good portion of things I can&#39;t sort automatically.</p>\n<h4 id=\"step-one\">Step One</h4>\n<p>As a first step, I wrote a small Go program that calls <a href=\"https://cda.ms/126\">Azure Cognitive Services</a> Vision API to do Optical Character Recognition on all the files that are compatible (PDF and image files).  Nearly everything I have is in pdf format, but there are a few TIFF files in there too.  This program is in flux right now, so I&#39;m not going to release it as Open Source until it&#39;s settled a bit.  If I forget - ping me on twitter @bketelsen or email <a href=\"mailto:mail@bjk.fyi\">mail@bjk.fyi</a> - and remind me!  Related: the code samples in this post are probably garbage, and won&#39;t likely match the end result that I publish.  I&#39;m sure I&#39;m swallowing errors, and haven&#39;t done the slightest bit of refactor/cleanup on this code yet.  </p>\n<blockquote>\n<p>WARNING: <em>Don&#39;t cut/paste this code yet, please.</em></p>\n</blockquote>\n<p>I created a domain type appropriately called <code>Document</code> that stores metadata about files on disk:</p>\n<pre><code class=\"language-go\">type Document struct {\n    Hash         string\n    Path         string\n    PreviousPath string\n    Operation    *CognitiveOperation\n    Results      *CognitiveReadResponse\n}</code></pre>\n<p>I&#39;ll discuss the fields as they come up, but <code>Path</code> and <code>PreviousPath</code> should be obvious.  Current and previous location on disk, so that I can account for file moves with at least a little bit of history.</p>\n<p>The pricing for the OCR is really attractive - as of September, 2019 it is:</p>\n<blockquote>\n<p>0-1M transactions — $1.50 per 1,000 transactions</p>\n</blockquote>\n<p>I know that I&#39;ll be fine tuning the processes that run, and likely running them repeatedly.  I wanted to find a way to store the results from the OCR for each document, but I am also aware that I can&#39;t use the document name and path as the canonical key to find the document later, because the goal of this app is to move them and rename them appropriately!  So I decided to use a hash of the file contents as a key.  <code>SHA256</code> seems to be the right algorithm for file contents, low cost computation, low collision chance.  So I created a hash function that calculates the <code>SHA256</code> hash of the document after it is read:</p>\n<pre><code class=\"language-go\">func (d *Document) GetHash() {\n\n    f, err := os.Open(d.Path)\n    if err != nil {\n        log.Fatal(err)\n    }\n    defer f.Close()\n\n    h := sha256.New()\n    if _, err := io.Copy(h, f); err != nil {\n        log.Fatal(err)\n    }\n    d.Hash = fmt.Sprintf(&quot;%x&quot;, h.Sum(nil))\n}</code></pre>\n<p>After getting the results of the OCR operation, I set them in the <code>Document</code> type, then persist the metadata to disk in a hidden directory.  Currently that&#39;s <code>~/.classifier/</code> but, as with all of this, it might change in the future.</p>\n<p>The file is stored using the <code>SHA256</code> hash of the contents as the file name, and the <code>Document</code> type is serialized to disk using Go&#39;s efficient and lightweight <code>encoding/gob</code> format.  While I&#39;m debugging and playing with this code, I decided to also persist the data in <code>json</code> format so it&#39;s easier to read.  Here&#39;s the method on <code>Document</code> that saves/serializes to disk:</p>\n<pre><code class=\"language-go\">func (d *Document) SaveMetadata() error {\n  fmt.Println(d.Hash)\n  //TODO use new XDG config dir location\n  // https://tip.golang.org/pkg/os/#UserConfigDir\n    filePath := &quot;/home/bjk/.classifier/&quot; + d.Hash // TODO FILEPATH.JOIN\n    fmt.Println(filePath)\n    file, err := os.OpenFile(filePath, os.O_TRUNC|os.O_CREATE|os.O_WRONLY, 0644)\n    if err != nil {\n        return err\n    }\n    defer file.Close()\n    enc := gob.NewEncoder(file)\n    err = enc.Encode(d)\n    if err != nil {\n        return err\n    }\n    jfilePath := &quot;/home/bjk/.classifier/&quot; + d.Hash + &quot;.json&quot; // TODO FILEPATH.JOIN\n    fmt.Println(jfilePath)\n    jfile, err := os.OpenFile(jfilePath, os.O_TRUNC|os.O_CREATE|os.O_WRONLY, 0644)\n    if err != nil {\n        return err\n    }\n    defer jfile.Close()\n    jenc := json.NewEncoder(jfile)\n    return jenc.Encode(d)\n}</code></pre>\n<p>Lots of bad things happening in there, see above caveats about copying/pasting this code.   The important part is the encoding in <code>gob</code> format of the contents of the <code>Document</code> metadata, which is then saved to disk using the <code>SHA256</code> hash as the filename.  This is a nice future-proof solution, and provides several benefits.</p>\n<ul>\n<li>If there is already a file with the same name, it&#39;s been processed once.</li>\n<li>If the <code>.Path</code> is different from the document I&#39;m inspecting, I might have an exact duplicate, which is a candidate for (soft) deleting</li>\n<li>It doesn&#39;t matter where the files get moved, as long as the <code>SHA256</code> hash matches, I&#39;ve got the metadata saved already.</li>\n</ul>\n<p>This is a very low-tech metadata database, of sorts.  It&#39;s definitely not optimized for real-time use, but instead for batch operations.</p>\n<p>Keeping all the metadata in this format means I can write any number of other tools to read and modify the metadata without worrying too much. </p>\n<h3 id=\"step-two\">Step Two</h3>\n<p>At this point, I have a directory full of unprocessed files and a way to process them once and save the results so I don&#39;t have to re-process them later.  It&#39;s time to fire off the processing app.  I used <a href=\"https://github.com/spf13/cobra\">cobra</a> to build the command-line utility, so I made the root/naked command do the actual calls to Azure Cognitive Services:</p>\n<pre><code class=\"language-bash\">go build\n./classifier</code></pre>\n<p>This iterates over every file in the <code>~/Documents/Unfiled</code> directory, calling Cognitive Services OCR for the file types that are supported.  There is no current mechanism to retrieve metadata from other document types (Word documents, text files, etc).  That&#39;s a future addition.</p>\n<p>After receiving the results, the responses are serialized using the above mentioned <code>gob</code> serialization into <code>~/.classifier/HASH</code></p>\n<h3 id=\"classification\">Classification</h3>\n<p>Based on the results there are some simple <code>bag of words</code> matches that can be done.  Some of the documents I have contain very unique text that is indicative of a particular document type.  For example, Bank of America always includes my account number and their address in <code>Wilmington</code>.  No other document in my corpus has those two distinct things together, so I can write a simple classifier for all Bank of America documents.  I decided to use simple TOML for a configuration file here:</p>\n<pre><code>[[entity]]\nname = &quot;Bank of America&quot;\ndirectory = &quot;BOA&quot;\nkeywords = [&quot;Bank of America&quot;,&quot;12345677889&quot;,&quot;Wilmington&quot;]</code></pre><p>Here, I added a sub-command in <code>cobra</code> so I can classify files without re-posting them to Cognitive Services.  So I added the <code>classifier process</code> command:</p>\n<pre><code class=\"language-bash\">./classifier process</code></pre>\n<p>It currently goes through all the files in <code>Unfiled</code> and checks their metadata for matches against the TOML file.   This worked perfectly for several of my external correspondents.  It took all the documents from <code>Unfiled</code> and placed them in <code>Filed/{directory}</code>.</p>\n<h3 id=\"what-about-the-rest\">What About The Rest?</h3>\n<p>There are many documents that aren&#39;t easily processed this way though.  My next inspiration came in the shower (of course).  If you squint enough, or are far enough away, all documents from the same entity of the same type look the same.  So all my mortgage statements look the same, but the numbers are different.</p>\n<p>I installed ImageMagick, and wrote a script to make a low-resolution thumbnail of each PDF.  I made the resolution low enough that the text isn&#39;t readable even if you magnify the image.</p>\n<p>Then I searched for ways to compare images and came across <a href=\"https://github.com/rivo/duplo\">duplo</a>, which appears to do what I need.  It does a hash of the image and allows you to compare other documents to that hash to find a similarity score.  Using this type of process my next goal is to group similar documents together by searching for ones with matching or close-to-matching image hashes.  </p>\n<p>But that&#39;ll be probably next weekend.   It&#39;s been really fun doing this much, and I&#39;m looking forward to seeing how much more I can learn as I go!</p>\n<p>Intermediate results:</p>\n<p>Before:</p>\n<pre><code class=\"language-bash\">2846 Files</code></pre>\n<p>After:</p>\n<pre><code class=\"language-bash\">Unfiled\\\n  2710 Files\nFiled\\\n  136 Files in 2 Directories</code></pre>\n",
       "title": "Organizing Documents with Some AI, ML, and Elbow Grease",
       "layout": "post",
+      "section": "Blog",
       "date": "2019-09-03",
       "slug": "ai-ml-documents-one",
       "images": [
@@ -43,45 +44,10 @@
       "excerpt": "<p>In this first post of (likely) a multi-part series I&apos;m going to discuss how I am using machine learning, AI, and good old-fashioned elbow grease to make sense of the 3000 files in my <code>~/Documents/Unfiled</code> directory.</p>",
       "meta": {
         "relativePath": "posts/ai-ml-documents-one.html",
-        "createdAt": "2020-11-04T22:03:00.350Z",
-        "lastModified": "2020-11-04T22:03:00.350Z",
-        "size": 10494,
-        "formattedSize": "10.2 KB"
-      }
-    },
-    {
-      "id": "posts__azure-devops-ci-setup",
-      "contents": "<p>Microsoft just announced a killer continuous integration setup for Github, and I was really anxious to give it a try.  This post documents my setup for an <a href=\"https://github.com/gophersnacks/site\">Elixir/Phoenix application</a> I&#39;m building with <a href=\"https://twitter.com/arschles\">Aaron Schlesinger</a>.</p>\n<!-- more -->\n\n<h3 id=\"set-up-azure-pipelines\">Set Up Azure Pipelines</h3>\n<p>Step one is to head to the <a href=\"https://github.com/marketplace/azure-pipelines\">Github Marketplace</a> and install the Azure Pipelines service.</p>\n<p><img src=\"/images/2018/09/Screen-Shot-2018-09-11-at-9.42.48-AM.png\" alt=\"Azure Pipelines on Github\"></p>\n<p>I clicked on the &quot;Set up a plan&quot; button, and then selected the Free option, and &quot;Install it for free&quot; link.  This allows Linux, Mac and Windows build machines, with 10 free parallel jobs.  That&#39;s plenty for most open source projects.</p>\n<p><img src=\"/images/2018/09/Screen-Shot-2018-09-11-at-9.43.08-AM.png\" alt=\"Confirmation Dialog\"></p>\n<p>Next I confirmed the Marketplace change by choosing the &quot;Complete order and begin installation&quot; button.</p>\n<p><img src=\"/images/2018/09/Screen-Shot-2018-09-11-at-9.43.26-AM.png\" alt=\"Review Order\"></p>\n<p>After authentication with my Azure account, I needed to create a Project.  Projects in Azure DevOps are conceptual containers that host a single repository and it&#39;s build procedures.</p>\n<p><img src=\"/images/2018/09/Screen-Shot-2018-09-11-at-9.45.52-AM.png\" alt=\"Setup Project\"></p>\n<p>After creating the project, I needed to pick a repository:</p>\n<p><img src=\"/images/2018/09/Screen-Shot-2018-09-11-at-9.46.37-AM.png\" alt=\"Choose A Repository\"></p>\n<h3 id=\"configuration\">Configuration</h3>\n<p>The Azure DevOps pipeline wizard suggested a Docker pipeline for this Elixir project, which suits me fine.  We had already created appropriate Dockerfile and docker-compose.yml files.  The last step was to create an azure-pipelines.yml file and put it in the root of the repository.</p>\n<pre><code class=\"language-javascript\"># Docker image\n# Build a Docker image to run, deploy, or push to a container registry.\n# Add steps that use Docker Compose, tag images, push to a registry, run an image, and more:\n# https://docs.microsoft.com/vsts/pipelines/languages/docker\n\npool:\n  vmImage: &#39;Ubuntu 16.04&#39;\n\nvariables:\n  imageName: &#39;gophersnacks:$(build.buildId)&#39;\n\nsteps:\n- script: |\n    docker-compose -p site up -d\n    docker build --network=site_default --build-arg MIX_ENV=test -f Dockerfile.test .\n    docker-compose down\n  displayName: &#39;test&#39;\n- script: docker build -f Dockerfile -t $(imageName) .\n  displayName: &#39;docker build&#39;</code></pre>\n<p> After some experimentation I created two steps in my pipeline, the first runs tests, and the second builds the Docker container for production usage.  As is the case every time I create a new CI environment, it took 40 commits to get the Docker networking and database configuration setup right.  Eventually, though, I succeeded:</p>\n<p> <img src=\"/images/2018/09/Screen-Shot-2018-09-11-at-9.58.52-AM.png\" alt=\"FAIL\"></p>\n<p> These results were correct; I hadn&#39;t updated the tests since adding authentication to the web app yesterday.  <em>So I did what any good developer would do – I deleted the failing tests.</em>  Just temporarily, of course, because I wanted to focus my time on configuring Azure Pipelines, not learning how to test authenticated HTTP requests in Phoenix.</p>\n<h3 id=\"conclusion\">Conclusion</h3>\n<p>The process to set up Azure DevOps Pipelines was really simple, and mostly involved clicking on a series of green buttons and integrating the Docker setup we had already created.  I was impressed by the speed of the builds after I pushed my commits to Github.  I think we have a winner with the new DevOps releases.  You can find the documentation on <a href=\"https://cda.ms/F8\">docs.microsoft.com</a>.</p>\n<p>In future posts, we&#39;ll get this Pipeline configured to push to a Kubernetes cluster to add Continuous Deployment to this application.</p>\n",
-      "title": "Azure DevOps CI Setup",
-      "layout": "post",
-      "date": "2018-09-11",
-      "slug": "azure-devops-ci-setup",
-      "images": [
-        "/img/unsplash-photos-QRkew0KwXSM.jpg"
-      ],
-      "thumbnail": "/img/unsplash-photos-QRkew0KwXSM.tn-500x500.jpg",
-      "credit": "https://unsplash.com/photos/QRkew0KwXSM",
-      "description": "Setting up CI on Azure DevOps",
-      "tags": [
-        "elixir",
-        "ci"
-      ],
-      "classes": [
-        "feature-hyphenate",
-        "feature-justify",
-        "feature-highlight"
-      ],
-      "categories": [
-        "CI",
-        "Azure"
-      ],
-      "excerpt": "<p>Microsoft just announced a killer continuous integration setup for Github, and I was really anxious to give it a try.  This post documents my setup for an <a href=\"https://github.com/gophersnacks/site\">Elixir/Phoenix application</a> I&apos;m building with <a href=\"https://twitter.com/arschles\">Aaron Schlesinger</a>.</p>",
-      "meta": {
-        "relativePath": "posts/azure-devops-ci-setup.html",
-        "createdAt": "2020-11-05T00:06:34.000Z",
-        "lastModified": "2020-11-05T00:06:34.000Z",
-        "size": 4103,
-        "formattedSize": "4.0 KB"
+        "createdAt": "2020-11-04T18:37:17.250Z",
+        "lastModified": "2020-11-04T18:37:17.250Z",
+        "size": 10508,
+        "formattedSize": "10.3 KB"
       }
     },
     {
@@ -89,6 +55,7 @@
       "contents": "<p>I had a great time on the Arrested DevOps podcast with Bridget Kromhout.\nWe chatted along with Taylor Thomas of the Deis team about <a href=\"https://github.com/deislabs/krustlet\">krustlet</a>.</p>\n<!-- more -->\n\n\n<h2 id=\"krustlet-on-arrested-devops\">Krustlet on Arrested DevOps</h2>\n<p>You can <a href=\"https://www.arresteddevops.com/krustlet/\">listen here</a> or find it in all the usual podcast places, like Spotify and iTunes.</p>\n",
       "title": "Arrested DevOps Appearance on Krustlet",
       "layout": "post",
+      "section": "Blog",
       "date": "2020-04-14",
       "slug": "arrested-devops-appearance-on-krustlet",
       "images": [
@@ -117,10 +84,46 @@
       "excerpt": "<p>I had a great time on the Arrested DevOps podcast with Bridget Kromhout.\nWe chatted along with Taylor Thomas of the Deis team about <a href=\"https://github.com/deislabs/krustlet\">krustlet</a>.</p>",
       "meta": {
         "relativePath": "posts/arrested-devops-appearance-on-krustlet.html",
-        "createdAt": "2020-11-05T00:06:20.870Z",
-        "lastModified": "2020-11-05T00:06:20.870Z",
-        "size": 874,
-        "formattedSize": "874 Bytes"
+        "createdAt": "2020-11-04T18:37:57.350Z",
+        "lastModified": "2020-11-04T18:37:57.350Z",
+        "size": 888,
+        "formattedSize": "888 Bytes"
+      }
+    },
+    {
+      "id": "posts__azure-devops-ci-setup",
+      "contents": "<p>Microsoft just announced a killer continuous integration setup for Github, and I was really anxious to give it a try.  This post documents my setup for an <a href=\"https://github.com/gophersnacks/site\">Elixir/Phoenix application</a> I&#39;m building with <a href=\"https://twitter.com/arschles\">Aaron Schlesinger</a>.</p>\n<!-- more -->\n\n<h3 id=\"set-up-azure-pipelines\">Set Up Azure Pipelines</h3>\n<p>Step one is to head to the <a href=\"https://github.com/marketplace/azure-pipelines\">Github Marketplace</a> and install the Azure Pipelines service.</p>\n<p><img src=\"/images/2018/09/Screen-Shot-2018-09-11-at-9.42.48-AM.png\" alt=\"Azure Pipelines on Github\"></p>\n<p>I clicked on the &quot;Set up a plan&quot; button, and then selected the Free option, and &quot;Install it for free&quot; link.  This allows Linux, Mac and Windows build machines, with 10 free parallel jobs.  That&#39;s plenty for most open source projects.</p>\n<p><img src=\"/images/2018/09/Screen-Shot-2018-09-11-at-9.43.08-AM.png\" alt=\"Confirmation Dialog\"></p>\n<p>Next I confirmed the Marketplace change by choosing the &quot;Complete order and begin installation&quot; button.</p>\n<p><img src=\"/images/2018/09/Screen-Shot-2018-09-11-at-9.43.26-AM.png\" alt=\"Review Order\"></p>\n<p>After authentication with my Azure account, I needed to create a Project.  Projects in Azure DevOps are conceptual containers that host a single repository and it&#39;s build procedures.</p>\n<p><img src=\"/images/2018/09/Screen-Shot-2018-09-11-at-9.45.52-AM.png\" alt=\"Setup Project\"></p>\n<p>After creating the project, I needed to pick a repository:</p>\n<p><img src=\"/images/2018/09/Screen-Shot-2018-09-11-at-9.46.37-AM.png\" alt=\"Choose A Repository\"></p>\n<h3 id=\"configuration\">Configuration</h3>\n<p>The Azure DevOps pipeline wizard suggested a Docker pipeline for this Elixir project, which suits me fine.  We had already created appropriate Dockerfile and docker-compose.yml files.  The last step was to create an azure-pipelines.yml file and put it in the root of the repository.</p>\n<pre><code class=\"language-javascript\"># Docker image\n# Build a Docker image to run, deploy, or push to a container registry.\n# Add steps that use Docker Compose, tag images, push to a registry, run an image, and more:\n# https://docs.microsoft.com/vsts/pipelines/languages/docker\n\npool:\n  vmImage: &#39;Ubuntu 16.04&#39;\n\nvariables:\n  imageName: &#39;gophersnacks:$(build.buildId)&#39;\n\nsteps:\n- script: |\n    docker-compose -p site up -d\n    docker build --network=site_default --build-arg MIX_ENV=test -f Dockerfile.test .\n    docker-compose down\n  displayName: &#39;test&#39;\n- script: docker build -f Dockerfile -t $(imageName) .\n  displayName: &#39;docker build&#39;</code></pre>\n<p> After some experimentation I created two steps in my pipeline, the first runs tests, and the second builds the Docker container for production usage.  As is the case every time I create a new CI environment, it took 40 commits to get the Docker networking and database configuration setup right.  Eventually, though, I succeeded:</p>\n<p> <img src=\"/images/2018/09/Screen-Shot-2018-09-11-at-9.58.52-AM.png\" alt=\"FAIL\"></p>\n<p> These results were correct; I hadn&#39;t updated the tests since adding authentication to the web app yesterday.  <em>So I did what any good developer would do – I deleted the failing tests.</em>  Just temporarily, of course, because I wanted to focus my time on configuring Azure Pipelines, not learning how to test authenticated HTTP requests in Phoenix.</p>\n<h3 id=\"conclusion\">Conclusion</h3>\n<p>The process to set up Azure DevOps Pipelines was really simple, and mostly involved clicking on a series of green buttons and integrating the Docker setup we had already created.  I was impressed by the speed of the builds after I pushed my commits to Github.  I think we have a winner with the new DevOps releases.  You can find the documentation on <a href=\"https://cda.ms/F8\">docs.microsoft.com</a>.</p>\n<p>In future posts, we&#39;ll get this Pipeline configured to push to a Kubernetes cluster to add Continuous Deployment to this application.</p>\n",
+      "title": "Azure DevOps CI Setup",
+      "layout": "post",
+      "section": "Blog",
+      "date": "2018-09-11",
+      "slug": "azure-devops-ci-setup",
+      "images": [
+        "/img/unsplash-photos-QRkew0KwXSM.jpg"
+      ],
+      "thumbnail": "/img/unsplash-photos-QRkew0KwXSM.tn-500x500.jpg",
+      "credit": "https://unsplash.com/photos/QRkew0KwXSM",
+      "description": "Setting up CI on Azure DevOps",
+      "tags": [
+        "elixir",
+        "ci"
+      ],
+      "classes": [
+        "feature-hyphenate",
+        "feature-justify",
+        "feature-highlight"
+      ],
+      "categories": [
+        "CI",
+        "Azure"
+      ],
+      "excerpt": "<p>Microsoft just announced a killer continuous integration setup for Github, and I was really anxious to give it a try.  This post documents my setup for an <a href=\"https://github.com/gophersnacks/site\">Elixir/Phoenix application</a> I&apos;m building with <a href=\"https://twitter.com/arschles\">Aaron Schlesinger</a>.</p>",
+      "meta": {
+        "relativePath": "posts/azure-devops-ci-setup.html",
+        "createdAt": "2020-11-04T18:37:55.490Z",
+        "lastModified": "2020-11-04T18:37:55.490Z",
+        "size": 4117,
+        "formattedSize": "4.0 KB"
       }
     },
     {
@@ -128,6 +131,7 @@
       "contents": "<p><a href=\"http://byobu.co/\">Byobu</a> is a frontend for <code>tmux</code> and <code>screen</code> that allows you to save your terminal sessions and reconnect to them easily.  It&#39;s one of the biggest time-savers in my bag of tricks.  Read along to learn how I use it.  This article applies to any *nix-like system, despite the &quot;on WSL&quot; in the title.</p>\n<!-- more -->\n\n<h3 id=\"installing\">Installing</h3>\n<p>You can install Byobu on nearly any *nix-like operating system.  Since I&#39;m using Ubuntu and Debian, I&#39;ll use <code>apt</code> to install the version that is shipped with the OS:</p>\n<p>{{&lt; figure src=&quot;/images/byobucheck.png&quot; alt=&quot;Check for byobu binary&quot; position=&quot;center&quot; caption=&quot;Check to see if byobu is installed&quot; &gt;}}</p>\n<p>Once installed it&#39;s easy to start a session, just type the <code>byobu</code> command:\n{{&lt; figure src=&quot;/images/byobuopen.png&quot; alt=&quot;new session&quot; position=&quot;center&quot; caption=&quot;A new Byobu session&quot; &gt;}}</p>\n<h3 id=\"enabling\">Enabling</h3>\n<p>You can continue to use <code>byobu</code> this way, manually, but the real power of <code>byobu</code> comes by enabling login/ssh integration.  From your shell prompt, type the command <code>byobu-enable</code>.  This will enable a wrapper script that wraps your login session with a <code>byobu</code> session.  You can disable this with <code>byobu-disable</code>.</p>\n<p>With <code>byobu</code> in &quot;enabled&quot; mode, every time I open a terminal it drops me into either an existing <code>byobu</code> session if one exists, or creates a new one for me.  It&#39;s a delightful way to resume where I left off without having to worry about whether I started a <code>tmux</code> session.</p>\n<h3 id=\"usage\">Usage</h3>\n<p>In stark contrast to <code>tmux</code> and <code>screen</code>, <code>byobu</code> is pretty easy to use.  By default it uses mostly function keys to manage your session.  In the background, <code>byobu</code> issues appropriate commands to <code>tmux</code> or <code>screen</code> on your behalf, so you don&#39;t have to remember those crazy control sequences.</p>\n<h4 id=\"windows\">Windows</h4>\n<p>Once inside a <code>byobu</code> session, you can create multiple windows inside your terminal session.  If you&#39;ve used a terminal client that supports tabs, this isn&#39;t much different.  The benefit is that your windows are persisted with your session.  So you can exit and resume your session with all your windows intact.</p>\n<p>{{&lt; figure src=&quot;/images/byobunvim.png&quot; alt=&quot;a single byobu window&quot; position=&quot;center&quot; caption=&quot;A single byobu window&quot; &gt;}}</p>\n<p>Windows are labeled with a number in the status bar at the bottom of the screen.  Press <code>F2</code> to open a new window and you should see a second terminal appear:</p>\n<p>{{&lt; figure src=&quot;/images/byobuwin.png&quot; alt=&quot;a second byobu window&quot; position=&quot;center&quot; caption=&quot;A second byobu window&quot; &gt;}}</p>\n<p>Now I have two windows open, labeled <code>0:neovim</code> and <code>1:</code> in the taskbar.  I skipped a step here and renamed my original window so I wouldn&#39;t get lost when I add more than one.  Press <code>F8</code> to rename a window.  Note that the window name is just for decoration, it doesn&#39;t relate to running processes at all.</p>\n<p>To navigate between your windows, use <code>F3</code> and <code>F4</code> for previous and next windows.</p>\n<h4 id=\"splits\">Splits</h4>\n<p>Sometimes, I like to have two different terminal applications running in one window.  For example, when editing this blog:</p>\n<p>{{&lt; figure src=&quot;/images/byobusplit.png&quot; alt=&quot;a second byobu window&quot; position=&quot;center&quot; caption=&quot;A second byobu window&quot; &gt;}}</p>\n<p>The top part of the split has <code>neovim</code> editing the content of this post.  The bottom part of the split is the output of <code>hugo</code> as it watches the content directory.</p>\n<p>Create a split by using <code>Shift F2</code> and <code>Control F2</code> for horizontal and vertical splits, respectively.</p>\n<p>I can change back and forth between splits using <code>Shift + F3</code> and <code>Shift + F4</code>.  That&#39;s easy to remember, because it&#39;s just adding <code>Shift</code> to the keys I use to change windows.</p>\n<p>Resizing splits is accomplished with <code>Shift + Alt + [arrow key]</code></p>\n<h4 id=\"closing-the-terminal\">Closing the Terminal</h4>\n<p>When I&#39;m done working in the terminal, but not finished with a particular task, I use <code>F6</code> to detach from the <code>byobu</code> session.  This closes the active terminal window, but keeps <code>byobu</code> and all my windows running in the background.  Reoping my terminal window automatically re-attaches me to my <code>byobu</code> session as if I had never left.</p>\n<h3 id=\"reference--links\">Reference / Links</h3>\n<p>Adding <code>byobu</code> to my toolbelt drastically cut the amount of time it takes to engage with a project I need to walk away from. I have a hard time guessing, but I think I&#39;m saving an hour or more per week at a minimum.  That&#39;s a lot of time.</p>\n<ul>\n<li><a href=\"https://help.ubuntu.com/community/Byobu\">Ubuntu Wiki: Byobu</a></li>\n<li><a href=\"http://byobu.co/documentation.html\">Byobu Documentation</a></li>\n</ul>\n",
       "title": "Byobu on WSL",
       "layout": "post",
+      "section": "Blog",
       "date": "2019-10-09",
       "slug": "byobu-wsl",
       "images": [
@@ -151,10 +155,41 @@
       "excerpt": "<p><a href=\"http://byobu.co/\">Byobu</a> is a frontend for <code>tmux</code> and <code>screen</code> that allows you to save your terminal sessions and reconnect to them easily.  It&apos;s one of the biggest time-savers in my bag of tricks.  Read along to learn how I use it.  This article applies to any *nix-like system, despite the &quot;on WSL&quot; in the title.</p>",
       "meta": {
         "relativePath": "posts/byobu-wsl.html",
-        "createdAt": "2020-11-05T00:06:45.500Z",
-        "lastModified": "2020-11-05T00:06:45.500Z",
-        "size": 4774,
+        "createdAt": "2020-11-04T18:38:08.480Z",
+        "lastModified": "2020-11-04T18:38:08.480Z",
+        "size": 4788,
         "formattedSize": "4.7 KB"
+      }
+    },
+    {
+      "id": "posts__caddy-hugo-encrypt",
+      "contents": "<p>I spent all of 5 minutes configuring <a href=\"https://caddyserver.com\">Caddy</a> to automatically pull content from github, post-process it with <a href=\"http://gohugo.io\">hugo</a> and serve it up with fresh SSL/TLS certificates from Let&#39;s Encrypt. <!-- more --></p>\n<p>When you think about it, that&#39;s pretty damned amazing.  Caddy already made web serving easy.  It powers everything I do now: gopheracademy.com, gophercon.com and a dozen more.  Add hugo to the mix and you have a really powerful publishing platform that is fully automated with just a git push.  I really love that Caddy polls my github repository and publishes new content.  It&#39;s a zero-overhead proposition to publish a new post.</p>\n<p>After configuring the Let&#39;s Encrypt integration, my esteem for Caddy leveled up to 11.  I did almost nothing to enable it.  Changed a flag in the command line to invoke Caddy, changed the URL in the Caddy configuration file from http to https.  In the background, Caddy requested and installed the certificates for me, and will continue to renew them before they expire.  SSL Everywhere is no longer a dream, it&#39;s real, it&#39;s here, and the tools couldn&#39;t be easier to use.</p>\n",
+      "author": "Brian Ketelsen",
+      "categories": [
+        "hugo",
+        "caddy",
+        "let's encrypt"
+      ],
+      "date": "2015-11-11T23:49:00Z",
+      "description": "",
+      "section": "Blog",
+      "images": [
+        "https://images.unsplash.com/photo-1477244075012-5cc28286e465?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=650281f5f6da101b6954a53645bf6501"
+      ],
+      "slug": "caddy-hugo-encrypt",
+      "tags": [
+        "hugo",
+        "caddy",
+        "let's encrypt"
+      ],
+      "title": "Caddy and Let's Encrypt",
+      "excerpt": "<p>I spent all of 5 minutes configuring <a href=\"https://caddyserver.com\">Caddy</a> to automatically pull content from github, post-process it with <a href=\"http://gohugo.io\">hugo</a> and serve it up with fresh SSL/TLS certificates from Let&apos;s Encrypt. <!-- more --></p>",
+      "meta": {
+        "relativePath": "posts/caddy-hugo-encrypt.html",
+        "createdAt": "2020-11-04T18:38:23.840Z",
+        "lastModified": "2020-11-04T18:38:23.840Z",
+        "size": 1584,
+        "formattedSize": "1.5 KB"
       }
     },
     {
@@ -167,6 +202,7 @@
       ],
       "date": "2016-06-18T23:10:00Z",
       "description": "",
+      "section": "Blog",
       "slug": "caddy-hugo-encrypt",
       "images": [
         "https://images.unsplash.com/photo-1492538368677-f6e0afe31dcc?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=de2dfaa06cf1c7b3d2ab7fac089a67bc"
@@ -182,9 +218,9 @@
       "excerpt": "<p>A week ago I decided to start a new journey.  While I truly enjoyed working with Blake Mizerany and the team at <a href=\"http://backplane.io\">backplane</a>, I felt I really had a passion for training and growing the Go community and I decided I owe it to myself to pursue it.</p>",
       "meta": {
         "relativePath": "posts/career-2-0-go-training-videos-speaking.html",
-        "createdAt": "2020-11-05T00:07:09.900Z",
-        "lastModified": "2020-11-05T00:07:09.900Z",
-        "size": 5803,
+        "createdAt": "2020-11-04T18:38:41.420Z",
+        "lastModified": "2020-11-04T18:38:41.420Z",
+        "size": 5817,
         "formattedSize": "5.7 KB"
       }
     },
@@ -195,6 +231,7 @@
       "layout": "post",
       "date": "2019-09-13",
       "slug": "eggbites",
+      "section": "Blog",
       "images": [
         "/images/eggbites.jpeg"
       ],
@@ -214,9 +251,9 @@
       "excerpt": "<p>This post is a change from the usual technical content.  I made my own Egg Bites this morning, inspired by the delicious ones I like to get at Starbucks.</p>",
       "meta": {
         "relativePath": "posts/eggbites.html",
-        "createdAt": "2020-11-05T00:07:21.540Z",
-        "lastModified": "2020-11-05T00:07:21.540Z",
-        "size": 1962,
+        "createdAt": "2020-11-04T18:38:51.380Z",
+        "lastModified": "2020-11-04T18:38:51.380Z",
+        "size": 1976,
         "formattedSize": "1.9 KB"
       }
     },
@@ -231,6 +268,7 @@
       ],
       "date": "2016-09-19T22:53:00Z",
       "description": "",
+      "section": "Blog",
       "slug": "errgroup",
       "images": [
         "https://images.unsplash.com/photo-1495573258723-2c7be7a646ce?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=5942ab1aa61891b3745a4d63e0b7da5f"
@@ -247,10 +285,10 @@
       "excerpt": "<p>In this article for O&apos;Reilly I explore the new sync.ErrGroup package.</p>",
       "meta": {
         "relativePath": "posts/errgroup.html",
-        "createdAt": "2020-11-05T00:07:30.310Z",
-        "lastModified": "2020-11-05T00:07:30.310Z",
-        "size": 676,
-        "formattedSize": "676 Bytes"
+        "createdAt": "2020-11-04T18:39:05.150Z",
+        "lastModified": "2020-11-04T18:39:05.150Z",
+        "size": 690,
+        "formattedSize": "690 Bytes"
       }
     },
     {
@@ -263,6 +301,7 @@
       ],
       "date": "2017-12-13T21:07:59Z",
       "description": "",
+      "section": "Blog",
       "images": [
         "/images/2017/12/startmenu.png"
       ],
@@ -275,9 +314,9 @@
       "excerpt": "<p>Lately I&apos;ve been on a <a href=\"https://blog.gopheracademy.com/advent-2017/repeatable-isolated-dev-environments/\">mission</a> to separate my development environments by project, and by category (personal/work/Gophercon/etc).  The writeup on the Gopheracademy blog describes a fun way to create an isolated container-based environment for each project by using LXD on Ubuntu.</p>",
       "meta": {
         "relativePath": "posts/getting-crazy-with-windows-subsystem-for-linux.html",
-        "createdAt": "2020-11-05T00:07:43.510Z",
-        "lastModified": "2020-11-05T00:07:43.510Z",
-        "size": 7425,
+        "createdAt": "2020-11-04T18:39:11.160Z",
+        "lastModified": "2020-11-04T18:39:11.160Z",
+        "size": 7439,
         "formattedSize": "7.3 KB"
       }
     },
@@ -291,6 +330,7 @@
       ],
       "date": "2016-08-15T22:55:00Z",
       "description": "",
+      "section": "Blog",
       "images": [
         "https://images.unsplash.com/photo-1487505983481-9aa2d9f9901a?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=beb2fdb8e2d1f0b888d896ae904bbb9d"
       ],
@@ -303,9 +343,9 @@
       "excerpt": "<p>Release day is always fun, and Go releases get me pretty excited.  The 1.7 release is especially nice, so I&apos;m going to mention some of my favorite changes in this release.</p>",
       "meta": {
         "relativePath": "posts/go17.html",
-        "createdAt": "2020-11-05T00:07:55.830Z",
-        "lastModified": "2020-11-05T00:07:55.830Z",
-        "size": 2896,
+        "createdAt": "2020-11-04T18:39:22.910Z",
+        "lastModified": "2020-11-04T18:39:22.910Z",
+        "size": 2910,
         "formattedSize": "2.8 KB"
       }
     },
@@ -330,43 +370,14 @@
         "linux"
       ],
       "title": "Going Overboard with WSL metadata",
+      "section": "Blog",
       "excerpt": "<p>It all started with a simple tweet from <a href=\"https://twitter.com/nunixtech\">@nunixtech</a>:</p>",
       "meta": {
         "relativePath": "posts/going-overboard-with-wsl-metadata.html",
-        "createdAt": "2020-11-05T00:08:10.690Z",
-        "lastModified": "2020-11-05T00:08:10.690Z",
-        "size": 7755,
+        "createdAt": "2020-11-04T18:39:36.110Z",
+        "lastModified": "2020-11-04T18:39:36.110Z",
+        "size": 7769,
         "formattedSize": "7.6 KB"
-      }
-    },
-    {
-      "id": "posts__caddy-hugo-encrypt",
-      "contents": "<p>I spent all of 5 minutes configuring <a href=\"https://caddyserver.com\">Caddy</a> to automatically pull content from github, post-process it with <a href=\"http://gohugo.io\">hugo</a> and serve it up with fresh SSL/TLS certificates from Let&#39;s Encrypt. <!-- more --></p>\n<p>When you think about it, that&#39;s pretty damned amazing.  Caddy already made web serving easy.  It powers everything I do now: gopheracademy.com, gophercon.com and a dozen more.  Add hugo to the mix and you have a really powerful publishing platform that is fully automated with just a git push.  I really love that Caddy polls my github repository and publishes new content.  It&#39;s a zero-overhead proposition to publish a new post.</p>\n<p>After configuring the Let&#39;s Encrypt integration, my esteem for Caddy leveled up to 11.  I did almost nothing to enable it.  Changed a flag in the command line to invoke Caddy, changed the URL in the Caddy configuration file from http to https.  In the background, Caddy requested and installed the certificates for me, and will continue to renew them before they expire.  SSL Everywhere is no longer a dream, it&#39;s real, it&#39;s here, and the tools couldn&#39;t be easier to use.</p>\n",
-      "author": "Brian Ketelsen",
-      "categories": [
-        "hugo",
-        "caddy",
-        "let's encrypt"
-      ],
-      "date": "2015-11-11T23:49:00Z",
-      "description": "",
-      "images": [
-        "https://images.unsplash.com/photo-1477244075012-5cc28286e465?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=650281f5f6da101b6954a53645bf6501"
-      ],
-      "slug": "caddy-hugo-encrypt",
-      "tags": [
-        "hugo",
-        "caddy",
-        "let's encrypt"
-      ],
-      "title": "Caddy and Let's Encrypt",
-      "excerpt": "<p>I spent all of 5 minutes configuring <a href=\"https://caddyserver.com\">Caddy</a> to automatically pull content from github, post-process it with <a href=\"http://gohugo.io\">hugo</a> and serve it up with fresh SSL/TLS certificates from Let&apos;s Encrypt. <!-- more --></p>",
-      "meta": {
-        "relativePath": "posts/caddy-hugo-encrypt.html",
-        "createdAt": "2020-11-05T00:12:30.970Z",
-        "lastModified": "2020-11-05T00:12:30.970Z",
-        "size": 1570,
-        "formattedSize": "1.5 KB"
       }
     },
     {
@@ -388,12 +399,13 @@
         "azure"
       ],
       "title": "Learn With Me: Moving Gophercon to Azure",
+      "section": "Blog",
       "excerpt": "<p>I&apos;ve recently taken on a new role at Microsoft as a Cloud Developer Advocate for Open Source projects on Azure.  My purview is Go, Linux, Containers, and Kubernetes.  While brainstorming ways to learn about all that Azure has to offer an idea occured to me:  Why not move Gophercon over to Azure as a learning tool.  I&apos;ve decided to do just that and share my learnings along the way.</p>",
       "meta": {
         "relativePath": "posts/gophercon-on-azure.html",
-        "createdAt": "2020-11-05T00:08:20.070Z",
-        "lastModified": "2020-11-05T00:08:20.070Z",
-        "size": 2173,
+        "createdAt": "2020-11-04T18:39:43.840Z",
+        "lastModified": "2020-11-04T18:39:43.840Z",
+        "size": 2187,
         "formattedSize": "2.1 KB"
       }
     },
@@ -404,6 +416,7 @@
       "layout": "post",
       "date": "2020-02-25",
       "slug": "hello-wascc",
+      "section": "Blog",
       "images": [
         "/images/h3GAGi5tXMU.jpg"
       ],
@@ -431,9 +444,9 @@
       "excerpt": "<p>I&apos;m <em>really excited</em> about Web Assembly on the server. The promise of sandboxed and portable code feels like the realization of the vision Docker tried to achieve. In this article I&apos;m going to walk through creating a service using <a href=\"https://wascc.dev/\">waSCC</a>, which is a host runtime for running actors written in web assembly. We&apos;ll mostly follow the tutorial for creating a new actor, but with more nuance, and specifics for using WSL2 on my Windows Laptop added for completeness.</p>",
       "meta": {
         "relativePath": "posts/hello-wascc.html",
-        "createdAt": "2020-11-05T00:09:17.530Z",
-        "lastModified": "2020-11-05T00:09:17.530Z",
-        "size": 2161,
+        "createdAt": "2020-11-04T18:39:56.080Z",
+        "lastModified": "2020-11-04T18:39:56.080Z",
+        "size": 2175,
         "formattedSize": "2.1 KB"
       }
     },
@@ -458,12 +471,13 @@
         "i3"
       ],
       "title": "Running i3 Window Manager on Bash For Windows",
+      "section": "Blog",
       "excerpt": "<p>That might be the longest title for a blog post ever, but it&apos;s kind of hard to describe what&apos;s going on here if you&apos;re not familiar with the latest updates from Microsoft land.  <!--more-->Here&apos;s a quick refresher:</p>",
       "meta": {
         "relativePath": "posts/i3-windows.html",
-        "createdAt": "2020-11-05T00:09:21.000Z",
-        "lastModified": "2020-11-05T00:09:21.000Z",
-        "size": 6610,
+        "createdAt": "2020-11-04T18:40:31.460Z",
+        "lastModified": "2020-11-04T18:40:31.460Z",
+        "size": 6624,
         "formattedSize": "6.5 KB"
       }
     },
@@ -473,7 +487,8 @@
       "title": "Bash Helpers for Quick Installs",
       "layout": "post",
       "date": "2020-08-14",
-      "slug": "install-funs",
+      "slug": "install-func",
+      "section": "Blog",
       "images": [
         "/images/4pPzKfd6BEg.jpg"
       ],
@@ -495,9 +510,9 @@
       "excerpt": "<p>This bash setup is the latest evolution of my quest to make a new system install as fast as possible.</p>",
       "meta": {
         "relativePath": "posts/install-func.html",
-        "createdAt": "2020-11-05T00:09:10.240Z",
-        "lastModified": "2020-11-05T00:09:10.240Z",
-        "size": 3576,
+        "createdAt": "2020-11-04T18:40:46.560Z",
+        "lastModified": "2020-11-04T18:40:46.560Z",
+        "size": 3590,
         "formattedSize": "3.5 KB"
       }
     },
@@ -525,7 +540,7 @@
       "excerpt": "<p>I want to document a setup that I&apos;ve found that works really well for me using Windows 10 and <a href=\"https://blogs.msdn.microsoft.com/wsl/2016/04/22/windows-subsystem-for-linux-overview/\">Windows Subsystem for Linux</a> for general development.  Before we dive into any specifics, though, I want to provide some background and explain my objectives which will help to frame the decisions I&apos;ve made and the trade-offs chosen to reach a more ideal environment.</p>",
       "meta": {
         "relativePath": "posts/my-cross-platform-dev-setup-on-surface-laptop.html",
-        "createdAt": "2020-11-05T00:09:03.790Z",
+        "createdAt": "2020-11-04T18:23:50.130Z",
         "lastModified": "2020-11-05T00:09:03.790Z",
         "size": 8173,
         "formattedSize": "8.0 KB"
@@ -553,7 +568,7 @@
       "excerpt": "<p>I promised <a href=\"https://brianketelsen.com/opensource/\">here</a> that I would document my progress learning frontend development.  This isn&apos;t a book-length treatise on the subject, but I do have a few notes about my progress.  </p>",
       "meta": {
         "relativePath": "posts/new-tricks.html",
-        "createdAt": "2020-11-05T00:09:34.000Z",
+        "createdAt": "2020-11-04T18:23:50.130Z",
         "lastModified": "2020-11-05T00:09:34.000Z",
         "size": 4183,
         "formattedSize": "4.1 KB"
@@ -582,7 +597,7 @@
       "excerpt": "<p>For 15 or more years I have told myself that I can&apos;t do frontend web work.  I remember seeing a presentation from a co-worker on CSS in 2003 or so, and thinking it was just too complicated.  I&apos;ve always been the guy behind the scenes building the services that power the web, but never the one spending any time making them less ugly.<!-- more --></p>",
       "meta": {
         "relativePath": "posts/old-dogs.html",
-        "createdAt": "2020-11-05T00:09:44.300Z",
+        "createdAt": "2020-11-04T18:23:50.130Z",
         "lastModified": "2020-11-05T00:09:44.300Z",
         "size": 2458,
         "formattedSize": "2.4 KB"
@@ -597,35 +612,10 @@
       "excerpt": "<p>Every blog starts with a single post. This is yours. Make it great.</p>",
       "meta": {
         "relativePath": "posts/one.html",
-        "createdAt": "2020-11-04T21:02:04.780Z",
+        "createdAt": "2020-11-04T18:23:50.130Z",
         "lastModified": "2020-11-04T21:02:04.788Z",
         "size": 219,
         "formattedSize": "219 Bytes"
-      }
-    },
-    {
-      "id": "posts__retractable-green-screen-on-the-cheap",
-      "contents": "<p>Quick post to write up how I built a retractable green screen mount on my wall for not much money.</p>\n<!-- more -->\n\n<p>I bought a mounting bracket <a href=\"https://www.amazon.com/gp/product/B002P32990/ref=oh_aui_detailpage_o02_s01?ie=UTF8&amp;psc=1\">from Amazon</a> that was intended for paper photograph backrounds like this.  I didn&#39;t want paper, I wanted muslin for it&#39;s superior light disbursement and durability.  I already had a 9&#39; by 15&#39; muslin green screen backdrop similar to <a href=\"https://www.amazon.com/gp/product/B017WNJS3M/ref=oh_aui_detailpage_o02_s00?ie=UTF8&amp;psc=1\">this one</a>.</p>\n<p>When the mounting bracket arrived, it said to use a metal rod with a 2&quot; (two inch) inner diameter.  I didn&#39;t want to use anything that heavy, so I went to Lowes and found PVC pipe with 2&quot; inner diameter and bought a 10 foot section.</p>\n<p>Then I measured the target wall and found it was 11.5 feet wide, perfect for my install.  I did the math to center the mount on the wall, accounting for the several inches of the pole-mount that stick out from each side.</p>\n<p><img src=\"/images/2018/10/IMG_1378.jpeg\" alt=\"Triple Bracket Mounted On The Wall\"></p>\n<p>Then to secure the backdrop to the PVC tubing, I reinforced the backdrop with Gorilla tape every 12 inches.  Duct tape or any other strong tape would work fine.  I drilled a hole through the reinforced backdrop and inserted a wood screw and washer to keep the backdrop secured to the PVC pipe.</p>\n<p><img src=\"/images/2018/10/IMG_1381.jpg\" alt=\"Reinforced Fabric with Gorilla Tape\"></p>\n<p>The whole thing took about an hour, mostly because it was awkward working with such a wide format project.  I called my kids in randomly to help when I needed an extra set of hands.</p>\n<p><img src=\"/images/2018/10/IMG_1380.jpeg\" alt=\"Final Assembly\"></p>\n<p>It was really inexpensive, and I can add two more backdrops in the future if the need arises.  Far better than the $1500+ solutions I found at photography stores, and much less intrusive than the nasty stands that take up too much floor space.</p>\n",
-      "author": "Brian Ketelsen",
-      "categories": [
-        "hacks"
-      ],
-      "date": "2018-10-06T18:20:43Z",
-      "images": [
-        "/images/2018/10/IMG_1380-1.jpeg"
-      ],
-      "slug": "retractable-green-screen-on-the-cheap",
-      "tags": [
-        "hacks"
-      ],
-      "title": "Retractable Green Screen On the Cheap",
-      "excerpt": "<p>Quick post to write up how I built a retractable green screen mount on my wall for not much money.</p>",
-      "meta": {
-        "relativePath": "posts/retractable-green-screen-on-the-cheap.html",
-        "createdAt": "2020-11-05T00:10:13.110Z",
-        "lastModified": "2020-11-05T00:10:13.110Z",
-        "size": 2184,
-        "formattedSize": "2.1 KB"
       }
     },
     {
@@ -648,119 +638,35 @@
       "excerpt": "<p>I&apos;ve never been shy about sharing my love for Open Source.  I love creating things, and I love sharing them with others.  One of my particular joys with Open Source Software, however, is finding new projects that excite me.<!-- more --></p>",
       "meta": {
         "relativePath": "posts/open-source-appreciation.html",
-        "createdAt": "2020-11-05T00:09:56.370Z",
+        "createdAt": "2020-11-04T18:23:50.130Z",
         "lastModified": "2020-11-05T00:09:56.370Z",
         "size": 5176,
         "formattedSize": "5.1 KB"
       }
     },
     {
-      "id": "posts__switchers",
-      "contents": "<p>TLDR; I&#39;ve traded in my Mac on a Surface Pro.  Here&#39;s why:<!-- more --></p>\n<p>I&#39;ve been whining about Apple and the way they&#39;ve ignored the power users for quite some time now.  I&#39;ve been using Linux for development for several years, and always wanted a way to run Linux as my primary OS.  But the sad truth (for me) is that there are just some things that prevent me from using Linux as my full time operating system.  Email might be the biggest, but there are other apps that are missing or just sub-par.</p>\n<p>MacOS was always &quot;close-enough&quot; to Linux that most things worked well.  Docker made things a little more difficult initially, then a little better with the new Docker for Mac.  But it still wasn&#39;t Linux, and it&#39;s hard to argue that developing on the platform you ship to is the right choice.  The OS itself is still visually superior to anything else, but it&#39;s been showing the signs of neglect for a few years now.  It&#39;s clear from Apple&#39;s recent announcements that they are a mobile OS/hardware company that happens to sell computers too.  They&#39;re not sad to lose me, I&#39;m sure.  </p>\n<p>My article in July about <a href=\"/blog/i3-windows/\">Windows Subsystem for Linux</a> hinted at my excitement about being able to run a solid desktop OS but still do the open source sort of development that really needs to be done on a Linux type operating system.  I abandoned that effort in July because it was still too alpha quality.  Too many things didn&#39;t work.  But it&#39;s November now, several builds later and Microsoft is shipping Ubuntu 16.04.1 in the latest Windows Insider releases.</p>\n<p>I took the plunge and bought a Surface Pro 4 when Microsoft announced the trade in program (still good until the 10th of November I think...) to give up to $650 off of a Surface device.  This Surface is just the right size for an airplane tray, has an i7 and 16GB of RAM, and most importantly the Linux subsystem just works for the most part.  I haven&#39;t done anything yet that failed.  I&#39;m sure there are still things that won&#39;t work, but for my primary use -- writing Go applications, teaching Kubernetes and Go, hacking on open source projects -- it all works.</p>\n<p>I was even able to run i3 Window manager again.  No flaws, no errors.  Windows has solid email and calendar applications, and let&#39;s face it; Chrome is Chrome on every OS, and we spend more time there than any other app besides the terminal.  SPEAKING OF THE TERMINAL, Microsoft has done some serious house cleaning there.  The terminal is fast, has true color support, transparency, auto layout correction on resizing, who knows what else has been fixed under the covers?  It&#39;s 80% of what you&#39;d expect from gnome-terminal.  And that&#39;s a far cry from the old CMD.exe days.</p>\n<p>I don&#39;t expect to be running X Windows often, when I&#39;m deep in a hacking session I&#39;ll probably open up i3 window manager, it&#39;s still the most productive way to code.  Neovim and vim-go work perfectly in Windows bash, so it&#39;s not a stretch to think I could just have a couple of bash windows open and alt-tab between them.  SSH and SCP work perfectly, and I can still cross-compile Go binaries for any platform (like my Raspberry Pi for my bbq app!). </p>\n<p>The most amazing part of all of this is that I simply git cloned my <a href=\"https://github.com/bketelsen/dotfiles\">dotfiles</a> from my Ubuntu installs and ran them un-altered.  It&#39;s the same experience, but without the hardware headaches that Linux always brings, nor the lack of good quality applications.  </p>\n<hr/>\nI think Apple has lost its hunger, and Microsoft found it.  The tables have turned from the funny switching campaigns with Justin Long looking hip and making fun of the frumpy John Hodgman.  Today's Microsoft is a completely different animal.  They're contributing heavily to open source projects, they've opened up the .Net platform, they're embracing developers and open source enthusiasts openly while Apple counts dollar bills from iPhone sales in a vault in Switzerland somewhere.\n\n<p>I got a lot of amused responses on Twitter when I announced my switch.  This environment may not yet be perfect, but my bet is on Microsoft for the future.  I&#39;m surprised to be saying that, but the evidence is clear that Apple isn&#39;t the company it was under Steve Jobs.  And Microsoft isn&#39;t the company it was under Balmer.  The irony hurts.  </p>\n<p><a href=\"https://en.wikipedia.org/w/index.php?curid=26608065\">image credit wikipedia</a></p>\n",
+      "id": "posts__retractable-green-screen-on-the-cheap",
+      "contents": "<p>Quick post to write up how I built a retractable green screen mount on my wall for not much money.</p>\n<!-- more -->\n\n<p>I bought a mounting bracket <a href=\"https://www.amazon.com/gp/product/B002P32990/ref=oh_aui_detailpage_o02_s01?ie=UTF8&amp;psc=1\">from Amazon</a> that was intended for paper photograph backrounds like this.  I didn&#39;t want paper, I wanted muslin for it&#39;s superior light disbursement and durability.  I already had a 9&#39; by 15&#39; muslin green screen backdrop similar to <a href=\"https://www.amazon.com/gp/product/B017WNJS3M/ref=oh_aui_detailpage_o02_s00?ie=UTF8&amp;psc=1\">this one</a>.</p>\n<p>When the mounting bracket arrived, it said to use a metal rod with a 2&quot; (two inch) inner diameter.  I didn&#39;t want to use anything that heavy, so I went to Lowes and found PVC pipe with 2&quot; inner diameter and bought a 10 foot section.</p>\n<p>Then I measured the target wall and found it was 11.5 feet wide, perfect for my install.  I did the math to center the mount on the wall, accounting for the several inches of the pole-mount that stick out from each side.</p>\n<p><img src=\"/images/2018/10/IMG_1378.jpeg\" alt=\"Triple Bracket Mounted On The Wall\"></p>\n<p>Then to secure the backdrop to the PVC tubing, I reinforced the backdrop with Gorilla tape every 12 inches.  Duct tape or any other strong tape would work fine.  I drilled a hole through the reinforced backdrop and inserted a wood screw and washer to keep the backdrop secured to the PVC pipe.</p>\n<p><img src=\"/images/2018/10/IMG_1381.jpg\" alt=\"Reinforced Fabric with Gorilla Tape\"></p>\n<p>The whole thing took about an hour, mostly because it was awkward working with such a wide format project.  I called my kids in randomly to help when I needed an extra set of hands.</p>\n<p><img src=\"/images/2018/10/IMG_1380.jpeg\" alt=\"Final Assembly\"></p>\n<p>It was really inexpensive, and I can add two more backdrops in the future if the need arises.  Far better than the $1500+ solutions I found at photography stores, and much less intrusive than the nasty stands that take up too much floor space.</p>\n",
       "author": "Brian Ketelsen",
       "categories": [
-        "hacks",
-        "i3",
-        "windows",
-        "linux",
-        "mac"
+        "hacks"
       ],
-      "date": "2016-11-07T00:07:00Z",
+      "date": "2018-10-06T18:20:43Z",
       "images": [
-        "/images/2017/09/getamac.png"
+        "/images/2018/10/IMG_1380-1.jpeg"
       ],
-      "slug": "switchers",
+      "slug": "retractable-green-screen-on-the-cheap",
       "tags": [
-        "hacks",
-        "i3",
-        "windows",
-        "linux",
-        "mac"
+        "hacks"
       ],
-      "title": "Switching - Irony and Operating systems",
-      "excerpt": "<p>TLDR; I&apos;ve traded in my Mac on a Surface Pro.  Here&apos;s why:<!-- more --></p>",
+      "title": "Retractable Green Screen On the Cheap",
+      "excerpt": "<p>Quick post to write up how I built a retractable green screen mount on my wall for not much money.</p>",
       "meta": {
-        "relativePath": "posts/switchers.html",
-        "createdAt": "2020-11-05T00:10:44.740Z",
-        "lastModified": "2020-11-05T00:10:44.740Z",
-        "size": 4682,
-        "formattedSize": "4.6 KB"
-      }
-    },
-    {
-      "id": "posts__tastyworms",
-      "contents": "<p>A coworker sent me a link to this recipe and I have to share it.  It&#39;s the tastiest looking sandworm ever.</p>\n<!-- more -->\n<p><a href=\"http://kitchenoverlord.com/2015/12/03/dune-week-spice-filled-sandworm/\">Spice Filled Sandworm</a></p>\n<p>If you make one let me know... Looks delicious.  Blessed be the maker.</p>\n<p><em>image courtesy of kitchenoverlord.com</em></p>\n",
-      "author": "Brian Ketelsen",
-      "categories": [
-        "dune",
-        "recipes"
-      ],
-      "date": "2015-12-05T00:08:00Z",
-      "images": [
-        "/images/2017/09/sandworm-bread-03.jpg"
-      ],
-      "slug": "tastyworms",
-      "tags": [
-        "dune",
-        "recipes"
-      ],
-      "title": "Tasty Worms",
-      "excerpt": "<p>A coworker sent me a link to this recipe and I have to share it.  It&apos;s the tastiest looking sandworm ever.</p>",
-      "meta": {
-        "relativePath": "posts/tastyworms.html",
-        "createdAt": "2020-11-05T00:10:57.300Z",
-        "lastModified": "2020-11-05T00:10:57.300Z",
-        "size": 556,
-        "formattedSize": "556 Bytes"
-      }
-    },
-    {
-      "id": "posts__two",
-      "contents": "<p>Every blog starts with a single post. This is yours. Make it great.</p>\n<!-- more -->\n\n<p>This post intentionally left blank.</p>\n<p>Write what you want.</p>\n",
-      "title": "Goodbye World 👋",
-      "date": "2019-06-11T08:38:00.000Z",
-      "slug": "goodbye",
-      "excerpt": "<p>Every blog starts with a single post. This is yours. Make it great.</p>",
-      "meta": {
-        "relativePath": "posts/two.html",
-        "createdAt": "2020-11-04T19:46:46.790Z",
-        "lastModified": "2020-11-04T19:46:46.790Z",
-        "size": 223,
-        "formattedSize": "223 Bytes"
-      }
-    },
-    {
-      "id": "posts__vscode-remote",
-      "contents": "<p>The <a href=\"https://code.visualstudio.com/\">Visual Studio Code</a> team just <a href=\"https://cda.ms/RN\">announced</a> perhaps the most eagerly anticipated feature yet.  Remote editing.</p>\n<!-- more -->\n<p><a href=\"https://www.twitch.tv/videos/419428954##\">Twitch Stream - Mac to SSH</a>\n<a href=\"https://www.twitch.tv/videos/419800747\">Twitch Stream - WSL &amp; Containers</a></p>\n<h3 id=\"remote-editing\">Remote Editing</h3>\n<p>An <a href=\"https://aka.ms/VSCodeRemoteExtensionPack\">extension pack</a> was released today that consists of three related extensions to Code.</p>\n<ul>\n<li><a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl\">Remote - WSL</a></li>\n<li><a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers\">Remote - Container</a></li>\n<li><a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh\">Remote - SSH</a></li>\n</ul>\n<p>These extensions enable development from a local VS Code instance against a remote environment.  And they&#39;re a dream come true for me.</p>\n<p>Each of these extensions allows you to run VS Code on <code>some computer</code> but the code and tools are on <code>some other compute device</code>.</p>\n<h4 id=\"remote---wsl\">Remote - WSL</h4>\n<p>If you&#39;re a Windows user, you know the frustration of working on a project that expects to be developed in Linux.  There are hacks and workarounds for using VS Code in Windows and keeping the development tools in WSL, but the <a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl\">remote-wsl</a> extension solves this problem officially.  You use Code in Windows, but the dev tools and environment live in WSL.  Talk about the best of both worlds!</p>\n<h4 id=\"remote---container\">Remote - Container</h4>\n<p>With the <a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers\">remote-containers</a> plugin, you add a Dockerfile and a configuration file to your project and VS Code will automatically prompt you to spin up the container as your development environment.  It will mount your code inside the container, and run as if you are developing inside the target environment. </p>\n<p>This is the <code>perfect</code> way to ship a pre-configured development environment for an Open Source project, for example.  I&#39;m really excited to add this to several of my projects.</p>\n<h4 id=\"remote---ssh\">Remote - SSH</h4>\n<p>Of the three, I will probably use this one the most.  In fact I&#39;m using it to write this blog post.</p>\n<p><img src=\"/images/remotessh.png\" alt=\"remote-ssh\"></p>\n<p>The <a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh\">remote-ssh</a> extension uses an SSH client on the host to communicate with a remote computer.  If you have a beefy development machine (either locally or in the cloud), this is the perfect way to keep your development experience stable no matter what computer you&#39;re sitting at.  No more syncing unfinished code between machines for me.</p>\n<p>The extension even does port forwarding over your ssh connection.  When you start your website or service, it will forward that port for you to the local machine.</p>\n<p><img src=\"/images/remotemenu.png\" alt=\"remote-menu\"></p>\n<p>I&#39;ve been using the preview version of these three extensions for a few weeks now, and I couldn&#39;t be happier with the setup.  I&#39;ve used them from a Mac, from a Chromebook with Crostini, from Linux, and from Windows.  It works equally well across all platforms.</p>\n<p>Go forth and remotely develop!</p>\n",
-      "title": "VS Code Remote Development",
-      "layout": "post",
-      "date": "2019-05-02",
-      "slug": "vscode-remote-development",
-      "images": [
-        "/images/fpoHihXiMhg.jpg"
-      ],
-      "thumbnail": "/images/fpoHihXiMhg-thumb.jpg",
-      "credit": "https://unsplash.com/photos/fpoHihXiMhg",
-      "description": "Use VS Code against a remote computer or container",
-      "tags": [
-        "vscode",
-        "development"
-      ],
-      "classes": [
-        "feature-hyphenate",
-        "feature-justify",
-        "feature-highlight"
-      ],
-      "categories": [
-        "Development"
-      ],
-      "excerpt": "<p>The <a href=\"https://code.visualstudio.com/\">Visual Studio Code</a> team just <a href=\"https://cda.ms/RN\">announced</a> perhaps the most eagerly anticipated feature yet.  Remote editing.</p>",
-      "meta": {
-        "relativePath": "posts/vscode-remote.html",
-        "createdAt": "2020-11-05T00:11:09.200Z",
-        "lastModified": "2020-11-05T00:11:09.200Z",
-        "size": 3652,
-        "formattedSize": "3.6 KB"
+        "relativePath": "posts/retractable-green-screen-on-the-cheap.html",
+        "createdAt": "2020-11-04T18:23:50.130Z",
+        "lastModified": "2020-11-05T00:10:13.110Z",
+        "size": 2184,
+        "formattedSize": "2.1 KB"
       }
     },
     {
@@ -795,10 +701,119 @@
       "excerpt": "<p>In this article I share my learnings on remotely accessing your Windows 10 computer. My motivation was to determine efficient ways to access both the Windows environment, and the WSL2 development environment from another computer.</p>",
       "meta": {
         "relativePath": "posts/ssh-to-wsl2.html",
-        "createdAt": "2020-11-05T00:10:31.920Z",
+        "createdAt": "2020-11-04T18:23:50.130Z",
         "lastModified": "2020-11-05T00:10:31.920Z",
         "size": 8752,
         "formattedSize": "8.5 KB"
+      }
+    },
+    {
+      "id": "posts__switchers",
+      "contents": "<p>TLDR; I&#39;ve traded in my Mac on a Surface Pro.  Here&#39;s why:<!-- more --></p>\n<p>I&#39;ve been whining about Apple and the way they&#39;ve ignored the power users for quite some time now.  I&#39;ve been using Linux for development for several years, and always wanted a way to run Linux as my primary OS.  But the sad truth (for me) is that there are just some things that prevent me from using Linux as my full time operating system.  Email might be the biggest, but there are other apps that are missing or just sub-par.</p>\n<p>MacOS was always &quot;close-enough&quot; to Linux that most things worked well.  Docker made things a little more difficult initially, then a little better with the new Docker for Mac.  But it still wasn&#39;t Linux, and it&#39;s hard to argue that developing on the platform you ship to is the right choice.  The OS itself is still visually superior to anything else, but it&#39;s been showing the signs of neglect for a few years now.  It&#39;s clear from Apple&#39;s recent announcements that they are a mobile OS/hardware company that happens to sell computers too.  They&#39;re not sad to lose me, I&#39;m sure.  </p>\n<p>My article in July about <a href=\"/blog/i3-windows/\">Windows Subsystem for Linux</a> hinted at my excitement about being able to run a solid desktop OS but still do the open source sort of development that really needs to be done on a Linux type operating system.  I abandoned that effort in July because it was still too alpha quality.  Too many things didn&#39;t work.  But it&#39;s November now, several builds later and Microsoft is shipping Ubuntu 16.04.1 in the latest Windows Insider releases.</p>\n<p>I took the plunge and bought a Surface Pro 4 when Microsoft announced the trade in program (still good until the 10th of November I think...) to give up to $650 off of a Surface device.  This Surface is just the right size for an airplane tray, has an i7 and 16GB of RAM, and most importantly the Linux subsystem just works for the most part.  I haven&#39;t done anything yet that failed.  I&#39;m sure there are still things that won&#39;t work, but for my primary use -- writing Go applications, teaching Kubernetes and Go, hacking on open source projects -- it all works.</p>\n<p>I was even able to run i3 Window manager again.  No flaws, no errors.  Windows has solid email and calendar applications, and let&#39;s face it; Chrome is Chrome on every OS, and we spend more time there than any other app besides the terminal.  SPEAKING OF THE TERMINAL, Microsoft has done some serious house cleaning there.  The terminal is fast, has true color support, transparency, auto layout correction on resizing, who knows what else has been fixed under the covers?  It&#39;s 80% of what you&#39;d expect from gnome-terminal.  And that&#39;s a far cry from the old CMD.exe days.</p>\n<p>I don&#39;t expect to be running X Windows often, when I&#39;m deep in a hacking session I&#39;ll probably open up i3 window manager, it&#39;s still the most productive way to code.  Neovim and vim-go work perfectly in Windows bash, so it&#39;s not a stretch to think I could just have a couple of bash windows open and alt-tab between them.  SSH and SCP work perfectly, and I can still cross-compile Go binaries for any platform (like my Raspberry Pi for my bbq app!). </p>\n<p>The most amazing part of all of this is that I simply git cloned my <a href=\"https://github.com/bketelsen/dotfiles\">dotfiles</a> from my Ubuntu installs and ran them un-altered.  It&#39;s the same experience, but without the hardware headaches that Linux always brings, nor the lack of good quality applications.  </p>\n<hr/>\nI think Apple has lost its hunger, and Microsoft found it.  The tables have turned from the funny switching campaigns with Justin Long looking hip and making fun of the frumpy John Hodgman.  Today's Microsoft is a completely different animal.  They're contributing heavily to open source projects, they've opened up the .Net platform, they're embracing developers and open source enthusiasts openly while Apple counts dollar bills from iPhone sales in a vault in Switzerland somewhere.\n\n<p>I got a lot of amused responses on Twitter when I announced my switch.  This environment may not yet be perfect, but my bet is on Microsoft for the future.  I&#39;m surprised to be saying that, but the evidence is clear that Apple isn&#39;t the company it was under Steve Jobs.  And Microsoft isn&#39;t the company it was under Balmer.  The irony hurts.  </p>\n<p><a href=\"https://en.wikipedia.org/w/index.php?curid=26608065\">image credit wikipedia</a></p>\n",
+      "author": "Brian Ketelsen",
+      "categories": [
+        "hacks",
+        "i3",
+        "windows",
+        "linux",
+        "mac"
+      ],
+      "date": "2016-11-07T00:07:00Z",
+      "images": [
+        "/images/2017/09/getamac.png"
+      ],
+      "slug": "switchers",
+      "tags": [
+        "hacks",
+        "i3",
+        "windows",
+        "linux",
+        "mac"
+      ],
+      "title": "Switching - Irony and Operating systems",
+      "excerpt": "<p>TLDR; I&apos;ve traded in my Mac on a Surface Pro.  Here&apos;s why:<!-- more --></p>",
+      "meta": {
+        "relativePath": "posts/switchers.html",
+        "createdAt": "2020-11-04T18:23:50.130Z",
+        "lastModified": "2020-11-05T00:10:44.740Z",
+        "size": 4682,
+        "formattedSize": "4.6 KB"
+      }
+    },
+    {
+      "id": "posts__tastyworms",
+      "contents": "<p>A coworker sent me a link to this recipe and I have to share it.  It&#39;s the tastiest looking sandworm ever.</p>\n<!-- more -->\n<p><a href=\"http://kitchenoverlord.com/2015/12/03/dune-week-spice-filled-sandworm/\">Spice Filled Sandworm</a></p>\n<p>If you make one let me know... Looks delicious.  Blessed be the maker.</p>\n<p><em>image courtesy of kitchenoverlord.com</em></p>\n",
+      "author": "Brian Ketelsen",
+      "categories": [
+        "dune",
+        "recipes"
+      ],
+      "date": "2015-12-05T00:08:00Z",
+      "images": [
+        "/images/2017/09/sandworm-bread-03.jpg"
+      ],
+      "slug": "tastyworms",
+      "tags": [
+        "dune",
+        "recipes"
+      ],
+      "title": "Tasty Worms",
+      "excerpt": "<p>A coworker sent me a link to this recipe and I have to share it.  It&apos;s the tastiest looking sandworm ever.</p>",
+      "meta": {
+        "relativePath": "posts/tastyworms.html",
+        "createdAt": "2020-11-04T18:23:50.130Z",
+        "lastModified": "2020-11-05T00:10:57.300Z",
+        "size": 556,
+        "formattedSize": "556 Bytes"
+      }
+    },
+    {
+      "id": "posts__two",
+      "contents": "<p>Every blog starts with a single post. This is yours. Make it great.</p>\n<!-- more -->\n\n<p>This post intentionally left blank.</p>\n<p>Write what you want.</p>\n",
+      "title": "Goodbye World 👋",
+      "date": "2019-06-11T08:38:00.000Z",
+      "slug": "goodbye",
+      "excerpt": "<p>Every blog starts with a single post. This is yours. Make it great.</p>",
+      "meta": {
+        "relativePath": "posts/two.html",
+        "createdAt": "2020-11-04T18:23:50.130Z",
+        "lastModified": "2020-11-04T19:46:46.790Z",
+        "size": 223,
+        "formattedSize": "223 Bytes"
+      }
+    },
+    {
+      "id": "posts__vscode-remote",
+      "contents": "<p>The <a href=\"https://code.visualstudio.com/\">Visual Studio Code</a> team just <a href=\"https://cda.ms/RN\">announced</a> perhaps the most eagerly anticipated feature yet.  Remote editing.</p>\n<!-- more -->\n<p><a href=\"https://www.twitch.tv/videos/419428954##\">Twitch Stream - Mac to SSH</a>\n<a href=\"https://www.twitch.tv/videos/419800747\">Twitch Stream - WSL &amp; Containers</a></p>\n<h3 id=\"remote-editing\">Remote Editing</h3>\n<p>An <a href=\"https://aka.ms/VSCodeRemoteExtensionPack\">extension pack</a> was released today that consists of three related extensions to Code.</p>\n<ul>\n<li><a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl\">Remote - WSL</a></li>\n<li><a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers\">Remote - Container</a></li>\n<li><a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh\">Remote - SSH</a></li>\n</ul>\n<p>These extensions enable development from a local VS Code instance against a remote environment.  And they&#39;re a dream come true for me.</p>\n<p>Each of these extensions allows you to run VS Code on <code>some computer</code> but the code and tools are on <code>some other compute device</code>.</p>\n<h4 id=\"remote---wsl\">Remote - WSL</h4>\n<p>If you&#39;re a Windows user, you know the frustration of working on a project that expects to be developed in Linux.  There are hacks and workarounds for using VS Code in Windows and keeping the development tools in WSL, but the <a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl\">remote-wsl</a> extension solves this problem officially.  You use Code in Windows, but the dev tools and environment live in WSL.  Talk about the best of both worlds!</p>\n<h4 id=\"remote---container\">Remote - Container</h4>\n<p>With the <a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers\">remote-containers</a> plugin, you add a Dockerfile and a configuration file to your project and VS Code will automatically prompt you to spin up the container as your development environment.  It will mount your code inside the container, and run as if you are developing inside the target environment. </p>\n<p>This is the <code>perfect</code> way to ship a pre-configured development environment for an Open Source project, for example.  I&#39;m really excited to add this to several of my projects.</p>\n<h4 id=\"remote---ssh\">Remote - SSH</h4>\n<p>Of the three, I will probably use this one the most.  In fact I&#39;m using it to write this blog post.</p>\n<p><img src=\"/images/remotessh.png\" alt=\"remote-ssh\"></p>\n<p>The <a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh\">remote-ssh</a> extension uses an SSH client on the host to communicate with a remote computer.  If you have a beefy development machine (either locally or in the cloud), this is the perfect way to keep your development experience stable no matter what computer you&#39;re sitting at.  No more syncing unfinished code between machines for me.</p>\n<p>The extension even does port forwarding over your ssh connection.  When you start your website or service, it will forward that port for you to the local machine.</p>\n<p><img src=\"/images/remotemenu.png\" alt=\"remote-menu\"></p>\n<p>I&#39;ve been using the preview version of these three extensions for a few weeks now, and I couldn&#39;t be happier with the setup.  I&#39;ve used them from a Mac, from a Chromebook with Crostini, from Linux, and from Windows.  It works equally well across all platforms.</p>\n<p>Go forth and remotely develop!</p>\n",
+      "title": "VS Code Remote Development",
+      "layout": "post",
+      "date": "2019-05-02",
+      "slug": "vscode-remote-development",
+      "images": [
+        "/images/fpoHihXiMhg.jpg"
+      ],
+      "thumbnail": "/images/fpoHihXiMhg-thumb.jpg",
+      "credit": "https://unsplash.com/photos/fpoHihXiMhg",
+      "description": "Use VS Code against a remote computer or container",
+      "tags": [
+        "vscode",
+        "development"
+      ],
+      "classes": [
+        "feature-hyphenate",
+        "feature-justify",
+        "feature-highlight"
+      ],
+      "categories": [
+        "Development"
+      ],
+      "excerpt": "<p>The <a href=\"https://code.visualstudio.com/\">Visual Studio Code</a> team just <a href=\"https://cda.ms/RN\">announced</a> perhaps the most eagerly anticipated feature yet.  Remote editing.</p>",
+      "meta": {
+        "relativePath": "posts/vscode-remote.html",
+        "createdAt": "2020-11-04T18:23:50.130Z",
+        "lastModified": "2020-11-05T00:11:09.200Z",
+        "size": 3652,
+        "formattedSize": "3.6 KB"
       }
     },
     {
@@ -827,7 +842,7 @@
       "excerpt": "<p>It&apos;s no secret that I&apos;m resistant to learning Javascript and frontend development.  I learned HTML back before CSS was even a thing, and even Javascript came long after I started doing web development.  When I look at modern web development I shudder; the ecosystem is so confusing for someone who has been out of touch as long as I have.  Node, webpack, yarn, npm, frameworks, UMD, AMD, arghhh!</p>",
       "meta": {
         "relativePath": "posts/web-assembly-and-go-a-look-to-the-future.html",
-        "createdAt": "2020-11-05T00:11:23.030Z",
+        "createdAt": "2020-11-04T18:23:50.130Z",
         "lastModified": "2020-11-05T00:11:23.030Z",
         "size": 10578,
         "formattedSize": "10.3 KB"
@@ -865,7 +880,7 @@
       "excerpt": "<p>I&apos;ve long used macOS or Linux when I make my Open Source contributions, but I think that the time is right to try Windows as a full-time development environment.  If you want to jump on board, this article series is for you!</p>",
       "meta": {
         "relativePath": "posts/win-the-dev-box.html",
-        "createdAt": "2020-11-05T00:11:39.200Z",
+        "createdAt": "2020-11-04T18:23:50.130Z",
         "lastModified": "2020-11-05T00:11:39.200Z",
         "size": 12222,
         "formattedSize": "11.9 KB"

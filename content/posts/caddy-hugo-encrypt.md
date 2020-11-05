@@ -6,6 +6,7 @@ categories:
   - "let's encrypt"
 date: "2015-11-11T23:49:00Z"
 description: ""
+section: Blog
 images: 
   - "https://images.unsplash.com/photo-1477244075012-5cc28286e465?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=650281f5f6da101b6954a53645bf6501"
 slug: caddy-hugo-encrypt

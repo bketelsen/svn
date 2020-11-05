@@ -1,5 +1,6 @@
 ---
 title: VS Code Remote Development
+section: Blog
 layout: post
 date: "2019-05-02"
 slug: vscode-remote-development

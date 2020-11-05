@@ -1,5 +1,6 @@
 ---
 author: "Brian Ketelsen"
+section: Blog
 categories: 
   - "development"
   - "linux"

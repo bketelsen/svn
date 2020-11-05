@@ -1,6 +1,7 @@
 ---
 title: Byobu on WSL
 layout: post
+section: Blog
 date: "2019-10-09"
 slug: byobu-wsl
 images: 

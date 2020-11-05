@@ -1,6 +1,7 @@
 ---
 title: Azure DevOps CI Setup
 layout: post
+section: Blog
 date: "2018-09-11"
 slug: azure-devops-ci-setup
 images: 

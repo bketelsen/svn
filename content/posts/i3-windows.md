@@ -14,6 +14,7 @@ tags:
   - "linux"
   - "i3"
 title: "Running i3 Window Manager on Bash For Windows"
+section: Blog
 
 ---
 

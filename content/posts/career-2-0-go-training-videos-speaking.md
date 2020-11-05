@@ -5,6 +5,7 @@ categories:
   - "training"
 date: "2016-06-18T23:10:00Z"
 description: ""
+section: Blog
 slug: caddy-hugo-encrypt
 images: 
   - "https://images.unsplash.com/photo-1492538368677-f6e0afe31dcc?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=de2dfaa06cf1c7b3d2ab7fac089a67bc"
