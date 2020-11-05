@@ -6,8 +6,7 @@ categories:
 date: "2015-12-05T00:08:00Z"
 images: 
   - "/images/2017/09/sandworm-bread-03.jpg"
-aliases: 
-  - "/tastyworms"
+slug: tastyworms
 tags: 
   - "dune"
   - "recipes"

@@ -7,8 +7,7 @@ date: "2017-07-31T22:56:00Z"
 description: ""
 images:
   - "/images/2017/09/azure.png"
-aliases: 
-  - "/gophercon-on-azure"
+slug: gophercon-on-azure
 tags: 
   - "go"
   - "azure"

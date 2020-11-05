@@ -6,8 +6,7 @@ date: "2015-05-11T23:03:00Z"
 description: ""
 images: 
   - "https://images.unsplash.com/photo-1442504028989-ab58b5f29a4a?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=983d1bcc49709c385952e95ecad5f5d5"
-aliases: 
-  - "/open-source-appreciation"
+slug: open-source-appreciation
 tags: 
   - "open source"
 title: "Open Source Appreciation"

@@ -7,8 +7,7 @@ categories:
 date: "2016-06-13T23:02:00Z"
 images: 
   - "https://images.unsplash.com/photo-1476873064915-2f5cde044a5d?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=403bd5632c18b38d3586b6e7e46741b2"
-aliases: 
-  - "/old-dogs"
+slug: old-dogs
 tags: 
   - "frontend"
   - "javascript"

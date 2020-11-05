@@ -5,8 +5,7 @@ categories:
 date: "2018-10-06T18:20:43Z"
 images: 
   - "/images/2018/10/IMG_1380-1.jpeg"
-aliases: 
-  - "/retractable-green-screen-on-the-cheap"
+slug: retractable-green-screen-on-the-cheap
 tags: 
   - "hacks"
 title: "Retractable Green Screen On the Cheap"

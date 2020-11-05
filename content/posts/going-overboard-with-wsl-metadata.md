@@ -8,8 +8,7 @@ date: "2018-03-10T00:42:39Z"
 description: "Use a folder from your Windows drive as your $HOME directory in WSL"
 images: 
   - "/images/2018/03/windows-side.PNG"
-aliases: 
-  - "/going-overboard-with-wsl-metadata"
+slug: going-overboard-with-wsl-metadata
 tags: 
   - "hacks"
   - "windows"

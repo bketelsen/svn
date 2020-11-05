@@ -7,8 +7,7 @@ date: "2017-12-13T21:07:59Z"
 description: ""
 images: 
   - "/images/2017/12/startmenu.png"
-aliases: 
-  - "/getting-crazy-with-windows-subsystem-for-linux"
+slug: getting-crazy-with-windows-subsystem-for-linux
 tags: 
   - "wsl"
   - "development"

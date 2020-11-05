@@ -2,8 +2,7 @@
 title: Azure DevOps CI Setup
 layout: post
 date: "2018-09-11"
-aliases: 
-- "/azure-devops-ci-setup"
+slug: azure-devops-ci-setup
 images: 
 - "/img/unsplash-photos-QRkew0KwXSM.jpg"
 thumbnail: /img/unsplash-photos-QRkew0KwXSM.tn-500x500.jpg

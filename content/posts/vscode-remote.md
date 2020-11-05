@@ -2,8 +2,7 @@
 title: VS Code Remote Development
 layout: post
 date: "2019-05-02"
-aliases: 
-- "/vscode-remote-development"
+slug: vscode-remote-development
 images: 
 - /images/fpoHihXiMhg.jpg
 thumbnail: /images/fpoHihXiMhg-thumb.jpg

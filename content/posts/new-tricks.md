@@ -7,8 +7,7 @@ date: "2016-05-04T22:59:00Z"
 description: ""
 images: 
   - "https://images.unsplash.com/photo-1485873402302-54d29627d4dc?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=92fef24305267cc33dca74cb14d58118"
-aliases: 
-  - "/new-tricks"
+slug: new-tricks
 tags: 
   - "frontend"
   - "javascript"

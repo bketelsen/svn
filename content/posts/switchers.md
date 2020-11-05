@@ -9,8 +9,7 @@ categories:
 date: "2016-11-07T00:07:00Z"
 images: 
   - "/images/2017/09/getamac.png"
-aliases: 
-  - "/switchers"
+slug: switchers
 tags: 
   - "hacks"
   - "i3"

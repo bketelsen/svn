@@ -2,8 +2,7 @@
 title: Bash Helpers for Quick Installs
 layout: post
 date: "2020-08-14"
-aliases: 
-- "/install-func"
+slug: install-funs
 images: 
 - "/images/4pPzKfd6BEg.jpg"
 thumbnail: "/images/4pPzKfd6BEg-thumb.jpg"

@@ -164,38 +164,6 @@
       }
     },
     {
-      "id": "posts__caddy-hugo-encrypt",
-      "contents": "<p>I spent all of 5 minutes configuring <a href=\"https://caddyserver.com\">Caddy</a> to automatically pull content from github, post-process it with <a href=\"http://gohugo.io\">hugo</a> and serve it up with fresh SSL/TLS certificates from Let&#39;s Encrypt. <!-- more --></p>\n<p>When you think about it, that&#39;s pretty damned amazing.  Caddy already made web serving easy.  It powers everything I do now: gopheracademy.com, gophercon.com and a dozen more.  Add hugo to the mix and you have a really powerful publishing platform that is fully automated with just a git push.  I really love that Caddy polls my github repository and publishes new content.  It&#39;s a zero-overhead proposition to publish a new post.</p>\n<p>After configuring the Let&#39;s Encrypt integration, my esteem for Caddy leveled up to 11.  I did almost nothing to enable it.  Changed a flag in the command line to invoke Caddy, changed the URL in the Caddy configuration file from http to https.  In the background, Caddy requested and installed the certificates for me, and will continue to renew them before they expire.  SSL Everywhere is no longer a dream, it&#39;s real, it&#39;s here, and the tools couldn&#39;t be easier to use.</p>\n",
-      "author": "Brian Ketelsen",
-      "categories": [
-        "hugo",
-        "caddy",
-        "let's encrypt"
-      ],
-      "date": "2015-11-11T23:49:00Z",
-      "description": "",
-      "images": [
-        "https://images.unsplash.com/photo-1477244075012-5cc28286e465?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=650281f5f6da101b6954a53645bf6501"
-      ],
-      "aliases": [
-        "/caddy-hugo-encrypt"
-      ],
-      "tags": [
-        "hugo",
-        "caddy",
-        "let's encrypt"
-      ],
-      "title": "Caddy and Let's Encrypt",
-      "excerpt": "<p>I spent all of 5 minutes configuring <a href=\"https://caddyserver.com\">Caddy</a> to automatically pull content from github, post-process it with <a href=\"http://gohugo.io\">hugo</a> and serve it up with fresh SSL/TLS certificates from Let&apos;s Encrypt. <!-- more --></p>",
-      "meta": {
-        "relativePath": "posts/caddy-hugo-encrypt.html",
-        "createdAt": "2020-11-04T22:00:28.570Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 1581,
-        "formattedSize": "1.5 KB"
-      }
-    },
-    {
       "id": "posts__career-2-0-go-training-videos-speaking",
       "contents": "<p>A week ago I decided to start a new journey.  While I truly enjoyed working with Blake Mizerany and the team at <a href=\"http://backplane.io\">backplane</a>, I felt I really had a passion for training and growing the Go community and I decided I owe it to myself to pursue it.</p>\n<!-- more -->\n<h3 id=\"flashback-gophercon-2016\">Flashback: GopherCon 2016</h3>\n<p>I taught a one day workshop at GopherCon - Building HTTP APIs in Go - and I really enjoyed the experience.  Putting together the class was a lot of fun, and I got a lot of very positive feedback from the people in the class.  I&#39;ve done corporate training in the past and I had forgotten how much fun it is.  As the feedback from the class started coming in, it occured to me that this might be the solution to a problem I&#39;ve had for three years now.</p>\n<h3 id=\"the-conference-organizers-dilemma\">The Conference Organizer&#39;s Dilemma</h3>\n<p>Running a technical conference takes a tremendous toll on a person.  It&#39;s at least a full-time job for the several months leading up to the conference.  But for all three years I&#39;ve been co-organizing GopherCon with Erik St. Martin I&#39;ve had a full time job to pay the bills.  We run GopherCon lean so the cost to attend is as low as possible -- that means it&#39;s never going to be something I can use to replace the income of a &quot;day job&quot;.  We&#39;ve talked about it several times, and we&#39;re not interested in raising the prices to turn GopherCon into a profit-making enterprise.  GopherCon is about the community, and even though attending a conference is never cheap we don&#39;t want to make the ticket price any higher than it has to be to pay the bills.  The challenge for both of us has been to juggle full time jobs while organizing a conference and still having families that need our time and attention too.</p>\n<h3 id=\"the-solution\">The Solution</h3>\n<p>It didn&#39;t take me long to realize that I can&#39;t continue at this burnout rate. I love the Go community, and helping to foster its growth is one of the places in my life where I get the most satisfaction.  The logical conclusion for me is to adjust my career to match the things in my life that are important.  So today I&#39;m announcing Brian Ketelsen 2.0.  I&#39;ve aligned my work life with the needs of my family, my abilities, and my passion for the Go community.  I have a four pronged plan for paying the bills.</p>\n<h4 id=\"consulting\">Consulting</h4>\n<p>I&#39;m available for short term and project based <a href=\"https://brianketelsen.com/consulting/\">consulting</a>.  Get in touch if you need some help with a stubborn project or just want to do some staff augmentation.  Details are in the &quot;Consulting&quot; link in the menu above.</p>\n<h4 id=\"online-training\">Online Training</h4>\n<p>I&#39;ve started an <a href=\"http://learn.brianketelsen.com\">online learning center</a> where my first course is available to purchase.  It&#39;s a deep dive into the amazing <code>goa</code> code generation framework for building APIs in Go.  The course isn&#39;t complete yet, but if you <a href=\"http://learn.brianketelsen.com/courses/master-api-development-with-goa?product_id=140234&amp;coupon_code=GOAVIDEO\">buy it now</a> you&#39;ll get a great discounted rate and you can follow along as new lessons are released.  The <code>goa</code> class is the first of many.  Some will be free, but most will be inexpensive like this first one.  If you have ideas for topics you want me to cover, I&#39;d love your feedback.  I plan to cover topics including:</p>\n<ul>\n<li>Microservices</li>\n<li>Distributed Applications / Coordination (Go focused)</li>\n<li>Testing (Go focused)</li>\n<li>Containers and Orchestration (Kubernetes, Rancher, Docker)</li>\n</ul>\n<p>I hope that these courses fill a gap in the learning materials available today.  Most of the learning materials available aren&#39;t very specific and don&#39;t dive deep enough into a topic to be of much immediate value.  These courses won&#39;t be generalized, but specific and detailed classes that you can put to use right away.</p>\n<h4 id=\"in-person-training\">In Person Training</h4>\n<p>I&#39;ve also partnered with <a href=\"http://oreilly.com\">O&#39;Reilly</a> to offer in-person training classes in Boston and San Francisco.  You&#39;ll see more specific details with dates and registration information as soon as we&#39;ve ironed out the schedules.  </p>\n<h4 id=\"corporate-training\">Corporate Training</h4>\n<p>Finally, I&#39;m booking corporate training classes for teams that want to learn about Go, Distributed Computing, and Orchestration technologies.  I&#39;ve got several companies lined up already and I&#39;m very excited to share my <a href=\"/about/experience\">experience</a>.  If your team is looking to level-up on Go, Docker, or Kubernetes shoot me an <a href=\"me@brianketelsen.com\">email</a> and get on the schedule!</p>\n<h4 id=\"availability\">Availability</h4>\n<p>Here&#39;s my calendar for the next several months:</p>\n<ul>\n<li>August 17-21 - Speaking at Abstractions.io in Pittsburgh</li>\n<li>August 22-26 - Training Booked!</li>\n<li>August 29 - September 2 - Consulting Booked!</li>\n<li>September 5-9 - Training Booked!</li>\n<li>September 12-16 - <em>Available for Training</em></li>\n<li>September 19-23 - Training Booked!</li>\n<li>September 26-30 - Training Booked!</li>\n<li>October 3-7 - O&#39;Reilly in Boston </li>\n<li>October 24-28 - Training Booked!</li>\n<li>October 31 - November 4 - O&#39;Reilly in San Francisco</li>\n<li>November 5 - November 30 - <em>Available for Training</em></li>\n<li>December - <em>Available for Training</em></li>\n</ul>\n<p>You can stay informed about my upcoming classes, events, trainings and speaking engagements by signing up for my newsletter in the footer down below. Thank you to everyone who provided much-needed advice as I considered this transition.  I hope you&#39;ll come along with me for the ride -- I&#39;m excited that I&#39;ve finally found a solution to the Conference Organizer&#39;s Dilemma. </p>\n",
       "author": "Brian Ketelsen",
@@ -257,6 +225,38 @@
         "lastModified": "2020-10-02T20:21:06.000Z",
         "size": 1970,
         "formattedSize": "1.9 KB"
+      }
+    },
+    {
+      "id": "posts__caddy-hugo-encrypt",
+      "contents": "<p>I spent all of 5 minutes configuring <a href=\"https://caddyserver.com\">Caddy</a> to automatically pull content from github, post-process it with <a href=\"http://gohugo.io\">hugo</a> and serve it up with fresh SSL/TLS certificates from Let&#39;s Encrypt. <!-- more --></p>\n<p>When you think about it, that&#39;s pretty damned amazing.  Caddy already made web serving easy.  It powers everything I do now: gopheracademy.com, gophercon.com and a dozen more.  Add hugo to the mix and you have a really powerful publishing platform that is fully automated with just a git push.  I really love that Caddy polls my github repository and publishes new content.  It&#39;s a zero-overhead proposition to publish a new post.</p>\n<p>After configuring the Let&#39;s Encrypt integration, my esteem for Caddy leveled up to 11.  I did almost nothing to enable it.  Changed a flag in the command line to invoke Caddy, changed the URL in the Caddy configuration file from http to https.  In the background, Caddy requested and installed the certificates for me, and will continue to renew them before they expire.  SSL Everywhere is no longer a dream, it&#39;s real, it&#39;s here, and the tools couldn&#39;t be easier to use.</p>\n",
+      "author": "Brian Ketelsen",
+      "categories": [
+        "hugo",
+        "caddy",
+        "let's encrypt"
+      ],
+      "date": "2015-11-11T23:49:00Z",
+      "description": "",
+      "images": [
+        "https://images.unsplash.com/photo-1477244075012-5cc28286e465?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=650281f5f6da101b6954a53645bf6501"
+      ],
+      "aliases": [
+        "/caddy-hugo-encrypt"
+      ],
+      "tags": [
+        "hugo",
+        "caddy",
+        "let's encrypt"
+      ],
+      "title": "Caddy and Let's Encrypt",
+      "excerpt": "<p>I spent all of 5 minutes configuring <a href=\"https://caddyserver.com\">Caddy</a> to automatically pull content from github, post-process it with <a href=\"http://gohugo.io\">hugo</a> and serve it up with fresh SSL/TLS certificates from Let&apos;s Encrypt. <!-- more --></p>",
+      "meta": {
+        "relativePath": "posts/caddy-hugo-encrypt.html",
+        "createdAt": "2020-11-04T22:00:28.570Z",
+        "lastModified": "2020-10-02T20:21:06.000Z",
+        "size": 1581,
+        "formattedSize": "1.5 KB"
       }
     },
     {
@@ -352,38 +352,6 @@
       }
     },
     {
-      "id": "posts__going-overboard-with-wsl-metadata",
-      "contents": "<h3 id=\"nerd-sniped\">Nerd Sniped</h3>\n<p>It all started with a simple tweet from <a href=\"https://twitter.com/nunixtech\">@nunixtech</a>:</p>\n<!-- more -->\n\n<blockquote class=\"twitter-tweet\" data-lang=\"en\"><p lang=\"en\" dir=\"ltr\"><a href=\"https://twitter.com/VirtualScooley?ref_src=twsrc%5Etfw\">@VirtualScooley</a> <a href=\"https://twitter.com/richturn_ms?ref_src=twsrc%5Etfw\">@richturn_ms</a> <a href=\"https://twitter.com/tara_msft?ref_src=twsrc%5Etfw\">@tara_msft</a> <a href=\"https://twitter.com/CraigWilhite?ref_src=twsrc%5Etfw\">@CraigWilhite</a> <a href=\"https://twitter.com/benhillis?ref_src=twsrc%5Etfw\">@benhillis</a> In order to Thank You for the new Distros, here is a small hack from your &quot;favorite&quot; WSLCorsair. the mount options might need some review though. <a href=\"https://twitter.com/bketelsen?ref_src=twsrc%5Etfw\">@bketelsen</a> this might help you (do I enter the HAT gift list? ?) <a href=\"https://t.co/7ouUX5Jm3h\">pic.twitter.com/7ouUX5Jm3h</a></p>&mdash; Nuno do Carmo (@nunixtech) <a href=\"https://twitter.com/nunixtech/status/971145708018466816?ref_src=twsrc%5Etfw\">March 6, 2018</a></blockquote>\n\n<p>Nuno showed how to use new <a href=\"https://cda.ms/hs\">metadata support</a> in Windows Subsystem For Linux to enable Linux permissions and metadata on a mounted Windows share.  Never content to let a good hack go unexplored, I wanted to see if it was possible to make a Windows folder be my WSL home directory with no adverse side-effects.</p>\n<h3 id=\"the-setup\">The Setup</h3>\n<p>I started with an existing and well-used WSL installation of Ubuntu.  My first step was to replicate Nuno&#39;s example, mounting a Windows shared drive with appropriate Linux metadata.  It worked well. But I wanted to make that directory my <code>$HOME</code>, and have access from both Windows and WSL with no penalties or worries about permissions or corrupted files.</p>\n<p>I created a folder on my <code>C:\\</code> drive called <code>home</code>.  I then shared the directory as Nuno did so it could be mounted from <code>/etc/fstab</code> on the WSL side of things.</p>\n<h3 id=\"first-attempt\">First Attempt</h3>\n<p>The first thing I tried doing was changing my <code>/etc/fstab</code> entry for the mounted share to mount it at <code>/home/bketelsen</code>.  It worked, but of course it replaced my existing home directory with the mounted one.  I reversed my change in <code>fstab</code> and made a new mountpoint at <code>/home/bketelsen2</code>.  I mounted the Windows share there, then used <code>rsync</code> to copy my old WSL-only home into the mounted directory:</p>\n<pre><code>$&gt; rsync -azvh /home/bketelsen/ /home/bketelsen2</code></pre><p>This took quite a while to complete because my home directory in WSL was full of code.  When it finished, I had a full copy of my WSL home <code>/home/bketelsen2</code> directory which was mounted from <code>C:\\home</code>.  On the Windows side, the <code>C:\\home</code> directory shows all of my WSL files:</p>\n<p><img src=\"/images/2018/03/windows-side-1.PNG\" alt=\"Windows Side\"></p>\n<p>That&#39;s pretty slick!  Now all I needed to do was make that my $HOME and I&#39;d be set. </p>\n<blockquote>\n<p>Narrator: Nothing is ever that easy.</p>\n</blockquote>\n<p><a href=\"http://wslcorsair.blogspot.ch/2018/03/wsl-one-home-to-host-them-all.html\">Nuno&#39;s post</a> shows mounting the Windows share using <code>/etc/fstab</code> which works, but I couldn&#39;t get the extra <code>metadata</code> flag in the mount line to actually make metadata support work. I don&#39;t know if this is by design, or an omission, but I didn&#39;t notice it until I tried making an ssh connection and my ssh keys had overly broad permissions.  After changing the keys&#39; permissions, it still failed.  The <code>chmod</code> command didn&#39;t apply the expected permissions.</p>\n<h3 id=\"second-attempt\">Second Attempt</h3>\n<p>I pondered a bit and realized that I was dealing with Linux, and mounting the share at <code>/home/bketelsen</code> was only one way to solve the problem.  The other way is to change my home directory&#39;s location in the Linux user database.  Specifically, using the <code>usermod</code> command:</p>\n<pre><code>sudo usermod -d /mnt/c/home bketelsen</code></pre><p>This is the right command, but it fails because the WSL process is spawned as a <code>bash</code> process started by my user, <code>bketelsen</code>.  There can be no processes running as <code>bketelsen</code> when you make the <code>usermod</code> change, so that approach wouldn&#39;t work.  I searched for ways to launch WSL directly as the root user, but in the middle of that search I remembered that the home directory is actually specified in <code>/etc/passwd</code>:</p>\n<pre><code>bketelsen:x:1000:1000:,,,:/home/bketelsen:/bin/bash</code></pre><p>YES!  I edited this file to reflect my new desired $HOME directory:</p>\n<pre><code>bketelsen:x:1000:1000:,,,:/mnt/c/home:/bin/bash</code></pre><p>Closing and re-opening WSL confirmed that my WSL <code>$HOME</code> directory was now <code>/mnt/c/home</code> which contained all the files that were previously stored in <code>/home/bketelsen</code>.  I quickly created a text file from the Windows side at <code>C:\\home\\thing.txt</code> and verified that it existed on the WSL mount too.</p>\n<h3 id=\"success\">SUCCESS</h3>\n<p>With this setup, I have a single folder -- <code>C:\\home</code> -- available in Windows, but also mounted as my WSL <code>$HOME</code>, too.  Files can be modified on either side, with no apparent ill effects. <strong><em>Editors Note: This is unproven, and not for risk-averse people.  Use this setup at your own risk.  Backup your data.</em></strong> </p>\n<p><img src=\"/images/2018/03/wsl-side.PNG\" alt=\"wsl-side\"></p>\n<h3 id=\"one-more-thing\">One More Thing</h3>\n<p>Because too much is never enough, I wanted to prove that this would work for more than one WSL installation.  So I installed the just-announced Debian WSL app, and applied exactly the same change to my <code>/etc/passwd</code> file and <code>/etc/wsl.conf</code> files.</p>\n<p><img src=\"/images/2018/03/debian-installer.PNG\" alt=\"debian-installer\"></p>\n<p>Now I have two different Linux installations in WSL: Ubuntu and Debian.  They have separate root filesystems, but a single shared <code>$HOME</code> directory:</p>\n<p><img src=\"/images/2018/03/debian.PNG\" alt=\"debian\"></p>\n<p>This is extremely cool.  I set up my Go development environment on the Windows side using <a href=\"https://cda.ms/ht\">Visual Studio Code</a> but set the <code>$GOPATH</code> to <code>C:\\home\\go</code>, which is the same as <code>$HOME/go</code> on the WSL side.  Now I can develop in Windows or WSL/Linux against the exact same code without any strange permission problems.  Most of the time I&#39;ll probably stay in <code>neovim</code>, because it&#39;s my first love.  But there are no issues when I use VS Code from the Windows side.  I can compile and test from both Windows and Linux with the same source directory.  </p>\n<p>Here&#39;s the contents of my <code>/etc/wsl.conf</code> for your perusal:</p>\n<pre><code># Enable extra metadata options by default\n[automount]\nenabled = true\noptions = &quot;metadata,umask=22,fmask=11&quot;\nmountFsTab = true\n\n# Enable DNS – even though these are turned on by default, we’ll specify here just to be explicit.\n[network]\ngenerateHosts = true\ngenerateResolvConf = true</code></pre><p>Thank you to <a href=\"https://twitter.com/nunixtech\">@nunixtech</a> for the idea that spawned this probably-evil hack. I&#39;m unreasonably delighted with how cool this little hack is, and it opens a lot of other possibilities for other potentially unauthorized or dangerous hacks, too.  If you&#39;ve done something equally unorthodox with your WSL install, tell me about it on <a href=\"https://twitter.com/bketelsen\">twitter</a>!</p>\n<h3 id=\"update\">Update</h3>\n<p>I realized after this worked that the next logical progression of this experiment was to share the same $HOME between Windows and WSL.  TLDR; It works perfectly.  I updated my <code>/etc/passwd</code> home directory entry to <code>/mnt/c/Users/bkete</code>, moved the contents of the <code>c:\\home</code> directory into <code>c:\\Users\\bkete</code>, and now I have a single shared home directory between Windows and WSL.  Here&#39;s a picture of my OneDrive directory being accessed from WSL as <code>$HOME/OneDrive</code>:</p>\n<p><img src=\"/images/2018/03/onedrive.PNG\" alt=\"onedrive\"></p>\n",
-      "author": "Brian Ketelsen",
-      "categories": [
-        "hacks",
-        "windows",
-        "linux"
-      ],
-      "date": "2018-03-10T00:42:39Z",
-      "description": "Use a folder from your Windows drive as your $HOME directory in WSL",
-      "images": [
-        "/images/2018/03/windows-side.PNG"
-      ],
-      "aliases": [
-        "/going-overboard-with-wsl-metadata"
-      ],
-      "tags": [
-        "hacks",
-        "windows",
-        "linux"
-      ],
-      "title": "Going Overboard with WSL metadata",
-      "excerpt": "<p>It all started with a simple tweet from <a href=\"https://twitter.com/nunixtech\">@nunixtech</a>:</p>",
-      "meta": {
-        "relativePath": "posts/going-overboard-with-wsl-metadata.html",
-        "createdAt": "2020-11-04T22:00:28.690Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 7766,
-        "formattedSize": "7.6 KB"
-      }
-    },
-    {
       "id": "posts__gophercon-on-azure",
       "contents": "<p>I&#39;ve recently taken on a new role at Microsoft as a Cloud Developer Advocate for Open Source projects on Azure.  My purview is Go, Linux, Containers, and Kubernetes.  While brainstorming ways to learn about all that Azure has to offer an idea occured to me:  Why not move Gophercon over to Azure as a learning tool.  I&#39;ve decided to do just that and share my learnings along the way.</p>\n<!-- more -->\n\n<p>This year we used <a href=\"https://gobuffalo.io\">Buffalo</a> and <a href=\"https://ponzu-cms.org\">Ponzu</a> as the main components of the website for Gophercon.  Generally it was a huge improvement over our previous <a href=\"https://gohugo.io\">hugo</a> workflow, because Ponzu allowed us to get non-technical people contributing content.  Hugo is amazing, but requiring <code>git</code> limits the people who can edit the site.</p>\n<p>For 2018 I want to step up my game and build the site using <a href=\"https://github.com/gopherjs/gopherjs\">GopherJS</a>.  <a href=\"https://twitter.com/_myitcv\">Paul Jolly</a> has built some really clean React bindings for GopherJS, and I think this is a good opportunity for me to polish up my frontend chops which are sorely lacking.</p>\n<p>Since we don&#39;t really need the site to be functional until roughly the end of December (beyond a placeholder page) that gives me an opportunity to get all of this worked out and setup.  Here are my goals:</p>\n<ul>\n<li>100% Continuous Integration and Continuous Delivery</li>\n<li>Enable content editors/creators to publish without a <code>git</code> workflow</li>\n<li>Explore as much of the Azure ecosystem as I can during the process</li>\n<li>Favor Go projects where I can, but choose the right tools for the job</li>\n<li>Use CDN for static assets</li>\n</ul>\n<p>Last year, <a href=\"https://twitter.com/ashleymcnamara\">Ashley McNamara</a> was my partner in crime for the GopherCon website.  She&#39;s graciously agreed to continue in this role for 2018, so we&#39;ll be learning together for some of this.</p>\n<p>I&#39;m excited to learn new things, and share as I go.  Thanks for coming along for the ride.</p>\n",
       "author": "Brian Ketelsen",
@@ -453,6 +421,38 @@
         "lastModified": "2020-10-02T20:21:06.000Z",
         "size": 2170,
         "formattedSize": "2.1 KB"
+      }
+    },
+    {
+      "id": "posts__going-overboard-with-wsl-metadata",
+      "contents": "<h3 id=\"nerd-sniped\">Nerd Sniped</h3>\n<p>It all started with a simple tweet from <a href=\"https://twitter.com/nunixtech\">@nunixtech</a>:</p>\n<!-- more -->\n\n<blockquote class=\"twitter-tweet\" data-lang=\"en\"><p lang=\"en\" dir=\"ltr\"><a href=\"https://twitter.com/VirtualScooley?ref_src=twsrc%5Etfw\">@VirtualScooley</a> <a href=\"https://twitter.com/richturn_ms?ref_src=twsrc%5Etfw\">@richturn_ms</a> <a href=\"https://twitter.com/tara_msft?ref_src=twsrc%5Etfw\">@tara_msft</a> <a href=\"https://twitter.com/CraigWilhite?ref_src=twsrc%5Etfw\">@CraigWilhite</a> <a href=\"https://twitter.com/benhillis?ref_src=twsrc%5Etfw\">@benhillis</a> In order to Thank You for the new Distros, here is a small hack from your &quot;favorite&quot; WSLCorsair. the mount options might need some review though. <a href=\"https://twitter.com/bketelsen?ref_src=twsrc%5Etfw\">@bketelsen</a> this might help you (do I enter the HAT gift list? ?) <a href=\"https://t.co/7ouUX5Jm3h\">pic.twitter.com/7ouUX5Jm3h</a></p>&mdash; Nuno do Carmo (@nunixtech) <a href=\"https://twitter.com/nunixtech/status/971145708018466816?ref_src=twsrc%5Etfw\">March 6, 2018</a></blockquote>\n\n<p>Nuno showed how to use new <a href=\"https://cda.ms/hs\">metadata support</a> in Windows Subsystem For Linux to enable Linux permissions and metadata on a mounted Windows share.  Never content to let a good hack go unexplored, I wanted to see if it was possible to make a Windows folder be my WSL home directory with no adverse side-effects.</p>\n<h3 id=\"the-setup\">The Setup</h3>\n<p>I started with an existing and well-used WSL installation of Ubuntu.  My first step was to replicate Nuno&#39;s example, mounting a Windows shared drive with appropriate Linux metadata.  It worked well. But I wanted to make that directory my <code>$HOME</code>, and have access from both Windows and WSL with no penalties or worries about permissions or corrupted files.</p>\n<p>I created a folder on my <code>C:\\</code> drive called <code>home</code>.  I then shared the directory as Nuno did so it could be mounted from <code>/etc/fstab</code> on the WSL side of things.</p>\n<h3 id=\"first-attempt\">First Attempt</h3>\n<p>The first thing I tried doing was changing my <code>/etc/fstab</code> entry for the mounted share to mount it at <code>/home/bketelsen</code>.  It worked, but of course it replaced my existing home directory with the mounted one.  I reversed my change in <code>fstab</code> and made a new mountpoint at <code>/home/bketelsen2</code>.  I mounted the Windows share there, then used <code>rsync</code> to copy my old WSL-only home into the mounted directory:</p>\n<pre><code>$&gt; rsync -azvh /home/bketelsen/ /home/bketelsen2</code></pre><p>This took quite a while to complete because my home directory in WSL was full of code.  When it finished, I had a full copy of my WSL home <code>/home/bketelsen2</code> directory which was mounted from <code>C:\\home</code>.  On the Windows side, the <code>C:\\home</code> directory shows all of my WSL files:</p>\n<p><img src=\"/images/2018/03/windows-side-1.PNG\" alt=\"Windows Side\"></p>\n<p>That&#39;s pretty slick!  Now all I needed to do was make that my $HOME and I&#39;d be set. </p>\n<blockquote>\n<p>Narrator: Nothing is ever that easy.</p>\n</blockquote>\n<p><a href=\"http://wslcorsair.blogspot.ch/2018/03/wsl-one-home-to-host-them-all.html\">Nuno&#39;s post</a> shows mounting the Windows share using <code>/etc/fstab</code> which works, but I couldn&#39;t get the extra <code>metadata</code> flag in the mount line to actually make metadata support work. I don&#39;t know if this is by design, or an omission, but I didn&#39;t notice it until I tried making an ssh connection and my ssh keys had overly broad permissions.  After changing the keys&#39; permissions, it still failed.  The <code>chmod</code> command didn&#39;t apply the expected permissions.</p>\n<h3 id=\"second-attempt\">Second Attempt</h3>\n<p>I pondered a bit and realized that I was dealing with Linux, and mounting the share at <code>/home/bketelsen</code> was only one way to solve the problem.  The other way is to change my home directory&#39;s location in the Linux user database.  Specifically, using the <code>usermod</code> command:</p>\n<pre><code>sudo usermod -d /mnt/c/home bketelsen</code></pre><p>This is the right command, but it fails because the WSL process is spawned as a <code>bash</code> process started by my user, <code>bketelsen</code>.  There can be no processes running as <code>bketelsen</code> when you make the <code>usermod</code> change, so that approach wouldn&#39;t work.  I searched for ways to launch WSL directly as the root user, but in the middle of that search I remembered that the home directory is actually specified in <code>/etc/passwd</code>:</p>\n<pre><code>bketelsen:x:1000:1000:,,,:/home/bketelsen:/bin/bash</code></pre><p>YES!  I edited this file to reflect my new desired $HOME directory:</p>\n<pre><code>bketelsen:x:1000:1000:,,,:/mnt/c/home:/bin/bash</code></pre><p>Closing and re-opening WSL confirmed that my WSL <code>$HOME</code> directory was now <code>/mnt/c/home</code> which contained all the files that were previously stored in <code>/home/bketelsen</code>.  I quickly created a text file from the Windows side at <code>C:\\home\\thing.txt</code> and verified that it existed on the WSL mount too.</p>\n<h3 id=\"success\">SUCCESS</h3>\n<p>With this setup, I have a single folder -- <code>C:\\home</code> -- available in Windows, but also mounted as my WSL <code>$HOME</code>, too.  Files can be modified on either side, with no apparent ill effects. <strong><em>Editors Note: This is unproven, and not for risk-averse people.  Use this setup at your own risk.  Backup your data.</em></strong> </p>\n<p><img src=\"/images/2018/03/wsl-side.PNG\" alt=\"wsl-side\"></p>\n<h3 id=\"one-more-thing\">One More Thing</h3>\n<p>Because too much is never enough, I wanted to prove that this would work for more than one WSL installation.  So I installed the just-announced Debian WSL app, and applied exactly the same change to my <code>/etc/passwd</code> file and <code>/etc/wsl.conf</code> files.</p>\n<p><img src=\"/images/2018/03/debian-installer.PNG\" alt=\"debian-installer\"></p>\n<p>Now I have two different Linux installations in WSL: Ubuntu and Debian.  They have separate root filesystems, but a single shared <code>$HOME</code> directory:</p>\n<p><img src=\"/images/2018/03/debian.PNG\" alt=\"debian\"></p>\n<p>This is extremely cool.  I set up my Go development environment on the Windows side using <a href=\"https://cda.ms/ht\">Visual Studio Code</a> but set the <code>$GOPATH</code> to <code>C:\\home\\go</code>, which is the same as <code>$HOME/go</code> on the WSL side.  Now I can develop in Windows or WSL/Linux against the exact same code without any strange permission problems.  Most of the time I&#39;ll probably stay in <code>neovim</code>, because it&#39;s my first love.  But there are no issues when I use VS Code from the Windows side.  I can compile and test from both Windows and Linux with the same source directory.  </p>\n<p>Here&#39;s the contents of my <code>/etc/wsl.conf</code> for your perusal:</p>\n<pre><code># Enable extra metadata options by default\n[automount]\nenabled = true\noptions = &quot;metadata,umask=22,fmask=11&quot;\nmountFsTab = true\n\n# Enable DNS – even though these are turned on by default, we’ll specify here just to be explicit.\n[network]\ngenerateHosts = true\ngenerateResolvConf = true</code></pre><p>Thank you to <a href=\"https://twitter.com/nunixtech\">@nunixtech</a> for the idea that spawned this probably-evil hack. I&#39;m unreasonably delighted with how cool this little hack is, and it opens a lot of other possibilities for other potentially unauthorized or dangerous hacks, too.  If you&#39;ve done something equally unorthodox with your WSL install, tell me about it on <a href=\"https://twitter.com/bketelsen\">twitter</a>!</p>\n<h3 id=\"update\">Update</h3>\n<p>I realized after this worked that the next logical progression of this experiment was to share the same $HOME between Windows and WSL.  TLDR; It works perfectly.  I updated my <code>/etc/passwd</code> home directory entry to <code>/mnt/c/Users/bkete</code>, moved the contents of the <code>c:\\home</code> directory into <code>c:\\Users\\bkete</code>, and now I have a single shared home directory between Windows and WSL.  Here&#39;s a picture of my OneDrive directory being accessed from WSL as <code>$HOME/OneDrive</code>:</p>\n<p><img src=\"/images/2018/03/onedrive.PNG\" alt=\"onedrive\"></p>\n",
+      "author": "Brian Ketelsen",
+      "categories": [
+        "hacks",
+        "windows",
+        "linux"
+      ],
+      "date": "2018-03-10T00:42:39Z",
+      "description": "Use a folder from your Windows drive as your $HOME directory in WSL",
+      "images": [
+        "/images/2018/03/windows-side.PNG"
+      ],
+      "aliases": [
+        "/going-overboard-with-wsl-metadata"
+      ],
+      "tags": [
+        "hacks",
+        "windows",
+        "linux"
+      ],
+      "title": "Going Overboard with WSL metadata",
+      "excerpt": "<p>It all started with a simple tweet from <a href=\"https://twitter.com/nunixtech\">@nunixtech</a>:</p>",
+      "meta": {
+        "relativePath": "posts/going-overboard-with-wsl-metadata.html",
+        "createdAt": "2020-11-04T22:00:28.690Z",
+        "lastModified": "2020-10-02T20:21:06.000Z",
+        "size": 7766,
+        "formattedSize": "7.6 KB"
       }
     },
     {
@@ -617,21 +617,6 @@
       }
     },
     {
-      "id": "posts__one",
-      "contents": "<p>Every blog starts with a single post. This is yours. Make it great.</p>\n<!-- more -->\n\n<p>This post intentionally left blank.</p>\n<p>Write what you want.</p>\n",
-      "title": "Hello World 👋",
-      "date": "2019-06-11T08:38:00.000Z",
-      "slug": "hello",
-      "excerpt": "<p>Every blog starts with a single post. This is yours. Make it great.</p>",
-      "meta": {
-        "relativePath": "posts/one.html",
-        "createdAt": "2020-11-04T21:02:04.780Z",
-        "lastModified": "2020-11-04T21:02:04.788Z",
-        "size": 219,
-        "formattedSize": "219 Bytes"
-      }
-    },
-    {
       "id": "posts__open-source-appreciation",
       "contents": "<p>I&#39;ve never been shy about sharing my love for Open Source.  I love creating things, and I love sharing them with others.  One of my particular joys with Open Source Software, however, is finding new projects that excite me.<!-- more --></p>\n<p>I generally get excited about new OSS projects for two reasons:</p>\n<ol>\n<li>It does something I want or need to do</li>\n<li>It is written in a way that allows or encourages me to learn something new</li>\n</ol>\n<p>The first is obvious... when I&#39;ve got a project to complete and it makes sense to use an open source component, it&#39;s my first preference.  I&#39;m always happy when someone else has thought through the hard parts and done the work to make a quality project and share it with the world.  I truly enjoy contributing to these projects too.  Some developer scratched an itch she had and shared it with the world, now I get to help make it better.  That&#39;s just winning for everyone.</p>\n<p>The second reason I get excited is when I find a project that teaches me something.  This happened a few days ago with <a href=\"http://goa.design\">goa</a>.  Two things about <code>goa</code> excited me.  It is a very well written DSL in Go, and it uses Go&#39;s <code>net/context</code> library in an unusual way.  I say &quot;unusual&quot;, but after studying <code>goa</code> more I&#39;ve come to the conclusion that I&#39;ve only been using <code>net/context</code> at half it&#39;s capability in my past projects.  The author of goa -- Raphael Simon\nfrom RightScale -- is using contexts to their full potential.  Learning from this code is making me a better programmer.</p>\n<p>I spent the next few days shouting from the mountain tops about my newfound love for <code>goa</code>.  Anybody who follows me on Twitter can attest to this.</p>\n<blockquote class=\"twitter-tweet\" lang=\"en\"><p lang=\"en\" dir=\"ltr\">This repo should have a thousand stars by now: <a href=\"https://t.co/iSsQeEAC03\">https://t.co/iSsQeEAC03</a> <a href=\"https://twitter.com/hashtag/golang?src=hash\">#golang</a></p>&mdash; Brian Ketelsen (@bketelsen) <a href=\"https://twitter.com/bketelsen/status/666697133437923328\">November 17, 2015</a></blockquote>\n<script async src=\"//platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>\n\n<blockquote class=\"twitter-tweet\" lang=\"en\"><p lang=\"en\" dir=\"ltr\">So I spent a few hours converting an internal API to goa (<a href=\"https://t.co/EYoAB1wTeV\">https://t.co/EYoAB1wTeV</a>) and I think I want to marry the guy who wrote it.</p>&mdash; Brian Ketelsen (@bketelsen) <a href=\"https://twitter.com/bketelsen/status/666786731807662081\">November 18, 2015</a></blockquote>\n<script async src=\"//platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>\n\n<p>I was talking with Matt Holt, author of another of my favorite open source projects <a href=\"https://caddyserver.com\">Caddy</a>, and our discussion evolved into the various ways we like to show appreciation for software projects we like and use.  I&#39;ve told Matt dozens of times how much I love and appreciate Caddy.  And I believe that he enjoys hearing it.  Some of the ways of showing appreciation we listed:</p>\n<ol>\n<li><p>Open an issue on the GitHub repository with a quick thank you note.  &quot;No problem with your software, just wanted to let you know I&#39;m using it and love it.&quot; or &quot;I really love the way you solved X problem by doing Y, I learned a lot, thanks!&quot;   I do this frequently and it&#39;s always received well.</p>\n</li>\n<li><p>Send the author(s) a thanks on Twitter if you know their Twitter handle.  Simple and direct, and who doesn&#39;t love hearing that someone is using their project?</p>\n</li>\n<li><p>If the project has a developer mailing list or IRC/Slack/Gitter channel, pop in and say the same thing.</p>\n</li>\n<li><p>Write a blog post about the software/project and how you use it or why you like it.  I set up Google News Alerts on new projects and it&#39;s always a treat when I get an email from Google listing a blog post about one of my projects. </p>\n</li>\n</ol>\n<p>I&#39;m sure you can think of dozens of other ways to show your appreciation for the Open Source Software you use.  None of them are particularly burdensome or time consuming.  And they almost always have a postive impact.</p>\n<p>I&#39;d like to propose a new hash tag on Twitter:  <em>#freesoftwarefriday</em></p>\n<p>Let&#39;s start showing more appreciation to the people who put hard work into projects that we use.  If you use a gem, egg, package, project, script, or any other Open Source code, take a moment on each Friday to give a shout out to that project or the maintainers.  I&#39;d venture a guess that most OSS project owners would be delighted to see them or their project mentioned.  It might even give them the encouragement to create more projects, or add more features.  OSS can be a thankless\njob sometimes.  Anyone who has released OSS code knows that there&#39;s a burden of time and a psychological burden that goes along with releasing code.  A kind word to the author might lessen that burden a bit.  You might just make someone&#39;s day.</p>\n",
       "author": "Brian Ketelsen",
@@ -762,6 +747,35 @@
       }
     },
     {
+      "id": "posts__tastyworms",
+      "contents": "<p>A coworker sent me a link to this recipe and I have to share it.  It&#39;s the tastiest looking sandworm ever.</p>\n<!-- more -->\n<p><a href=\"http://kitchenoverlord.com/2015/12/03/dune-week-spice-filled-sandworm/\">Spice Filled Sandworm</a></p>\n<p>If you make one let me know... Looks delicious.  Blessed be the maker.</p>\n<p><em>image courtesy of kitchenoverlord.com</em></p>\n",
+      "author": "Brian Ketelsen",
+      "categories": [
+        "dune",
+        "recipes"
+      ],
+      "date": "2015-12-05T00:08:00Z",
+      "images": [
+        "/images/2017/09/sandworm-bread-03.jpg"
+      ],
+      "aliases": [
+        "/tastyworms"
+      ],
+      "tags": [
+        "dune",
+        "recipes"
+      ],
+      "title": "Tasty Worms",
+      "excerpt": "<p>A coworker sent me a link to this recipe and I have to share it.  It&apos;s the tastiest looking sandworm ever.</p>",
+      "meta": {
+        "relativePath": "posts/tastyworms.html",
+        "createdAt": "2020-11-04T22:00:28.920Z",
+        "lastModified": "2020-10-02T20:21:06.000Z",
+        "size": 567,
+        "formattedSize": "567 Bytes"
+      }
+    },
+    {
       "id": "posts__two",
       "contents": "<p>Every blog starts with a single post. This is yours. Make it great.</p>\n<!-- more -->\n\n<p>This post intentionally left blank.</p>\n<p>Write what you want.</p>\n",
       "title": "Goodbye World 👋",
@@ -887,32 +901,18 @@
       }
     },
     {
-      "id": "posts__tastyworms",
-      "contents": "<p>A coworker sent me a link to this recipe and I have to share it.  It&#39;s the tastiest looking sandworm ever.</p>\n<!-- more -->\n<p><a href=\"http://kitchenoverlord.com/2015/12/03/dune-week-spice-filled-sandworm/\">Spice Filled Sandworm</a></p>\n<p>If you make one let me know... Looks delicious.  Blessed be the maker.</p>\n<p><em>image courtesy of kitchenoverlord.com</em></p>\n",
-      "author": "Brian Ketelsen",
-      "categories": [
-        "dune",
-        "recipes"
-      ],
-      "date": "2015-12-05T00:08:00Z",
-      "images": [
-        "/images/2017/09/sandworm-bread-03.jpg"
-      ],
-      "aliases": [
-        "/tastyworms"
-      ],
-      "tags": [
-        "dune",
-        "recipes"
-      ],
-      "title": "Tasty Worms",
-      "excerpt": "<p>A coworker sent me a link to this recipe and I have to share it.  It&apos;s the tastiest looking sandworm ever.</p>",
+      "id": "posts__one",
+      "contents": "<p>Every blog starts with a single post. This is yours. Make it great.</p>\n<!-- more -->\n\n<p>This post intentionally left blank.</p>\n<p>Write what you want.</p>\n",
+      "title": "Hello World 👋",
+      "date": "2019-06-11T08:38:00.000Z",
+      "slug": "hello",
+      "excerpt": "<p>Every blog starts with a single post. This is yours. Make it great.</p>",
       "meta": {
-        "relativePath": "posts/tastyworms.html",
-        "createdAt": "2020-11-04T22:00:28.920Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 567,
-        "formattedSize": "567 Bytes"
+        "relativePath": "posts/one.html",
+        "createdAt": "2020-11-04T21:02:04.780Z",
+        "lastModified": "2020-11-04T21:02:04.788Z",
+        "size": 219,
+        "formattedSize": "219 Bytes"
       }
     }
   ]

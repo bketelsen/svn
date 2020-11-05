@@ -8,8 +8,7 @@ date: "2016-07-03T22:46:00Z"
 description:  ""
 images: 
   - "/images/2017/09/windows-on-top-1.png"
-aliases: 
-  - "/i3-windows"
+slug: i3-windows
 tags: 
   - "windows"
   - "linux"

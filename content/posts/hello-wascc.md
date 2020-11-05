@@ -2,8 +2,7 @@
 title: Hello waSCC
 layout: post
 date: "2020-02-25"
-aliases: 
-- "/hello-wascc"
+slug: hello-wascc
 images: 
 - "/images/h3GAGi5tXMU.jpg"
 thumbnail: /images/h3GAGi5tXMU-thumb.jpg

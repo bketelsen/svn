@@ -2,8 +2,7 @@
 title: Windows for Open Source Development 
 layout: post
 date: "2020-02-24"
-aliases: 
-- "/windows-for-open-source-development"
+slug: windows-for-open-source-development
 images: 
 - /images/h3GAGi5tXMU.jpg
 thumbnail: /images/h3GAGi5tXMU-thumb.jpg

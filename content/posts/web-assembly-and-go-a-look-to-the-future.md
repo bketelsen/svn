@@ -9,8 +9,7 @@ date: "2018-06-22T16:17:21Z"
 description: ""
 images: 
   - "/images/2018/06/612px-Web_Assembly_Logo.svg.png"
-aliases: 
-  - "/web-assembly-and-go-a-look-to-the-future"
+slug: web-assembly-and-go-a-look-to-the-futurs
 tags: 
   - "wasm"
   - "web"

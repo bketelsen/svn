@@ -8,8 +8,7 @@ date: "2017-09-29T02:25:44Z"
 description: ""
 images: 
   - "/images/2017/09/desktop.png"
-aliases: 
-  - "/my-cross-platform-dev-setup-on-surface-laptop"
+slug: my-cross-platform-dev-setup-on-surface-laptop
 tags: 
   - "development"
   - "linux"

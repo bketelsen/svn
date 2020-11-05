@@ -2,8 +2,7 @@
 title: Arrested DevOps Appearance on Krustlet
 layout: post
 date: "2020-04-14"
-aliases: 
-- "/arrested-devops-appearance-on-krustlet"
+slug: arrested-devops-appearance-on-krustlet
 images: 
 - "/images/b2iviaMJtoU.jpg"
 thumbnail: /images/b2iviaMJtoU-thumb.jpg

@@ -2,8 +2,7 @@
 title: Remote SSH Connections to WSL2
 layout: post
 date: "2020-03-03"
-aliases: 
-- "/ssh-to-wsl2"
+slug: ssh-to-wsl2
 images: 
 - /images/_XLJy3h77cw.jpg
 thumbnail: /images/_XLJy3h77cw-thumb.jpg

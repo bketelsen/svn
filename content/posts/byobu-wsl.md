@@ -2,8 +2,7 @@
 title: Byobu on WSL
 layout: post
 date: "2019-10-09"
-aliases: 
-- "/byobu-wsl"
+slug: byobu-wsl
 images: 
 - "/images/mbLr6NEatMI.jpg"
 thumbnail: /images/mbLr6NEatMI-thumb.jpg
