@@ -2,9 +2,10 @@
 	"name": "svn",
 	"version": "0.0.1",
 	"scripts": {
-		"markdown": "markdown-json -c /home/bjk/src/github.com/bketelsen/svn/settings.json",
+		"markdown": "markdown-json -c `pwd`/settings.json",
 		"dev": "svelte dev",
-		"build": "svelte build"
+		"build": "svelte build",
+		"prebuild": "npm run markdown"
 	},
 	"devDependencies": {
 		"@rollup/plugin-json": "^4.1.0",
