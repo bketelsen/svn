@@ -5,6 +5,12 @@
   export let segment;
 </script>
 
+<style>
+  .container {
+    max-width: 720px;
+  }
+</style>
+
 <div class="container">
   <Nav {segment} {data} />
   <main>
