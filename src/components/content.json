@@ -55,9 +55,7 @@
       "title": "Arrested DevOps Appearance on Krustlet",
       "layout": "post",
       "date": "2020-04-14",
-      "aliases": [
-        "/arrested-devops-appearance-on-krustlet"
-      ],
+      "slug": "arrested-devops-appearance-on-krustlet",
       "images": [
         "/images/b2iviaMJtoU.jpg"
       ],
@@ -84,10 +82,10 @@
       "excerpt": "<p>I had a great time on the Arrested DevOps podcast with Bridget Kromhout.\nWe chatted along with Taylor Thomas of the Deis team about <a href=\"https://github.com/deislabs/krustlet\">krustlet</a>.</p>",
       "meta": {
         "relativePath": "posts/arrested-devops-appearance-on-krustlet.html",
-        "createdAt": "2020-11-04T22:00:28.520Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 883,
-        "formattedSize": "883 Bytes"
+        "createdAt": "2020-11-05T00:06:20.870Z",
+        "lastModified": "2020-11-05T00:06:20.870Z",
+        "size": 874,
+        "formattedSize": "874 Bytes"
       }
     },
     {
@@ -96,9 +94,7 @@
       "title": "Azure DevOps CI Setup",
       "layout": "post",
       "date": "2018-09-11",
-      "aliases": [
-        "/azure-devops-ci-setup"
-      ],
+      "slug": "azure-devops-ci-setup",
       "images": [
         "/img/unsplash-photos-QRkew0KwXSM.jpg"
       ],
@@ -121,9 +117,9 @@
       "excerpt": "<p>Microsoft just announced a killer continuous integration setup for Github, and I was really anxious to give it a try.  This post documents my setup for an <a href=\"https://github.com/gophersnacks/site\">Elixir/Phoenix application</a> I&apos;m building with <a href=\"https://twitter.com/arschles\">Aaron Schlesinger</a>.</p>",
       "meta": {
         "relativePath": "posts/azure-devops-ci-setup.html",
-        "createdAt": "2020-11-04T22:00:28.540Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 4112,
+        "createdAt": "2020-11-05T00:06:34.000Z",
+        "lastModified": "2020-11-05T00:06:34.000Z",
+        "size": 4103,
         "formattedSize": "4.0 KB"
       }
     },
@@ -133,9 +129,7 @@
       "title": "Byobu on WSL",
       "layout": "post",
       "date": "2019-10-09",
-      "aliases": [
-        "/byobu-wsl"
-      ],
+      "slug": "byobu-wsl",
       "images": [
         "/images/mbLr6NEatMI.jpg"
       ],
@@ -157,9 +151,9 @@
       "excerpt": "<p><a href=\"http://byobu.co/\">Byobu</a> is a frontend for <code>tmux</code> and <code>screen</code> that allows you to save your terminal sessions and reconnect to them easily.  It&apos;s one of the biggest time-savers in my bag of tricks.  Read along to learn how I use it.  This article applies to any *nix-like system, despite the &quot;on WSL&quot; in the title.</p>",
       "meta": {
         "relativePath": "posts/byobu-wsl.html",
-        "createdAt": "2020-11-04T22:00:28.560Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 4783,
+        "createdAt": "2020-11-05T00:06:45.500Z",
+        "lastModified": "2020-11-05T00:06:45.500Z",
+        "size": 4774,
         "formattedSize": "4.7 KB"
       }
     },
@@ -173,6 +167,7 @@
       ],
       "date": "2016-06-18T23:10:00Z",
       "description": "",
+      "slug": "caddy-hugo-encrypt",
       "images": [
         "https://images.unsplash.com/photo-1492538368677-f6e0afe31dcc?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=de2dfaa06cf1c7b3d2ab7fac089a67bc"
       ],
@@ -187,10 +182,10 @@
       "excerpt": "<p>A week ago I decided to start a new journey.  While I truly enjoyed working with Blake Mizerany and the team at <a href=\"http://backplane.io\">backplane</a>, I felt I really had a passion for training and growing the Go community and I decided I owe it to myself to pursue it.</p>",
       "meta": {
         "relativePath": "posts/career-2-0-go-training-videos-speaking.html",
-        "createdAt": "2020-11-04T22:00:28.590Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 5778,
-        "formattedSize": "5.6 KB"
+        "createdAt": "2020-11-05T00:07:09.900Z",
+        "lastModified": "2020-11-05T00:07:09.900Z",
+        "size": 5803,
+        "formattedSize": "5.7 KB"
       }
     },
     {
@@ -199,9 +194,7 @@
       "title": "Egg Bites",
       "layout": "post",
       "date": "2019-09-13",
-      "aliases": [
-        "/eggbites"
-      ],
+      "slug": "eggbites",
       "images": [
         "/images/eggbites.jpeg"
       ],
@@ -221,10 +214,71 @@
       "excerpt": "<p>This post is a change from the usual technical content.  I made my own Egg Bites this morning, inspired by the delicious ones I like to get at Starbucks.</p>",
       "meta": {
         "relativePath": "posts/eggbites.html",
-        "createdAt": "2020-11-04T22:00:28.610Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 1970,
+        "createdAt": "2020-11-05T00:07:21.540Z",
+        "lastModified": "2020-11-05T00:07:21.540Z",
+        "size": 1962,
         "formattedSize": "1.9 KB"
+      }
+    },
+    {
+      "id": "posts__errgroup",
+      "contents": "<p>In this article for O&#39;Reilly I explore the new sync.ErrGroup package.</p>\n<!-- more -->\n\n\n<p><a href=\"https://www.oreilly.com/learning/run-strikingly-fast-parallel-file-searches-in-go-with-sync-errgroup\">Article</a>\n<a href=\"https://github.com/bketelsen/gogrep\">Source Code</a></p>\n",
+      "author": "Brian Ketelsen",
+      "categories": [
+        "go",
+        "errors",
+        "concurrency"
+      ],
+      "date": "2016-09-19T22:53:00Z",
+      "description": "",
+      "slug": "errgroup",
+      "images": [
+        "https://images.unsplash.com/photo-1495573258723-2c7be7a646ce?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=5942ab1aa61891b3745a4d63e0b7da5f"
+      ],
+      "aliases": [
+        "/errgroup"
+      ],
+      "tags": [
+        "go",
+        "errors",
+        "concurrency"
+      ],
+      "title": "sync.ErrGroup",
+      "excerpt": "<p>In this article for O&apos;Reilly I explore the new sync.ErrGroup package.</p>",
+      "meta": {
+        "relativePath": "posts/errgroup.html",
+        "createdAt": "2020-11-05T00:07:30.310Z",
+        "lastModified": "2020-11-05T00:07:30.310Z",
+        "size": 676,
+        "formattedSize": "676 Bytes"
+      }
+    },
+    {
+      "id": "posts__getting-crazy-with-windows-subsystem-for-linux",
+      "contents": "<p>Lately I&#39;ve been on a <a href=\"https://blog.gopheracademy.com/advent-2017/repeatable-isolated-dev-environments/\">mission</a> to separate my development environments by project, and by category (personal/work/Gophercon/etc).  The writeup on the Gopheracademy blog describes a fun way to create an isolated container-based environment for each project by using LXD on Ubuntu.</p>\n<!-- more -->\n\n<p>Last night I wondered to myself if there was a way to get a similar experience by manipulating <a href=\"https://docs.microsoft.com/en-us/windows/wsl/faq\">Windows Subsystem for Linux</a> somehow.  That was a rabbit hole of searching, let me tell ya true.</p>\n<p>Since the <a href=\"http://www.zdnet.com/article/windows-subsystem-for-linux-graduates-in-windows-10-fall-creators-update/\">Fall Creator&#39;s Update</a> WSL has had more than one distribution available to install.  You can install SUSE, Ubuntu, and soon Fedora.  So deep down in my soul, I KNOW that I can have multiple copies of Ubuntu running with separate filesystems.  That would reproduce the LXD environments I created in Linux.</p>\n<p>After some research, it turns out that the WSL management API is available in the Windows SDK, and several projects already take advantage of this fact.  First I found <a href=\"https://github.com/yuk7/WSL-DistroLauncher\">this one</a> which allows you to do a lot of work and install any Linux distro you want.  I knew I was on the right track.  My next big find was <a href=\"https://github.com/DDoSolitary/LxRunOffline\">LxRunOffline</a> which was built to allow you to install WSL without being online.  It also has the secondary ability to let you install any number of WSL instances.  Now we&#39;re cooking with gas!</p>\n<p>I downloaded <code>LxRunOffline</code> and read the <a href=\"https://github.com/DDoSolitary/LxRunOffline/wiki/Ubuntu\">wiki</a>, which has links to the Ubuntu root filesystem that is installed during a regular WSL install.  Following their instructions, I downloaded the rootfs, put it next to the <code>LxRunOffline</code> binary, and installed <em>another</em> copy of Ubuntu as a new WSL instance.  </p>\n<pre><code>LxRunOffline 2.1.1\nCopyright (C) 2017 DDoSolitary\n\nERROR(S):\n  No verb selected.\n\n  list                List all installed distributions.\n\n  default             Get or set the default distribution, which is used by bash.exe.\n\n  install             Install a new distribution.\n\n  register            Register an existing installation directory.\n\n  uninstall           Uninstall a distribution\n\n  unregister          Unregister a distribution but not delete the directory containing it.\n\n  move                Move a distribution to a new directory.\n\n  run                 Run a command in a distribution.\n\n  dir                 Get the installation directory of a distribution.\n\n  config-env          Get or set the default environment variables of a distribution. (Currently unusable because of a problem of the command line\n                      parser library.)\n\n  config-uid          Get or set the UID of the default user of a distribution.\n\n  config-kernelcmd    Get or set the default kernel command line of a distribution.\n\n  config-flag         Get or set some flags of a distribution. See https://msdn.microsoft.com/en-us/library/windows/desktop/mt826872(v=vs.85).aspx for\n                      details.\n\n  help                Display more information on a specific command.\n\n  version             Display version information.\n\n\nC:\\Users\\bkete\\Downloads\\LxRunOffline-v2.1.1\\LxRunOffline-v2.1.1&gt;</code></pre><p><em>SuccessKid.jpg</em></p>\n<p>I repeated this process several times until I had enough instances of WSL for my current project load, each time putting the storage folder in a new path named for its usage -- like <code>c:\\microsoftfs</code> or <code>c:\\gopherconfs</code>.</p>\n<p>The last step was to figure out how to launch them.  I use <a href=\"https://github.com/mintty/wsltty\">wsltty</a> sometimes as my terminal emulator, and it comes with convenient batch files to launch WSL as a user, as root, and other scenarios.  I copied one of those batch files and modified it to point to one of my new Ubuntu instances like this:</p>\n<h3 id=\"original\">Original</h3>\n<pre><code>%LOCALAPPDATA%\\wsltty\\bin\\mintty.exe -i &quot;%PROGRAMFILES%/WindowsApps/CanonicalGroupLimited.UbuntuonWindows_1604.2017.922.0_x64__79rhkp1fndgsc/images/icon.ico&quot; --WSL= -h err --configdir=&quot;%APPDATA%\\wsltty&quot;  -~  </code></pre><h3 id=\"modified\">Modified</h3>\n<pre><code>%LOCALAPPDATA%\\wsltty\\bin\\mintty.exe -i &quot;%PROGRAMFILES%/WindowsApps/CanonicalGroupLimited.UbuntuonWindows_1604.2017.922.0_x64__79rhkp1fndgsc/images/icon.ico&quot; --WSL=&quot;Gophercon&quot; -h err --configdir=&quot;%APPDATA%\\wsltty&quot;  -~  </code></pre><p>In the modified batch file, the <code>--WSL=&quot;Gophercon&quot;</code> references a registered WSL distribution called <code>Gophercon</code> which I created with <code>LxRunOffline</code>.  I repeated this process for each of the new instances, and changed the icons for them so I can launch them easily from the start menu.</p>\n<p>Now I have multiple installations of WSL/Ubuntu that are isolated from each other.  Exactly what I wanted.  The development workflow is nearly identical to the Linux/LXD version, I open a terminal and start coding.  </p>\n<p>The end result is that each WSL Ubuntu installation has a separate filesystem, so each project is isolated.  Using <a href=\"https://thelocehiliosan.github.io/yadm/\">yadm</a> I can clone my <a href=\"https://github.com/bketelsen/dotfiles\">dotfiles</a> and run the included <code>bootstrap</code> script which updates the system and installs all the packages I need for development with a single command.  That&#39;s quick and easy.</p>\n<p>Windows looks better and better for Linux development.  And the webcam always works...</p>\n<p>:)</p>\n<p>If you like this post and want to caffeinate me even more:</p>\n<style>.bmc-button img{width: 27px !important;margin-bottom: 3px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-block !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 23px !important;letter-spacing:0.6px !important;;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href=\"https://fonts.googleapis.com/css?family=Cookie\" rel=\"stylesheet\"><a class=\"bmc-button\" target=\"_blank\" href=\"https://www.buymeacoffee.com/bketelsen\"><img src=\"https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg\" alt=\"Buy me a coffee\"><span style=\"margin-left:5px\">Buy me a coffee</span></a>\n",
+      "author": "Brian Ketelsen",
+      "categories": [
+        "wsl",
+        "development"
+      ],
+      "date": "2017-12-13T21:07:59Z",
+      "description": "",
+      "images": [
+        "/images/2017/12/startmenu.png"
+      ],
+      "slug": "getting-crazy-with-windows-subsystem-for-linux",
+      "tags": [
+        "wsl",
+        "development"
+      ],
+      "title": "Getting Crazy with Windows Subsystem for Linux",
+      "excerpt": "<p>Lately I&apos;ve been on a <a href=\"https://blog.gopheracademy.com/advent-2017/repeatable-isolated-dev-environments/\">mission</a> to separate my development environments by project, and by category (personal/work/Gophercon/etc).  The writeup on the Gopheracademy blog describes a fun way to create an isolated container-based environment for each project by using LXD on Ubuntu.</p>",
+      "meta": {
+        "relativePath": "posts/getting-crazy-with-windows-subsystem-for-linux.html",
+        "createdAt": "2020-11-05T00:07:43.510Z",
+        "lastModified": "2020-11-05T00:07:43.510Z",
+        "size": 7425,
+        "formattedSize": "7.3 KB"
       }
     },
     {
@@ -241,9 +295,7 @@
       "images": [
         "https://images.unsplash.com/photo-1477244075012-5cc28286e465?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=650281f5f6da101b6954a53645bf6501"
       ],
-      "aliases": [
-        "/caddy-hugo-encrypt"
-      ],
+      "slug": "caddy-hugo-encrypt",
       "tags": [
         "hugo",
         "caddy",
@@ -253,72 +305,10 @@
       "excerpt": "<p>I spent all of 5 minutes configuring <a href=\"https://caddyserver.com\">Caddy</a> to automatically pull content from github, post-process it with <a href=\"http://gohugo.io\">hugo</a> and serve it up with fresh SSL/TLS certificates from Let&apos;s Encrypt. <!-- more --></p>",
       "meta": {
         "relativePath": "posts/caddy-hugo-encrypt.html",
-        "createdAt": "2020-11-04T22:00:28.570Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 1581,
+        "createdAt": "2020-11-05T00:12:30.970Z",
+        "lastModified": "2020-11-05T00:12:30.970Z",
+        "size": 1570,
         "formattedSize": "1.5 KB"
-      }
-    },
-    {
-      "id": "posts__errgroup",
-      "contents": "<p>In this article for O&#39;Reilly I explore the new sync.ErrGroup package.</p>\n<!-- more -->\n\n\n<p><a href=\"https://www.oreilly.com/learning/run-strikingly-fast-parallel-file-searches-in-go-with-sync-errgroup\">Article</a>\n<a href=\"https://github.com/bketelsen/gogrep\">Source Code</a></p>\n",
-      "author": "Brian Ketelsen",
-      "categories": [
-        "go",
-        "errors",
-        "concurrency"
-      ],
-      "date": "2016-09-19T22:53:00Z",
-      "description": "",
-      "images": [
-        "https://images.unsplash.com/photo-1495573258723-2c7be7a646ce?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=5942ab1aa61891b3745a4d63e0b7da5f"
-      ],
-      "aliases": [
-        "/errgroup"
-      ],
-      "tags": [
-        "go",
-        "errors",
-        "concurrency"
-      ],
-      "title": "sync.ErrGroup",
-      "excerpt": "<p>In this article for O&apos;Reilly I explore the new sync.ErrGroup package.</p>",
-      "meta": {
-        "relativePath": "posts/errgroup.html",
-        "createdAt": "2020-11-04T22:00:28.630Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 661,
-        "formattedSize": "661 Bytes"
-      }
-    },
-    {
-      "id": "posts__getting-crazy-with-windows-subsystem-for-linux",
-      "contents": "<p>Lately I&#39;ve been on a <a href=\"https://blog.gopheracademy.com/advent-2017/repeatable-isolated-dev-environments/\">mission</a> to separate my development environments by project, and by category (personal/work/Gophercon/etc).  The writeup on the Gopheracademy blog describes a fun way to create an isolated container-based environment for each project by using LXD on Ubuntu.</p>\n<!-- more -->\n\n<p>Last night I wondered to myself if there was a way to get a similar experience by manipulating <a href=\"https://docs.microsoft.com/en-us/windows/wsl/faq\">Windows Subsystem for Linux</a> somehow.  That was a rabbit hole of searching, let me tell ya true.</p>\n<p>Since the <a href=\"http://www.zdnet.com/article/windows-subsystem-for-linux-graduates-in-windows-10-fall-creators-update/\">Fall Creator&#39;s Update</a> WSL has had more than one distribution available to install.  You can install SUSE, Ubuntu, and soon Fedora.  So deep down in my soul, I KNOW that I can have multiple copies of Ubuntu running with separate filesystems.  That would reproduce the LXD environments I created in Linux.</p>\n<p>After some research, it turns out that the WSL management API is available in the Windows SDK, and several projects already take advantage of this fact.  First I found <a href=\"https://github.com/yuk7/WSL-DistroLauncher\">this one</a> which allows you to do a lot of work and install any Linux distro you want.  I knew I was on the right track.  My next big find was <a href=\"https://github.com/DDoSolitary/LxRunOffline\">LxRunOffline</a> which was built to allow you to install WSL without being online.  It also has the secondary ability to let you install any number of WSL instances.  Now we&#39;re cooking with gas!</p>\n<p>I downloaded <code>LxRunOffline</code> and read the <a href=\"https://github.com/DDoSolitary/LxRunOffline/wiki/Ubuntu\">wiki</a>, which has links to the Ubuntu root filesystem that is installed during a regular WSL install.  Following their instructions, I downloaded the rootfs, put it next to the <code>LxRunOffline</code> binary, and installed <em>another</em> copy of Ubuntu as a new WSL instance.  </p>\n<pre><code>LxRunOffline 2.1.1\nCopyright (C) 2017 DDoSolitary\n\nERROR(S):\n  No verb selected.\n\n  list                List all installed distributions.\n\n  default             Get or set the default distribution, which is used by bash.exe.\n\n  install             Install a new distribution.\n\n  register            Register an existing installation directory.\n\n  uninstall           Uninstall a distribution\n\n  unregister          Unregister a distribution but not delete the directory containing it.\n\n  move                Move a distribution to a new directory.\n\n  run                 Run a command in a distribution.\n\n  dir                 Get the installation directory of a distribution.\n\n  config-env          Get or set the default environment variables of a distribution. (Currently unusable because of a problem of the command line\n                      parser library.)\n\n  config-uid          Get or set the UID of the default user of a distribution.\n\n  config-kernelcmd    Get or set the default kernel command line of a distribution.\n\n  config-flag         Get or set some flags of a distribution. See https://msdn.microsoft.com/en-us/library/windows/desktop/mt826872(v=vs.85).aspx for\n                      details.\n\n  help                Display more information on a specific command.\n\n  version             Display version information.\n\n\nC:\\Users\\bkete\\Downloads\\LxRunOffline-v2.1.1\\LxRunOffline-v2.1.1&gt;</code></pre><p><em>SuccessKid.jpg</em></p>\n<p>I repeated this process several times until I had enough instances of WSL for my current project load, each time putting the storage folder in a new path named for its usage -- like <code>c:\\microsoftfs</code> or <code>c:\\gopherconfs</code>.</p>\n<p>The last step was to figure out how to launch them.  I use <a href=\"https://github.com/mintty/wsltty\">wsltty</a> sometimes as my terminal emulator, and it comes with convenient batch files to launch WSL as a user, as root, and other scenarios.  I copied one of those batch files and modified it to point to one of my new Ubuntu instances like this:</p>\n<h3 id=\"original\">Original</h3>\n<pre><code>%LOCALAPPDATA%\\wsltty\\bin\\mintty.exe -i &quot;%PROGRAMFILES%/WindowsApps/CanonicalGroupLimited.UbuntuonWindows_1604.2017.922.0_x64__79rhkp1fndgsc/images/icon.ico&quot; --WSL= -h err --configdir=&quot;%APPDATA%\\wsltty&quot;  -~  </code></pre><h3 id=\"modified\">Modified</h3>\n<pre><code>%LOCALAPPDATA%\\wsltty\\bin\\mintty.exe -i &quot;%PROGRAMFILES%/WindowsApps/CanonicalGroupLimited.UbuntuonWindows_1604.2017.922.0_x64__79rhkp1fndgsc/images/icon.ico&quot; --WSL=&quot;Gophercon&quot; -h err --configdir=&quot;%APPDATA%\\wsltty&quot;  -~  </code></pre><p>In the modified batch file, the <code>--WSL=&quot;Gophercon&quot;</code> references a registered WSL distribution called <code>Gophercon</code> which I created with <code>LxRunOffline</code>.  I repeated this process for each of the new instances, and changed the icons for them so I can launch them easily from the start menu.</p>\n<p>Now I have multiple installations of WSL/Ubuntu that are isolated from each other.  Exactly what I wanted.  The development workflow is nearly identical to the Linux/LXD version, I open a terminal and start coding.  </p>\n<p>The end result is that each WSL Ubuntu installation has a separate filesystem, so each project is isolated.  Using <a href=\"https://thelocehiliosan.github.io/yadm/\">yadm</a> I can clone my <a href=\"https://github.com/bketelsen/dotfiles\">dotfiles</a> and run the included <code>bootstrap</code> script which updates the system and installs all the packages I need for development with a single command.  That&#39;s quick and easy.</p>\n<p>Windows looks better and better for Linux development.  And the webcam always works...</p>\n<p>:)</p>\n<p>If you like this post and want to caffeinate me even more:</p>\n<style>.bmc-button img{width: 27px !important;margin-bottom: 3px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-block !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 23px !important;letter-spacing:0.6px !important;;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href=\"https://fonts.googleapis.com/css?family=Cookie\" rel=\"stylesheet\"><a class=\"bmc-button\" target=\"_blank\" href=\"https://www.buymeacoffee.com/bketelsen\"><img src=\"https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg\" alt=\"Buy me a coffee\"><span style=\"margin-left:5px\">Buy me a coffee</span></a>\n",
-      "author": "Brian Ketelsen",
-      "categories": [
-        "wsl",
-        "development"
-      ],
-      "date": "2017-12-13T21:07:59Z",
-      "description": "",
-      "images": [
-        "/images/2017/12/startmenu.png"
-      ],
-      "aliases": [
-        "/getting-crazy-with-windows-subsystem-for-linux"
-      ],
-      "tags": [
-        "wsl",
-        "development"
-      ],
-      "title": "Getting Crazy with Windows Subsystem for Linux",
-      "excerpt": "<p>Lately I&apos;ve been on a <a href=\"https://blog.gopheracademy.com/advent-2017/repeatable-isolated-dev-environments/\">mission</a> to separate my development environments by project, and by category (personal/work/Gophercon/etc).  The writeup on the Gopheracademy blog describes a fun way to create an isolated container-based environment for each project by using LXD on Ubuntu.</p>",
-      "meta": {
-        "relativePath": "posts/getting-crazy-with-windows-subsystem-for-linux.html",
-        "createdAt": "2020-11-04T22:00:28.650Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 7436,
-        "formattedSize": "7.3 KB"
       }
     },
     {
@@ -334,9 +324,7 @@
       "images": [
         "https://images.unsplash.com/photo-1487505983481-9aa2d9f9901a?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=beb2fdb8e2d1f0b888d896ae904bbb9d"
       ],
-      "aliases": [
-        "/go17"
-      ],
+      "slug": "go17",
       "tags": [
         "go",
         "release"
@@ -345,10 +333,40 @@
       "excerpt": "<p>Release day is always fun, and Go releases get me pretty excited.  The 1.7 release is especially nice, so I&apos;m going to mention some of my favorite changes in this release.</p>",
       "meta": {
         "relativePath": "posts/go17.html",
-        "createdAt": "2020-11-04T22:00:28.670Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 2907,
+        "createdAt": "2020-11-05T00:07:55.830Z",
+        "lastModified": "2020-11-05T00:07:55.830Z",
+        "size": 2896,
         "formattedSize": "2.8 KB"
+      }
+    },
+    {
+      "id": "posts__going-overboard-with-wsl-metadata",
+      "contents": "<h3 id=\"nerd-sniped\">Nerd Sniped</h3>\n<p>It all started with a simple tweet from <a href=\"https://twitter.com/nunixtech\">@nunixtech</a>:</p>\n<!-- more -->\n\n<blockquote class=\"twitter-tweet\" data-lang=\"en\"><p lang=\"en\" dir=\"ltr\"><a href=\"https://twitter.com/VirtualScooley?ref_src=twsrc%5Etfw\">@VirtualScooley</a> <a href=\"https://twitter.com/richturn_ms?ref_src=twsrc%5Etfw\">@richturn_ms</a> <a href=\"https://twitter.com/tara_msft?ref_src=twsrc%5Etfw\">@tara_msft</a> <a href=\"https://twitter.com/CraigWilhite?ref_src=twsrc%5Etfw\">@CraigWilhite</a> <a href=\"https://twitter.com/benhillis?ref_src=twsrc%5Etfw\">@benhillis</a> In order to Thank You for the new Distros, here is a small hack from your &quot;favorite&quot; WSLCorsair. the mount options might need some review though. <a href=\"https://twitter.com/bketelsen?ref_src=twsrc%5Etfw\">@bketelsen</a> this might help you (do I enter the HAT gift list? ?) <a href=\"https://t.co/7ouUX5Jm3h\">pic.twitter.com/7ouUX5Jm3h</a></p>&mdash; Nuno do Carmo (@nunixtech) <a href=\"https://twitter.com/nunixtech/status/971145708018466816?ref_src=twsrc%5Etfw\">March 6, 2018</a></blockquote>\n\n<p>Nuno showed how to use new <a href=\"https://cda.ms/hs\">metadata support</a> in Windows Subsystem For Linux to enable Linux permissions and metadata on a mounted Windows share.  Never content to let a good hack go unexplored, I wanted to see if it was possible to make a Windows folder be my WSL home directory with no adverse side-effects.</p>\n<h3 id=\"the-setup\">The Setup</h3>\n<p>I started with an existing and well-used WSL installation of Ubuntu.  My first step was to replicate Nuno&#39;s example, mounting a Windows shared drive with appropriate Linux metadata.  It worked well. But I wanted to make that directory my <code>$HOME</code>, and have access from both Windows and WSL with no penalties or worries about permissions or corrupted files.</p>\n<p>I created a folder on my <code>C:\\</code> drive called <code>home</code>.  I then shared the directory as Nuno did so it could be mounted from <code>/etc/fstab</code> on the WSL side of things.</p>\n<h3 id=\"first-attempt\">First Attempt</h3>\n<p>The first thing I tried doing was changing my <code>/etc/fstab</code> entry for the mounted share to mount it at <code>/home/bketelsen</code>.  It worked, but of course it replaced my existing home directory with the mounted one.  I reversed my change in <code>fstab</code> and made a new mountpoint at <code>/home/bketelsen2</code>.  I mounted the Windows share there, then used <code>rsync</code> to copy my old WSL-only home into the mounted directory:</p>\n<pre><code>$&gt; rsync -azvh /home/bketelsen/ /home/bketelsen2</code></pre><p>This took quite a while to complete because my home directory in WSL was full of code.  When it finished, I had a full copy of my WSL home <code>/home/bketelsen2</code> directory which was mounted from <code>C:\\home</code>.  On the Windows side, the <code>C:\\home</code> directory shows all of my WSL files:</p>\n<p><img src=\"/images/2018/03/windows-side-1.PNG\" alt=\"Windows Side\"></p>\n<p>That&#39;s pretty slick!  Now all I needed to do was make that my $HOME and I&#39;d be set. </p>\n<blockquote>\n<p>Narrator: Nothing is ever that easy.</p>\n</blockquote>\n<p><a href=\"http://wslcorsair.blogspot.ch/2018/03/wsl-one-home-to-host-them-all.html\">Nuno&#39;s post</a> shows mounting the Windows share using <code>/etc/fstab</code> which works, but I couldn&#39;t get the extra <code>metadata</code> flag in the mount line to actually make metadata support work. I don&#39;t know if this is by design, or an omission, but I didn&#39;t notice it until I tried making an ssh connection and my ssh keys had overly broad permissions.  After changing the keys&#39; permissions, it still failed.  The <code>chmod</code> command didn&#39;t apply the expected permissions.</p>\n<h3 id=\"second-attempt\">Second Attempt</h3>\n<p>I pondered a bit and realized that I was dealing with Linux, and mounting the share at <code>/home/bketelsen</code> was only one way to solve the problem.  The other way is to change my home directory&#39;s location in the Linux user database.  Specifically, using the <code>usermod</code> command:</p>\n<pre><code>sudo usermod -d /mnt/c/home bketelsen</code></pre><p>This is the right command, but it fails because the WSL process is spawned as a <code>bash</code> process started by my user, <code>bketelsen</code>.  There can be no processes running as <code>bketelsen</code> when you make the <code>usermod</code> change, so that approach wouldn&#39;t work.  I searched for ways to launch WSL directly as the root user, but in the middle of that search I remembered that the home directory is actually specified in <code>/etc/passwd</code>:</p>\n<pre><code>bketelsen:x:1000:1000:,,,:/home/bketelsen:/bin/bash</code></pre><p>YES!  I edited this file to reflect my new desired $HOME directory:</p>\n<pre><code>bketelsen:x:1000:1000:,,,:/mnt/c/home:/bin/bash</code></pre><p>Closing and re-opening WSL confirmed that my WSL <code>$HOME</code> directory was now <code>/mnt/c/home</code> which contained all the files that were previously stored in <code>/home/bketelsen</code>.  I quickly created a text file from the Windows side at <code>C:\\home\\thing.txt</code> and verified that it existed on the WSL mount too.</p>\n<h3 id=\"success\">SUCCESS</h3>\n<p>With this setup, I have a single folder -- <code>C:\\home</code> -- available in Windows, but also mounted as my WSL <code>$HOME</code>, too.  Files can be modified on either side, with no apparent ill effects. <strong><em>Editors Note: This is unproven, and not for risk-averse people.  Use this setup at your own risk.  Backup your data.</em></strong> </p>\n<p><img src=\"/images/2018/03/wsl-side.PNG\" alt=\"wsl-side\"></p>\n<h3 id=\"one-more-thing\">One More Thing</h3>\n<p>Because too much is never enough, I wanted to prove that this would work for more than one WSL installation.  So I installed the just-announced Debian WSL app, and applied exactly the same change to my <code>/etc/passwd</code> file and <code>/etc/wsl.conf</code> files.</p>\n<p><img src=\"/images/2018/03/debian-installer.PNG\" alt=\"debian-installer\"></p>\n<p>Now I have two different Linux installations in WSL: Ubuntu and Debian.  They have separate root filesystems, but a single shared <code>$HOME</code> directory:</p>\n<p><img src=\"/images/2018/03/debian.PNG\" alt=\"debian\"></p>\n<p>This is extremely cool.  I set up my Go development environment on the Windows side using <a href=\"https://cda.ms/ht\">Visual Studio Code</a> but set the <code>$GOPATH</code> to <code>C:\\home\\go</code>, which is the same as <code>$HOME/go</code> on the WSL side.  Now I can develop in Windows or WSL/Linux against the exact same code without any strange permission problems.  Most of the time I&#39;ll probably stay in <code>neovim</code>, because it&#39;s my first love.  But there are no issues when I use VS Code from the Windows side.  I can compile and test from both Windows and Linux with the same source directory.  </p>\n<p>Here&#39;s the contents of my <code>/etc/wsl.conf</code> for your perusal:</p>\n<pre><code># Enable extra metadata options by default\n[automount]\nenabled = true\noptions = &quot;metadata,umask=22,fmask=11&quot;\nmountFsTab = true\n\n# Enable DNS – even though these are turned on by default, we’ll specify here just to be explicit.\n[network]\ngenerateHosts = true\ngenerateResolvConf = true</code></pre><p>Thank you to <a href=\"https://twitter.com/nunixtech\">@nunixtech</a> for the idea that spawned this probably-evil hack. I&#39;m unreasonably delighted with how cool this little hack is, and it opens a lot of other possibilities for other potentially unauthorized or dangerous hacks, too.  If you&#39;ve done something equally unorthodox with your WSL install, tell me about it on <a href=\"https://twitter.com/bketelsen\">twitter</a>!</p>\n<h3 id=\"update\">Update</h3>\n<p>I realized after this worked that the next logical progression of this experiment was to share the same $HOME between Windows and WSL.  TLDR; It works perfectly.  I updated my <code>/etc/passwd</code> home directory entry to <code>/mnt/c/Users/bkete</code>, moved the contents of the <code>c:\\home</code> directory into <code>c:\\Users\\bkete</code>, and now I have a single shared home directory between Windows and WSL.  Here&#39;s a picture of my OneDrive directory being accessed from WSL as <code>$HOME/OneDrive</code>:</p>\n<p><img src=\"/images/2018/03/onedrive.PNG\" alt=\"onedrive\"></p>\n",
+      "author": "Brian Ketelsen",
+      "categories": [
+        "hacks",
+        "windows",
+        "linux"
+      ],
+      "date": "2018-03-10T00:42:39Z",
+      "description": "Use a folder from your Windows drive as your $HOME directory in WSL",
+      "images": [
+        "/images/2018/03/windows-side.PNG"
+      ],
+      "slug": "going-overboard-with-wsl-metadata",
+      "tags": [
+        "hacks",
+        "windows",
+        "linux"
+      ],
+      "title": "Going Overboard with WSL metadata",
+      "excerpt": "<p>It all started with a simple tweet from <a href=\"https://twitter.com/nunixtech\">@nunixtech</a>:</p>",
+      "meta": {
+        "relativePath": "posts/going-overboard-with-wsl-metadata.html",
+        "createdAt": "2020-11-05T00:08:10.690Z",
+        "lastModified": "2020-11-05T00:08:10.690Z",
+        "size": 7755,
+        "formattedSize": "7.6 KB"
       }
     },
     {
@@ -364,9 +382,7 @@
       "images": [
         "/images/2017/09/azure.png"
       ],
-      "aliases": [
-        "/gophercon-on-azure"
-      ],
+      "slug": "gophercon-on-azure",
       "tags": [
         "go",
         "azure"
@@ -375,9 +391,9 @@
       "excerpt": "<p>I&apos;ve recently taken on a new role at Microsoft as a Cloud Developer Advocate for Open Source projects on Azure.  My purview is Go, Linux, Containers, and Kubernetes.  While brainstorming ways to learn about all that Azure has to offer an idea occured to me:  Why not move Gophercon over to Azure as a learning tool.  I&apos;ve decided to do just that and share my learnings along the way.</p>",
       "meta": {
         "relativePath": "posts/gophercon-on-azure.html",
-        "createdAt": "2020-11-04T22:00:28.700Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 2184,
+        "createdAt": "2020-11-05T00:08:20.070Z",
+        "lastModified": "2020-11-05T00:08:20.070Z",
+        "size": 2173,
         "formattedSize": "2.1 KB"
       }
     },
@@ -387,9 +403,7 @@
       "title": "Hello waSCC",
       "layout": "post",
       "date": "2020-02-25",
-      "aliases": [
-        "/hello-wascc"
-      ],
+      "slug": "hello-wascc",
       "images": [
         "/images/h3GAGi5tXMU.jpg"
       ],
@@ -417,74 +431,10 @@
       "excerpt": "<p>I&apos;m <em>really excited</em> about Web Assembly on the server. The promise of sandboxed and portable code feels like the realization of the vision Docker tried to achieve. In this article I&apos;m going to walk through creating a service using <a href=\"https://wascc.dev/\">waSCC</a>, which is a host runtime for running actors written in web assembly. We&apos;ll mostly follow the tutorial for creating a new actor, but with more nuance, and specifics for using WSL2 on my Windows Laptop added for completeness.</p>",
       "meta": {
         "relativePath": "posts/hello-wascc.html",
-        "createdAt": "2020-11-04T22:00:28.720Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 2170,
+        "createdAt": "2020-11-05T00:09:17.530Z",
+        "lastModified": "2020-11-05T00:09:17.530Z",
+        "size": 2161,
         "formattedSize": "2.1 KB"
-      }
-    },
-    {
-      "id": "posts__going-overboard-with-wsl-metadata",
-      "contents": "<h3 id=\"nerd-sniped\">Nerd Sniped</h3>\n<p>It all started with a simple tweet from <a href=\"https://twitter.com/nunixtech\">@nunixtech</a>:</p>\n<!-- more -->\n\n<blockquote class=\"twitter-tweet\" data-lang=\"en\"><p lang=\"en\" dir=\"ltr\"><a href=\"https://twitter.com/VirtualScooley?ref_src=twsrc%5Etfw\">@VirtualScooley</a> <a href=\"https://twitter.com/richturn_ms?ref_src=twsrc%5Etfw\">@richturn_ms</a> <a href=\"https://twitter.com/tara_msft?ref_src=twsrc%5Etfw\">@tara_msft</a> <a href=\"https://twitter.com/CraigWilhite?ref_src=twsrc%5Etfw\">@CraigWilhite</a> <a href=\"https://twitter.com/benhillis?ref_src=twsrc%5Etfw\">@benhillis</a> In order to Thank You for the new Distros, here is a small hack from your &quot;favorite&quot; WSLCorsair. the mount options might need some review though. <a href=\"https://twitter.com/bketelsen?ref_src=twsrc%5Etfw\">@bketelsen</a> this might help you (do I enter the HAT gift list? ?) <a href=\"https://t.co/7ouUX5Jm3h\">pic.twitter.com/7ouUX5Jm3h</a></p>&mdash; Nuno do Carmo (@nunixtech) <a href=\"https://twitter.com/nunixtech/status/971145708018466816?ref_src=twsrc%5Etfw\">March 6, 2018</a></blockquote>\n\n<p>Nuno showed how to use new <a href=\"https://cda.ms/hs\">metadata support</a> in Windows Subsystem For Linux to enable Linux permissions and metadata on a mounted Windows share.  Never content to let a good hack go unexplored, I wanted to see if it was possible to make a Windows folder be my WSL home directory with no adverse side-effects.</p>\n<h3 id=\"the-setup\">The Setup</h3>\n<p>I started with an existing and well-used WSL installation of Ubuntu.  My first step was to replicate Nuno&#39;s example, mounting a Windows shared drive with appropriate Linux metadata.  It worked well. But I wanted to make that directory my <code>$HOME</code>, and have access from both Windows and WSL with no penalties or worries about permissions or corrupted files.</p>\n<p>I created a folder on my <code>C:\\</code> drive called <code>home</code>.  I then shared the directory as Nuno did so it could be mounted from <code>/etc/fstab</code> on the WSL side of things.</p>\n<h3 id=\"first-attempt\">First Attempt</h3>\n<p>The first thing I tried doing was changing my <code>/etc/fstab</code> entry for the mounted share to mount it at <code>/home/bketelsen</code>.  It worked, but of course it replaced my existing home directory with the mounted one.  I reversed my change in <code>fstab</code> and made a new mountpoint at <code>/home/bketelsen2</code>.  I mounted the Windows share there, then used <code>rsync</code> to copy my old WSL-only home into the mounted directory:</p>\n<pre><code>$&gt; rsync -azvh /home/bketelsen/ /home/bketelsen2</code></pre><p>This took quite a while to complete because my home directory in WSL was full of code.  When it finished, I had a full copy of my WSL home <code>/home/bketelsen2</code> directory which was mounted from <code>C:\\home</code>.  On the Windows side, the <code>C:\\home</code> directory shows all of my WSL files:</p>\n<p><img src=\"/images/2018/03/windows-side-1.PNG\" alt=\"Windows Side\"></p>\n<p>That&#39;s pretty slick!  Now all I needed to do was make that my $HOME and I&#39;d be set. </p>\n<blockquote>\n<p>Narrator: Nothing is ever that easy.</p>\n</blockquote>\n<p><a href=\"http://wslcorsair.blogspot.ch/2018/03/wsl-one-home-to-host-them-all.html\">Nuno&#39;s post</a> shows mounting the Windows share using <code>/etc/fstab</code> which works, but I couldn&#39;t get the extra <code>metadata</code> flag in the mount line to actually make metadata support work. I don&#39;t know if this is by design, or an omission, but I didn&#39;t notice it until I tried making an ssh connection and my ssh keys had overly broad permissions.  After changing the keys&#39; permissions, it still failed.  The <code>chmod</code> command didn&#39;t apply the expected permissions.</p>\n<h3 id=\"second-attempt\">Second Attempt</h3>\n<p>I pondered a bit and realized that I was dealing with Linux, and mounting the share at <code>/home/bketelsen</code> was only one way to solve the problem.  The other way is to change my home directory&#39;s location in the Linux user database.  Specifically, using the <code>usermod</code> command:</p>\n<pre><code>sudo usermod -d /mnt/c/home bketelsen</code></pre><p>This is the right command, but it fails because the WSL process is spawned as a <code>bash</code> process started by my user, <code>bketelsen</code>.  There can be no processes running as <code>bketelsen</code> when you make the <code>usermod</code> change, so that approach wouldn&#39;t work.  I searched for ways to launch WSL directly as the root user, but in the middle of that search I remembered that the home directory is actually specified in <code>/etc/passwd</code>:</p>\n<pre><code>bketelsen:x:1000:1000:,,,:/home/bketelsen:/bin/bash</code></pre><p>YES!  I edited this file to reflect my new desired $HOME directory:</p>\n<pre><code>bketelsen:x:1000:1000:,,,:/mnt/c/home:/bin/bash</code></pre><p>Closing and re-opening WSL confirmed that my WSL <code>$HOME</code> directory was now <code>/mnt/c/home</code> which contained all the files that were previously stored in <code>/home/bketelsen</code>.  I quickly created a text file from the Windows side at <code>C:\\home\\thing.txt</code> and verified that it existed on the WSL mount too.</p>\n<h3 id=\"success\">SUCCESS</h3>\n<p>With this setup, I have a single folder -- <code>C:\\home</code> -- available in Windows, but also mounted as my WSL <code>$HOME</code>, too.  Files can be modified on either side, with no apparent ill effects. <strong><em>Editors Note: This is unproven, and not for risk-averse people.  Use this setup at your own risk.  Backup your data.</em></strong> </p>\n<p><img src=\"/images/2018/03/wsl-side.PNG\" alt=\"wsl-side\"></p>\n<h3 id=\"one-more-thing\">One More Thing</h3>\n<p>Because too much is never enough, I wanted to prove that this would work for more than one WSL installation.  So I installed the just-announced Debian WSL app, and applied exactly the same change to my <code>/etc/passwd</code> file and <code>/etc/wsl.conf</code> files.</p>\n<p><img src=\"/images/2018/03/debian-installer.PNG\" alt=\"debian-installer\"></p>\n<p>Now I have two different Linux installations in WSL: Ubuntu and Debian.  They have separate root filesystems, but a single shared <code>$HOME</code> directory:</p>\n<p><img src=\"/images/2018/03/debian.PNG\" alt=\"debian\"></p>\n<p>This is extremely cool.  I set up my Go development environment on the Windows side using <a href=\"https://cda.ms/ht\">Visual Studio Code</a> but set the <code>$GOPATH</code> to <code>C:\\home\\go</code>, which is the same as <code>$HOME/go</code> on the WSL side.  Now I can develop in Windows or WSL/Linux against the exact same code without any strange permission problems.  Most of the time I&#39;ll probably stay in <code>neovim</code>, because it&#39;s my first love.  But there are no issues when I use VS Code from the Windows side.  I can compile and test from both Windows and Linux with the same source directory.  </p>\n<p>Here&#39;s the contents of my <code>/etc/wsl.conf</code> for your perusal:</p>\n<pre><code># Enable extra metadata options by default\n[automount]\nenabled = true\noptions = &quot;metadata,umask=22,fmask=11&quot;\nmountFsTab = true\n\n# Enable DNS – even though these are turned on by default, we’ll specify here just to be explicit.\n[network]\ngenerateHosts = true\ngenerateResolvConf = true</code></pre><p>Thank you to <a href=\"https://twitter.com/nunixtech\">@nunixtech</a> for the idea that spawned this probably-evil hack. I&#39;m unreasonably delighted with how cool this little hack is, and it opens a lot of other possibilities for other potentially unauthorized or dangerous hacks, too.  If you&#39;ve done something equally unorthodox with your WSL install, tell me about it on <a href=\"https://twitter.com/bketelsen\">twitter</a>!</p>\n<h3 id=\"update\">Update</h3>\n<p>I realized after this worked that the next logical progression of this experiment was to share the same $HOME between Windows and WSL.  TLDR; It works perfectly.  I updated my <code>/etc/passwd</code> home directory entry to <code>/mnt/c/Users/bkete</code>, moved the contents of the <code>c:\\home</code> directory into <code>c:\\Users\\bkete</code>, and now I have a single shared home directory between Windows and WSL.  Here&#39;s a picture of my OneDrive directory being accessed from WSL as <code>$HOME/OneDrive</code>:</p>\n<p><img src=\"/images/2018/03/onedrive.PNG\" alt=\"onedrive\"></p>\n",
-      "author": "Brian Ketelsen",
-      "categories": [
-        "hacks",
-        "windows",
-        "linux"
-      ],
-      "date": "2018-03-10T00:42:39Z",
-      "description": "Use a folder from your Windows drive as your $HOME directory in WSL",
-      "images": [
-        "/images/2018/03/windows-side.PNG"
-      ],
-      "aliases": [
-        "/going-overboard-with-wsl-metadata"
-      ],
-      "tags": [
-        "hacks",
-        "windows",
-        "linux"
-      ],
-      "title": "Going Overboard with WSL metadata",
-      "excerpt": "<p>It all started with a simple tweet from <a href=\"https://twitter.com/nunixtech\">@nunixtech</a>:</p>",
-      "meta": {
-        "relativePath": "posts/going-overboard-with-wsl-metadata.html",
-        "createdAt": "2020-11-04T22:00:28.690Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 7766,
-        "formattedSize": "7.6 KB"
-      }
-    },
-    {
-      "id": "posts__i3-windows",
-      "contents": "<p>That might be the longest title for a blog post ever, but it&#39;s kind of hard to describe what&#39;s going on here if you&#39;re not familiar with the latest updates from Microsoft land.  <!--more-->Here&#39;s a quick refresher:</p>\n<ul>\n<li><p>This spring Microsoft announced <a href=\"https://msdn.microsoft.com/en-us/commandline/wsl/about\">Bash on Ubuntu on Windows</a>, also known as the Windows Subsystem for Linux.  Read the post, the FAQ, etc in that link.  I&#39;ll summarize: Microsoft wants to make Windows the best place for ALL developers to work.  A lofty and ambitious goal, to say the least.  Their crazy idea -- translate Linux system calls into NT Kernel calls using a small shim layer.</p>\n</li>\n<li><p>This is not a virtual machine.  The system calls are translated by the shim layer (WSL) and run directly on the NT Kernel.</p>\n</li>\n<li><p>This is kind of a Big Deal.  If it works, it has the potential to win back many developers who abandoned the Windows platform years ago because of the inability of Windows to deal with the *nix world.  The huge popularity of Ruby, Python, Redis, and dozens of other *nix first tools that were born in *nix.  Some of these tools, like Ruby, have Windows installers, but Windows is an afterthought and second-class citizen at best.</p>\n</li>\n<li><p>Many developers (like me) started using Windows but moved to Mac or Linux operating systems over the years as it became increasingly hard to write software in Windows.  </p>\n</li>\n<li><p>[Opinion] Linux isn&#39;t the best place to work 100% of the time.  Office applications are lacking compatibility and features.  There is no decent email client for Linux.  Save your apologist comments and <em>what about Open Office/Geary/Thunderbird</em> comments.  If you&#39;ve used them, you know that they&#39;re not as nice as the applications available in macOS and Windows.</p>\n</li>\n<li><p>[Opinion] macOS is slipping in quality, and falling behind in features.  I&#39;ve grown increasingly frustrated over the past 3 years using MacOS X as my daily driver.  Frequent crashes and very poor QA from Apple have lead to an operating system that used to be amazing becoming less so at each release.  I used to be a dyed in the wool Mac zealot.  Apple eroded my confidence in their operating system to the point that macOS is now where I go to do emails and other administrative tasks, but I do daily development on an Arch linux desktop sitting next to my MacBook Pro.  Worse, although macOS is UNIX compliant and has an almost-*nix like environment available, far too many things don&#39;t work in macOS that are required for modern Internet software development.  The hacks that we&#39;ve put up with over the years are a testament to how poor Linux is for administrative work and how nice macOS was for the same.</p>\n</li>\n</ul>\n<p>Given this set of circumstances and opinions, I was more than a little excited when Microsoft announced WSL.  It promised to give developers what could be the best of all worlds.  A modern and capable desktop operating system -- Windows 10 -- with all of the quality features and support for modern hardware that we would expect.  AND a real installation of Ubuntu Linux running along side of it.  Not virtualized, running in Virtual Box or Parallels Desktop or VMWare, but right there on my laptop running at native speed.  The idea has real promise.</p>\n<p>So when I got a new Dell XPS 13 Developer Edition (Ubuntu Pre-installed) the first thing I did was put the latest version of Windows 10 Insider Edition on it.  Over the course of a day it updated to Build 14379, which is the latest as of July 2, 2016.  I had tried previous builds, but found simple things like git or zsh didn&#39;t work well.</p>\n<p>Imagine my surprise when I installed Bash for Windows on this build and pretty much everything worked.  I cloned my <a href=\"https://github.com/bketelsen/dotfiles\">dotfiles</a> and ran the post-install scripts that install i3 window manager, neovim, zsh, Go, and all the requisite development tools that I&#39;m used to.  Nothing failed. (I didn&#39;t try running i3 yet, because I knew there was no X server installed)</p>\n<p><em>Nothing Failed</em></p>\n<p>The real shortfall of running Bash for Windows right now is the lack of a good terminal emulator.  I tried ConEmu and maybe half a dozen others, with ConEmu being the best of this sorry lot.  If you&#39;re used to using a good terminal in Linux, none of the tools available on Windows are going to satisfy you.</p>\n<p>I knew from my Windows work 20 years ago that there were XWindows servers available.  I searched and found MobaXterm.  It has a built in terminal emulator (also crap -- sorry), but among the other features included there&#39;s a pretty good X Windows server. </p>\n<p>I&#39;ve been in love with i3 window manager since Erik St. Martin introduced me to it 3 years ago.  Having such nicely organized and tiled windows over multiple desktops is an amazing productivity boon.  With good keyboard shortcuts for every operation, I found I never took my hands off the keyboard.  </p>\n<p>I started MobaXTerm and looked at the X Server settings.  I shrugged, fired up the X Server and typed &quot;i3&quot; in my bash prompt.  <code>i3</code> complained that there was another window manager already running.  I went back to the X Server settings and chose &quot;Windowed Mode: X11 Server constrained to a single window&quot;.  It was the only X Server that didn&#39;t also start a window manager like <code>dwm</code> or <code>fvwm</code>.  So it started a simple &quot;rooted&quot; X Server which appears as a window on my Windows desktop with a black screen.</p>\n<p>Returning to bash, I typed <code>i3</code> again.  Gloriously, the famililar <code>i3</code> session appeared.  I&#39;m able to install and run Linux GUI applications like Firefox.  I have <code>terminator</code> running as my terminal emulator.  I&#39;m running <code>zsh</code> as my shell.  Neovim <em>just works</em>, as does Go.  All of them think they&#39;re running on a Linux computer, because for all intents and purposes they are.  It just happens to have a Windows NT kernel at its core.</p>\n<p>Strange, strange times we live in. 20 years ago Microsoft called Linux a cancer and did everything they could to make it die.  Today they&#39;re embracing Linux -- and by extension me -- and I have to say I&#39;m really impressed with the outcome.</p>\n<p><em>This article was created in <code>neovim</code> for Linux, running on a <code>zsh</code> shell inside <code>i3 window manager</code> running in a MobaXTerm X Server on a Windows 10 laptop.</em></p>\n<p>Screen shots:</p>\n<p><a href=\"/images/2017/09/i3.png\">i3 in MobaXTerm</a>\n<a href=\"/images/2017/09/windows-on-top.png\">i3 behind Windows</a></p>\n",
-      "author": "Brian Ketelsen",
-      "categories": [
-        "windows",
-        "linux",
-        "i3"
-      ],
-      "date": "2016-07-03T22:46:00Z",
-      "description": "",
-      "images": [
-        "/images/2017/09/windows-on-top-1.png"
-      ],
-      "aliases": [
-        "/i3-windows"
-      ],
-      "tags": [
-        "windows",
-        "linux",
-        "i3"
-      ],
-      "title": "Running i3 Window Manager on Bash For Windows",
-      "excerpt": "<p>That might be the longest title for a blog post ever, but it&apos;s kind of hard to describe what&apos;s going on here if you&apos;re not familiar with the latest updates from Microsoft land.  <!--more-->Here&apos;s a quick refresher:</p>",
-      "meta": {
-        "relativePath": "posts/i3-windows.html",
-        "createdAt": "2020-11-04T22:00:28.740Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 6621,
-        "formattedSize": "6.5 KB"
       }
     },
     {
@@ -493,9 +443,7 @@
       "title": "Bash Helpers for Quick Installs",
       "layout": "post",
       "date": "2020-08-14",
-      "aliases": [
-        "/install-func"
-      ],
+      "slug": "install-funs",
       "images": [
         "/images/4pPzKfd6BEg.jpg"
       ],
@@ -517,9 +465,9 @@
       "excerpt": "<p>This bash setup is the latest evolution of my quest to make a new system install as fast as possible.</p>",
       "meta": {
         "relativePath": "posts/install-func.html",
-        "createdAt": "2020-11-04T22:00:28.760Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 3585,
+        "createdAt": "2020-11-05T00:09:10.240Z",
+        "lastModified": "2020-11-05T00:09:10.240Z",
+        "size": 3576,
         "formattedSize": "3.5 KB"
       }
     },
@@ -537,9 +485,7 @@
       "images": [
         "/images/2017/09/desktop.png"
       ],
-      "aliases": [
-        "/my-cross-platform-dev-setup-on-surface-laptop"
-      ],
+      "slug": "my-cross-platform-dev-setup-on-surface-laptop",
       "tags": [
         "development",
         "linux",
@@ -549,10 +495,40 @@
       "excerpt": "<p>I want to document a setup that I&apos;ve found that works really well for me using Windows 10 and <a href=\"https://blogs.msdn.microsoft.com/wsl/2016/04/22/windows-subsystem-for-linux-overview/\">Windows Subsystem for Linux</a> for general development.  Before we dive into any specifics, though, I want to provide some background and explain my objectives which will help to frame the decisions I&apos;ve made and the trade-offs chosen to reach a more ideal environment.</p>",
       "meta": {
         "relativePath": "posts/my-cross-platform-dev-setup-on-surface-laptop.html",
-        "createdAt": "2020-11-04T22:00:28.780Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 8184,
+        "createdAt": "2020-11-05T00:09:03.790Z",
+        "lastModified": "2020-11-05T00:09:03.790Z",
+        "size": 8173,
         "formattedSize": "8.0 KB"
+      }
+    },
+    {
+      "id": "posts__i3-windows",
+      "contents": "<p>That might be the longest title for a blog post ever, but it&#39;s kind of hard to describe what&#39;s going on here if you&#39;re not familiar with the latest updates from Microsoft land.  <!--more-->Here&#39;s a quick refresher:</p>\n<ul>\n<li><p>This spring Microsoft announced <a href=\"https://msdn.microsoft.com/en-us/commandline/wsl/about\">Bash on Ubuntu on Windows</a>, also known as the Windows Subsystem for Linux.  Read the post, the FAQ, etc in that link.  I&#39;ll summarize: Microsoft wants to make Windows the best place for ALL developers to work.  A lofty and ambitious goal, to say the least.  Their crazy idea -- translate Linux system calls into NT Kernel calls using a small shim layer.</p>\n</li>\n<li><p>This is not a virtual machine.  The system calls are translated by the shim layer (WSL) and run directly on the NT Kernel.</p>\n</li>\n<li><p>This is kind of a Big Deal.  If it works, it has the potential to win back many developers who abandoned the Windows platform years ago because of the inability of Windows to deal with the *nix world.  The huge popularity of Ruby, Python, Redis, and dozens of other *nix first tools that were born in *nix.  Some of these tools, like Ruby, have Windows installers, but Windows is an afterthought and second-class citizen at best.</p>\n</li>\n<li><p>Many developers (like me) started using Windows but moved to Mac or Linux operating systems over the years as it became increasingly hard to write software in Windows.  </p>\n</li>\n<li><p>[Opinion] Linux isn&#39;t the best place to work 100% of the time.  Office applications are lacking compatibility and features.  There is no decent email client for Linux.  Save your apologist comments and <em>what about Open Office/Geary/Thunderbird</em> comments.  If you&#39;ve used them, you know that they&#39;re not as nice as the applications available in macOS and Windows.</p>\n</li>\n<li><p>[Opinion] macOS is slipping in quality, and falling behind in features.  I&#39;ve grown increasingly frustrated over the past 3 years using MacOS X as my daily driver.  Frequent crashes and very poor QA from Apple have lead to an operating system that used to be amazing becoming less so at each release.  I used to be a dyed in the wool Mac zealot.  Apple eroded my confidence in their operating system to the point that macOS is now where I go to do emails and other administrative tasks, but I do daily development on an Arch linux desktop sitting next to my MacBook Pro.  Worse, although macOS is UNIX compliant and has an almost-*nix like environment available, far too many things don&#39;t work in macOS that are required for modern Internet software development.  The hacks that we&#39;ve put up with over the years are a testament to how poor Linux is for administrative work and how nice macOS was for the same.</p>\n</li>\n</ul>\n<p>Given this set of circumstances and opinions, I was more than a little excited when Microsoft announced WSL.  It promised to give developers what could be the best of all worlds.  A modern and capable desktop operating system -- Windows 10 -- with all of the quality features and support for modern hardware that we would expect.  AND a real installation of Ubuntu Linux running along side of it.  Not virtualized, running in Virtual Box or Parallels Desktop or VMWare, but right there on my laptop running at native speed.  The idea has real promise.</p>\n<p>So when I got a new Dell XPS 13 Developer Edition (Ubuntu Pre-installed) the first thing I did was put the latest version of Windows 10 Insider Edition on it.  Over the course of a day it updated to Build 14379, which is the latest as of July 2, 2016.  I had tried previous builds, but found simple things like git or zsh didn&#39;t work well.</p>\n<p>Imagine my surprise when I installed Bash for Windows on this build and pretty much everything worked.  I cloned my <a href=\"https://github.com/bketelsen/dotfiles\">dotfiles</a> and ran the post-install scripts that install i3 window manager, neovim, zsh, Go, and all the requisite development tools that I&#39;m used to.  Nothing failed. (I didn&#39;t try running i3 yet, because I knew there was no X server installed)</p>\n<p><em>Nothing Failed</em></p>\n<p>The real shortfall of running Bash for Windows right now is the lack of a good terminal emulator.  I tried ConEmu and maybe half a dozen others, with ConEmu being the best of this sorry lot.  If you&#39;re used to using a good terminal in Linux, none of the tools available on Windows are going to satisfy you.</p>\n<p>I knew from my Windows work 20 years ago that there were XWindows servers available.  I searched and found MobaXterm.  It has a built in terminal emulator (also crap -- sorry), but among the other features included there&#39;s a pretty good X Windows server. </p>\n<p>I&#39;ve been in love with i3 window manager since Erik St. Martin introduced me to it 3 years ago.  Having such nicely organized and tiled windows over multiple desktops is an amazing productivity boon.  With good keyboard shortcuts for every operation, I found I never took my hands off the keyboard.  </p>\n<p>I started MobaXTerm and looked at the X Server settings.  I shrugged, fired up the X Server and typed &quot;i3&quot; in my bash prompt.  <code>i3</code> complained that there was another window manager already running.  I went back to the X Server settings and chose &quot;Windowed Mode: X11 Server constrained to a single window&quot;.  It was the only X Server that didn&#39;t also start a window manager like <code>dwm</code> or <code>fvwm</code>.  So it started a simple &quot;rooted&quot; X Server which appears as a window on my Windows desktop with a black screen.</p>\n<p>Returning to bash, I typed <code>i3</code> again.  Gloriously, the famililar <code>i3</code> session appeared.  I&#39;m able to install and run Linux GUI applications like Firefox.  I have <code>terminator</code> running as my terminal emulator.  I&#39;m running <code>zsh</code> as my shell.  Neovim <em>just works</em>, as does Go.  All of them think they&#39;re running on a Linux computer, because for all intents and purposes they are.  It just happens to have a Windows NT kernel at its core.</p>\n<p>Strange, strange times we live in. 20 years ago Microsoft called Linux a cancer and did everything they could to make it die.  Today they&#39;re embracing Linux -- and by extension me -- and I have to say I&#39;m really impressed with the outcome.</p>\n<p><em>This article was created in <code>neovim</code> for Linux, running on a <code>zsh</code> shell inside <code>i3 window manager</code> running in a MobaXTerm X Server on a Windows 10 laptop.</em></p>\n<p>Screen shots:</p>\n<p><a href=\"/images/2017/09/i3.png\">i3 in MobaXTerm</a>\n<a href=\"/images/2017/09/windows-on-top.png\">i3 behind Windows</a></p>\n",
+      "author": "Brian Ketelsen",
+      "categories": [
+        "windows",
+        "linux",
+        "i3"
+      ],
+      "date": "2016-07-03T22:46:00Z",
+      "description": "",
+      "images": [
+        "/images/2017/09/windows-on-top-1.png"
+      ],
+      "slug": "i3-windows",
+      "tags": [
+        "windows",
+        "linux",
+        "i3"
+      ],
+      "title": "Running i3 Window Manager on Bash For Windows",
+      "excerpt": "<p>That might be the longest title for a blog post ever, but it&apos;s kind of hard to describe what&apos;s going on here if you&apos;re not familiar with the latest updates from Microsoft land.  <!--more-->Here&apos;s a quick refresher:</p>",
+      "meta": {
+        "relativePath": "posts/i3-windows.html",
+        "createdAt": "2020-11-05T00:09:21.000Z",
+        "lastModified": "2020-11-05T00:09:21.000Z",
+        "size": 6610,
+        "formattedSize": "6.5 KB"
       }
     },
     {
@@ -568,9 +544,7 @@
       "images": [
         "https://images.unsplash.com/photo-1485873402302-54d29627d4dc?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=92fef24305267cc33dca74cb14d58118"
       ],
-      "aliases": [
-        "/new-tricks"
-      ],
+      "slug": "new-tricks",
       "tags": [
         "frontend",
         "javascript"
@@ -579,9 +553,9 @@
       "excerpt": "<p>I promised <a href=\"https://brianketelsen.com/opensource/\">here</a> that I would document my progress learning frontend development.  This isn&apos;t a book-length treatise on the subject, but I do have a few notes about my progress.  </p>",
       "meta": {
         "relativePath": "posts/new-tricks.html",
-        "createdAt": "2020-11-04T22:00:28.800Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 4194,
+        "createdAt": "2020-11-05T00:09:34.000Z",
+        "lastModified": "2020-11-05T00:09:34.000Z",
+        "size": 4183,
         "formattedSize": "4.1 KB"
       }
     },
@@ -598,9 +572,7 @@
       "images": [
         "https://images.unsplash.com/photo-1476873064915-2f5cde044a5d?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=403bd5632c18b38d3586b6e7e46741b2"
       ],
-      "aliases": [
-        "/old-dogs"
-      ],
+      "slug": "old-dogs",
       "tags": [
         "frontend",
         "javascript",
@@ -610,10 +582,25 @@
       "excerpt": "<p>For 15 or more years I have told myself that I can&apos;t do frontend web work.  I remember seeing a presentation from a co-worker on CSS in 2003 or so, and thinking it was just too complicated.  I&apos;ve always been the guy behind the scenes building the services that power the web, but never the one spending any time making them less ugly.<!-- more --></p>",
       "meta": {
         "relativePath": "posts/old-dogs.html",
-        "createdAt": "2020-11-04T22:00:28.820Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 2469,
+        "createdAt": "2020-11-05T00:09:44.300Z",
+        "lastModified": "2020-11-05T00:09:44.300Z",
+        "size": 2458,
         "formattedSize": "2.4 KB"
+      }
+    },
+    {
+      "id": "posts__one",
+      "contents": "<p>Every blog starts with a single post. This is yours. Make it great.</p>\n<!-- more -->\n\n<p>This post intentionally left blank.</p>\n<p>Write what you want.</p>\n",
+      "title": "Hello World 👋",
+      "date": "2019-06-11T08:38:00.000Z",
+      "slug": "hello",
+      "excerpt": "<p>Every blog starts with a single post. This is yours. Make it great.</p>",
+      "meta": {
+        "relativePath": "posts/one.html",
+        "createdAt": "2020-11-04T21:02:04.780Z",
+        "lastModified": "2020-11-04T21:02:04.788Z",
+        "size": 219,
+        "formattedSize": "219 Bytes"
       }
     },
     {
@@ -628,9 +615,7 @@
       "images": [
         "https://images.unsplash.com/photo-1442504028989-ab58b5f29a4a?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=983d1bcc49709c385952e95ecad5f5d5"
       ],
-      "aliases": [
-        "/open-source-appreciation"
-      ],
+      "slug": "open-source-appreciation",
       "tags": [
         "open source"
       ],
@@ -638,9 +623,9 @@
       "excerpt": "<p>I&apos;ve never been shy about sharing my love for Open Source.  I love creating things, and I love sharing them with others.  One of my particular joys with Open Source Software, however, is finding new projects that excite me.<!-- more --></p>",
       "meta": {
         "relativePath": "posts/open-source-appreciation.html",
-        "createdAt": "2020-11-04T22:00:28.840Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 5187,
+        "createdAt": "2020-11-05T00:09:56.370Z",
+        "lastModified": "2020-11-05T00:09:56.370Z",
+        "size": 5176,
         "formattedSize": "5.1 KB"
       }
     },
@@ -655,9 +640,7 @@
       "images": [
         "/images/2018/10/IMG_1380-1.jpeg"
       ],
-      "aliases": [
-        "/retractable-green-screen-on-the-cheap"
-      ],
+      "slug": "retractable-green-screen-on-the-cheap",
       "tags": [
         "hacks"
       ],
@@ -665,9 +648,9 @@
       "excerpt": "<p>Quick post to write up how I built a retractable green screen mount on my wall for not much money.</p>",
       "meta": {
         "relativePath": "posts/retractable-green-screen-on-the-cheap.html",
-        "createdAt": "2020-11-04T22:00:28.860Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 2195,
+        "createdAt": "2020-11-05T00:10:13.110Z",
+        "lastModified": "2020-11-05T00:10:13.110Z",
+        "size": 2184,
         "formattedSize": "2.1 KB"
       }
     },
@@ -677,9 +660,7 @@
       "title": "Remote SSH Connections to WSL2",
       "layout": "post",
       "date": "2020-03-03",
-      "aliases": [
-        "/ssh-to-wsl2"
-      ],
+      "slug": "ssh-to-wsl2",
       "images": [
         "/images/_XLJy3h77cw.jpg"
       ],
@@ -705,10 +686,10 @@
       "excerpt": "<p>In this article I share my learnings on remotely accessing your Windows 10 computer. My motivation was to determine efficient ways to access both the Windows environment, and the WSL2 development environment from another computer.</p>",
       "meta": {
         "relativePath": "posts/ssh-to-wsl2.html",
-        "createdAt": "2020-11-04T22:00:28.890Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 8761,
-        "formattedSize": "8.6 KB"
+        "createdAt": "2020-11-05T00:10:31.920Z",
+        "lastModified": "2020-11-05T00:10:31.920Z",
+        "size": 8752,
+        "formattedSize": "8.5 KB"
       }
     },
     {
@@ -726,9 +707,7 @@
       "images": [
         "/images/2017/09/getamac.png"
       ],
-      "aliases": [
-        "/switchers"
-      ],
+      "slug": "switchers",
       "tags": [
         "hacks",
         "i3",
@@ -740,9 +719,9 @@
       "excerpt": "<p>TLDR; I&apos;ve traded in my Mac on a Surface Pro.  Here&apos;s why:<!-- more --></p>",
       "meta": {
         "relativePath": "posts/switchers.html",
-        "createdAt": "2020-11-04T22:00:28.910Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 4693,
+        "createdAt": "2020-11-05T00:10:44.740Z",
+        "lastModified": "2020-11-05T00:10:44.740Z",
+        "size": 4682,
         "formattedSize": "4.6 KB"
       }
     },
@@ -758,9 +737,7 @@
       "images": [
         "/images/2017/09/sandworm-bread-03.jpg"
       ],
-      "aliases": [
-        "/tastyworms"
-      ],
+      "slug": "tastyworms",
       "tags": [
         "dune",
         "recipes"
@@ -769,10 +746,10 @@
       "excerpt": "<p>A coworker sent me a link to this recipe and I have to share it.  It&apos;s the tastiest looking sandworm ever.</p>",
       "meta": {
         "relativePath": "posts/tastyworms.html",
-        "createdAt": "2020-11-04T22:00:28.920Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 567,
-        "formattedSize": "567 Bytes"
+        "createdAt": "2020-11-05T00:10:57.300Z",
+        "lastModified": "2020-11-05T00:10:57.300Z",
+        "size": 556,
+        "formattedSize": "556 Bytes"
       }
     },
     {
@@ -796,9 +773,7 @@
       "title": "VS Code Remote Development",
       "layout": "post",
       "date": "2019-05-02",
-      "aliases": [
-        "/vscode-remote-development"
-      ],
+      "slug": "vscode-remote-development",
       "images": [
         "/images/fpoHihXiMhg.jpg"
       ],
@@ -820,9 +795,9 @@
       "excerpt": "<p>The <a href=\"https://code.visualstudio.com/\">Visual Studio Code</a> team just <a href=\"https://cda.ms/RN\">announced</a> perhaps the most eagerly anticipated feature yet.  Remote editing.</p>",
       "meta": {
         "relativePath": "posts/vscode-remote.html",
-        "createdAt": "2020-11-04T22:00:28.940Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 3661,
+        "createdAt": "2020-11-05T00:11:09.200Z",
+        "lastModified": "2020-11-05T00:11:09.200Z",
+        "size": 3652,
         "formattedSize": "3.6 KB"
       }
     },
@@ -841,9 +816,7 @@
       "images": [
         "/images/2018/06/612px-Web_Assembly_Logo.svg.png"
       ],
-      "aliases": [
-        "/web-assembly-and-go-a-look-to-the-future"
-      ],
+      "slug": "web-assembly-and-go-a-look-to-the-futurs",
       "tags": [
         "wasm",
         "web",
@@ -854,9 +827,9 @@
       "excerpt": "<p>It&apos;s no secret that I&apos;m resistant to learning Javascript and frontend development.  I learned HTML back before CSS was even a thing, and even Javascript came long after I started doing web development.  When I look at modern web development I shudder; the ecosystem is so confusing for someone who has been out of touch as long as I have.  Node, webpack, yarn, npm, frameworks, UMD, AMD, arghhh!</p>",
       "meta": {
         "relativePath": "posts/web-assembly-and-go-a-look-to-the-future.html",
-        "createdAt": "2020-11-04T22:00:28.960Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 10589,
+        "createdAt": "2020-11-05T00:11:23.030Z",
+        "lastModified": "2020-11-05T00:11:23.030Z",
+        "size": 10578,
         "formattedSize": "10.3 KB"
       }
     },
@@ -866,9 +839,7 @@
       "title": "Windows for Open Source Development",
       "layout": "post",
       "date": "2020-02-24",
-      "aliases": [
-        "/windows-for-open-source-development"
-      ],
+      "slug": "windows-for-open-source-development",
       "images": [
         "/images/h3GAGi5tXMU.jpg"
       ],
@@ -894,25 +865,10 @@
       "excerpt": "<p>I&apos;ve long used macOS or Linux when I make my Open Source contributions, but I think that the time is right to try Windows as a full-time development environment.  If you want to jump on board, this article series is for you!</p>",
       "meta": {
         "relativePath": "posts/win-the-dev-box.html",
-        "createdAt": "2020-11-04T22:00:28.480Z",
-        "lastModified": "2020-10-02T20:21:06.000Z",
-        "size": 12231,
+        "createdAt": "2020-11-05T00:11:39.200Z",
+        "lastModified": "2020-11-05T00:11:39.200Z",
+        "size": 12222,
         "formattedSize": "11.9 KB"
-      }
-    },
-    {
-      "id": "posts__one",
-      "contents": "<p>Every blog starts with a single post. This is yours. Make it great.</p>\n<!-- more -->\n\n<p>This post intentionally left blank.</p>\n<p>Write what you want.</p>\n",
-      "title": "Hello World 👋",
-      "date": "2019-06-11T08:38:00.000Z",
-      "slug": "hello",
-      "excerpt": "<p>Every blog starts with a single post. This is yours. Make it great.</p>",
-      "meta": {
-        "relativePath": "posts/one.html",
-        "createdAt": "2020-11-04T21:02:04.780Z",
-        "lastModified": "2020-11-04T21:02:04.788Z",
-        "size": 219,
-        "formattedSize": "219 Bytes"
       }
     }
   ]
