@@ -1,7 +1,7 @@
 ---
 title: Organizing Documents with Some AI, ML, and Elbow Grease 
 layout: post
-section: Blog
+section: blog
 date: "2019-09-03"
 slug:  ai-ml-documents-one
 images: 

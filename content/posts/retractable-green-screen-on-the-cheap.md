@@ -1,6 +1,6 @@
 ---
 author: "Brian Ketelsen"
-section: Blog
+section: blog
 categories: 
   - "hacks"
 date: "2018-10-06T18:20:43Z"

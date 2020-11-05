@@ -3,7 +3,7 @@ title: Bash Helpers for Quick Installs
 layout: post
 date: "2020-08-14"
 slug: install-func
-section: Blog
+section: blog
 images: 
 - "/images/4pPzKfd6BEg.jpg"
 thumbnail: "/images/4pPzKfd6BEg-thumb.jpg"

@@ -3,7 +3,7 @@ title: Hello waSCC
 layout: post
 date: "2020-02-25"
 slug: hello-wascc
-section: Blog
+section: blog
 images: 
 - "/images/h3GAGi5tXMU.jpg"
 thumbnail: /images/h3GAGi5tXMU-thumb.jpg

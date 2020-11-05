@@ -1,6 +1,6 @@
 ---
 author: "Brian Ketelsen"
-section: Blog
+section: blog
 categories: 
   - "wasm"
   - "web"

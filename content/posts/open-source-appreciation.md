@@ -1,6 +1,6 @@
 ---
 author: "Brian Ketelsen"
-section: Blog
+section: blog
 categories: 
   - "open source"
 date: "2015-05-11T23:03:00Z"

@@ -1,7 +1,7 @@
 ---
 title: Arrested DevOps Appearance on Krustlet
 layout: post
-section: Blog
+section: blog
 date: "2020-04-14"
 slug: arrested-devops-appearance-on-krustlet
 images: 

@@ -5,7 +5,7 @@ categories:
   - "development"
 date: "2017-12-13T21:07:59Z"
 description: ""
-section: Blog
+section: blog
 images: 
   - "/images/2017/12/startmenu.png"
 slug: getting-crazy-with-windows-subsystem-for-linux

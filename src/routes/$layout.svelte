@@ -1,8 +1,20 @@
+<script context="module">
+  export async function preload({ params }) {
+    const res = await this.fetch(`/content.json`);
+    const items = await res.json();
+
+    const pages = items.data;
+    return {
+      pages,
+    };
+  }
+</script>
+
 <script>
   import Nav from "$components/Nav.svelte";
   import Footer from "$components/Footer.svelte";
-  import data from "$components/content.json";
   export let segment;
+  export let pages;
 </script>
 
 <style>
@@ -12,7 +24,7 @@
 </style>
 
 <div class="container">
-  <Nav {segment} {data} />
+  <Nav {segment} {pages} />
   <main>
     <slot />
   </main>

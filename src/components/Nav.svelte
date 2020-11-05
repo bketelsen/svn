@@ -1,6 +1,6 @@
 <script>
   export let segment;
-  export let data;
+  export let pages;
 </script>
 
 <nav class="nav">
