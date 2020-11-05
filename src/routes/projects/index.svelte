@@ -3,7 +3,7 @@
   import data from "$components/content.json";
   export async function preload({ params }) {
     const allpages = data.data;
-    const pages = allpages.filter((item) => item.section === "Blog");
+    const pages = allpages.filter((item) => item.section === "Projects");
 
     return { pages };
   }
@@ -13,7 +13,8 @@
   export let pages;
 </script>
 
-<h1>Blog Posts</h1>
+<h1>Featured Projects</h1>
+
 <div class="row">
   {#each pages as page}
     <div class="col-4">
@@ -23,7 +24,7 @@
         </header>
         <p>{page.description}</p>
         <footer class="is-right">
-          <a class="button primary" href="/blog/{page.slug}">Read More</a>
+          <a class="button primary" href="/projects/{page.slug}">Read More</a>
         </footer>
       </div>
     </div>
