@@ -12,14 +12,14 @@ body {
 .header {
     padding: 60px;
     text-align: center;
-    background: #1abc9c;
+    background: #2f4454;
     color: white;
 }
 
 /* Style the top navigation bar */
 .navbar {
     display: flex;
-    background-color: #333;
+    background-color: #1c3334;
 }
 
 /* Style the navigation bar links */
@@ -46,7 +46,8 @@ body {
 /* Sidebar/left column */
 .side {
     flex: 30%;
-    background-color: #f1f1f1;
+    background-color: #376e6f;
+    color: white;
     padding: 20px;
 }
 
