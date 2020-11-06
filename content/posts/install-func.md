@@ -2,6 +2,7 @@
 title: Bash Helpers for Quick Installs
 layout: post
 date: "2020-08-14"
+featured: true
 slug: install-func
 section: blog
 images: 

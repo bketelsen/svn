@@ -2,6 +2,7 @@
 title: Windows for Open Source Development 
 section: blog
 layout: post
+featured: true
 date: "2020-02-24"
 slug: windows-for-open-source-development
 images: 

@@ -1,32 +1,22 @@
-<script context="module">
-  export async function preload({ params }) {
-    const res = await this.fetch(`/content.json`);
-    const items = await res.json();
-
-    const pages = items.data;
-    return {
-      pages,
-    };
-  }
-</script>
-
 <script>
+  import Sidebar from "$components/Sidebar.svelte";
+  import Header from "$components/Header.svelte";
   import Nav from "$components/Nav.svelte";
   import Footer from "$components/Footer.svelte";
   export let segment;
-  export let pages;
 </script>
 
 <style>
-  .container {
-    max-width: 720px;
-  }
 </style>
 
-<div class="container">
-  <Nav {segment} {pages} />
-  <main>
+<Header />
+<Nav {segment} />
+<div class="row">
+  <Sidebar />
+  <div class="main">
     <slot />
-  </main>
-  <Footer />
+  </div>
 </div>
+<!-- Footer -->
+
+<Footer />

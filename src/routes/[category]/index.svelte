@@ -1,5 +1,5 @@
 <script context="module">
-  const valid_lists = new Set(["blog", "projects", "lpt"]);
+  const valid_lists = new Set(["blog", "projects", "lpt", "pages"]);
 
   export async function preload({ params }) {
     const list = params.category;
@@ -31,14 +31,16 @@
 </script>
 
 <script>
-  import PostCard from "$components/PostCard";
+  import FeaturedArticle from "$components/FeaturedArticle.svelte";
   export let list;
   export let pages;
 </script>
 
-<h3 class="text-uppercase">{list}</h3>
-<div class="row">
-  {#each pages as page}
-    <PostCard {page} {list} />
-  {/each}
-</div>
+<svelte:head>
+  <meta
+    name="description"
+    content="Brian Ketelsen's blog, with articles about cloud computing, web assembly, open source and more." />
+</svelte:head>
+{#each pages as page}
+  <FeaturedArticle {page} />
+{/each}

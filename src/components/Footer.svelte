@@ -1,3 +1,4 @@
-<footer>
-  <p>&copy; 2020 Brian Ketelsen</p>
-</footer>
+<!-- Footer -->
+<div class="footer">
+  <h2>Footer</h2>
+</div>

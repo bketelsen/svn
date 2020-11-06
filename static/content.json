@@ -15,6 +15,95 @@
   },
   "data": [
     {
+      "id": "lpt__about",
+      "contents": "<p>lpt one</p>\n",
+      "author": "Brian Ketelsen",
+      "categories": [
+        "go",
+        "release"
+      ],
+      "date": "2016-08-15T22:55:00Z",
+      "description": "",
+      "section": "lpt",
+      "images": [
+        "https://images.unsplash.com/photo-1487505983481-9aa2d9f9901a?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=beb2fdb8e2d1f0b888d896ae904bbb9d"
+      ],
+      "slug": "one",
+      "tags": [
+        "go",
+        "release"
+      ],
+      "title": "LPT one",
+      "excerpt": "<p>lpt one</p>",
+      "meta": {
+        "relativePath": "lpt/about.html",
+        "createdAt": "2020-11-06T14:01:19.900Z",
+        "lastModified": "2020-11-06T14:01:19.900Z",
+        "size": 372,
+        "formattedSize": "372 Bytes"
+      }
+    },
+    {
+      "id": "projects__captainhook",
+      "contents": "<p>Captain Hook Project</p>\n",
+      "author": "Brian Ketelsen",
+      "categories": [
+        "go",
+        "errors",
+        "concurrency"
+      ],
+      "date": "2016-09-19T22:53:00Z",
+      "description": "",
+      "section": "projects",
+      "images": [
+        "https://images.unsplash.com/photo-1495573258723-2c7be7a646ce?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=5942ab1aa61891b3745a4d63e0b7da5f"
+      ],
+      "slug": "captainhook",
+      "tags": [
+        "go",
+        "errors",
+        "concurrency"
+      ],
+      "title": "Captain Hook",
+      "excerpt": "<p>Captain Hook Project</p>",
+      "meta": {
+        "relativePath": "projects/captainhook.html",
+        "createdAt": "2020-11-05T17:49:36.330Z",
+        "lastModified": "2020-11-05T17:49:36.330Z",
+        "size": 439,
+        "formattedSize": "439 Bytes"
+      }
+    },
+    {
+      "id": "pages__about",
+      "contents": "<p>About Me</p>\n",
+      "author": "Brian Ketelsen",
+      "categories": [
+        "go",
+        "release"
+      ],
+      "date": "2016-08-15T22:55:00Z",
+      "description": "",
+      "section": "pages",
+      "images": [
+        "https://images.unsplash.com/photo-1487505983481-9aa2d9f9901a?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=beb2fdb8e2d1f0b888d896ae904bbb9d"
+      ],
+      "slug": "about",
+      "tags": [
+        "go",
+        "release"
+      ],
+      "title": "About Me",
+      "excerpt": "<p>About Me</p>",
+      "meta": {
+        "relativePath": "pages/about.html",
+        "createdAt": "2020-11-06T13:23:29.430Z",
+        "lastModified": "2020-11-06T13:23:29.430Z",
+        "size": 378,
+        "formattedSize": "378 Bytes"
+      }
+    },
+    {
       "id": "posts__ai-ml-documents-one",
       "contents": "<p>In this first post of (likely) a multi-part series I&#39;m going to discuss how I am using machine learning, AI, and good old-fashioned elbow grease to make sense of the 3000 files in my <code>~/Documents/Unfiled</code> directory.</p>\n<!-- more -->\n\n<h3 id=\"the-problem-statement\">The Problem Statement</h3>\n<p>There are several contributing factors to the problem.  Let&#39;s start with the obvious ones:</p>\n<ul>\n<li>I&#39;m a digital packrat</li>\n<li>I&#39;m a single parent of 3 (and therefore busy)</li>\n<li>I can be lazy sometimes</li>\n<li>I have ADHD, and get easily sidetracked from things I intended to do</li>\n</ul>\n<p>When my dad passed away last year, it got even worse.  Suddenly I was getting all of his mail, bills, correspondence, too.  I didn&#39;t want to lose it; but I sure wasn&#39;t ready to read it all.  So I scanned it and dropped it in the <code>Unfiled</code> folder. </p>\n<p>So now we&#39;re here.  Where <code>here</code> is a place where I can&#39;t find anything I need and my <code>Documents</code> directory is the definition of <code>hot-mess</code>.  </p>\n<h3 id=\"the-goal\">The Goal</h3>\n<p>I&#39;d like to take that folder of 3000 random unclassified documents and sort them into something more clear.  I think sorting them by originating source (Supplier, Vendor, Biller, Organization) is a good first step.  Eventually I&#39;d like to sort them by date group too.  Probably by Year, then Month.</p>\n<p>For a bonus, I&#39;d love to do a <a href=\"https://docs.microsoft.com/en-us/windows/win32/projfs/projected-file-system?WT.mc_id=none-twitter-brketels\">projected filesystem</a> sort of thing in Windows and a <a href=\"https://9p.io/wiki/plan9/Installing_a_Plan_9_File_Server/index.html\">Plan9</a> type server on Mac/Linux using FUSE.  It&#39;d be really convenient to be able to get at documents from a Filesystem interface by using different facets like keywords, dates, categories, etc.  That might fit more cleanly with the way I think, too.  But, again, that&#39;s a stretch goal, because we&#39;ll need all that metadata first.</p>\n<p>If you&#39;re old enough to remember <a href=\"https://arstechnica.com/information-technology/2018/07/the-beos-filesystem/\">BeOS Filesystem</a>, it would have solved nearly all of this.  Someday we&#39;ll get back to the database/filesystem mashup that truly needs to exist.</p>\n<h3 id=\"the-solutions\">The Solution(s)</h3>\n<p>First, there isn&#39;t really a one-step solution to this.  It&#39;s going to take some work, and I can likely automate MOST of that.  But there will still be a good portion of things I can&#39;t sort automatically.</p>\n<h4 id=\"step-one\">Step One</h4>\n<p>As a first step, I wrote a small Go program that calls <a href=\"https://cda.ms/126\">Azure Cognitive Services</a> Vision API to do Optical Character Recognition on all the files that are compatible (PDF and image files).  Nearly everything I have is in pdf format, but there are a few TIFF files in there too.  This program is in flux right now, so I&#39;m not going to release it as Open Source until it&#39;s settled a bit.  If I forget - ping me on twitter @bketelsen or email <a href=\"mailto:mail@bjk.fyi\">mail@bjk.fyi</a> - and remind me!  Related: the code samples in this post are probably garbage, and won&#39;t likely match the end result that I publish.  I&#39;m sure I&#39;m swallowing errors, and haven&#39;t done the slightest bit of refactor/cleanup on this code yet.  </p>\n<blockquote>\n<p>WARNING: <em>Don&#39;t cut/paste this code yet, please.</em></p>\n</blockquote>\n<p>I created a domain type appropriately called <code>Document</code> that stores metadata about files on disk:</p>\n<pre><code class=\"language-go\">type Document struct {\n    Hash         string\n    Path         string\n    PreviousPath string\n    Operation    *CognitiveOperation\n    Results      *CognitiveReadResponse\n}</code></pre>\n<p>I&#39;ll discuss the fields as they come up, but <code>Path</code> and <code>PreviousPath</code> should be obvious.  Current and previous location on disk, so that I can account for file moves with at least a little bit of history.</p>\n<p>The pricing for the OCR is really attractive - as of September, 2019 it is:</p>\n<blockquote>\n<p>0-1M transactions — $1.50 per 1,000 transactions</p>\n</blockquote>\n<p>I know that I&#39;ll be fine tuning the processes that run, and likely running them repeatedly.  I wanted to find a way to store the results from the OCR for each document, but I am also aware that I can&#39;t use the document name and path as the canonical key to find the document later, because the goal of this app is to move them and rename them appropriately!  So I decided to use a hash of the file contents as a key.  <code>SHA256</code> seems to be the right algorithm for file contents, low cost computation, low collision chance.  So I created a hash function that calculates the <code>SHA256</code> hash of the document after it is read:</p>\n<pre><code class=\"language-go\">func (d *Document) GetHash() {\n\n    f, err := os.Open(d.Path)\n    if err != nil {\n        log.Fatal(err)\n    }\n    defer f.Close()\n\n    h := sha256.New()\n    if _, err := io.Copy(h, f); err != nil {\n        log.Fatal(err)\n    }\n    d.Hash = fmt.Sprintf(&quot;%x&quot;, h.Sum(nil))\n}</code></pre>\n<p>After getting the results of the OCR operation, I set them in the <code>Document</code> type, then persist the metadata to disk in a hidden directory.  Currently that&#39;s <code>~/.classifier/</code> but, as with all of this, it might change in the future.</p>\n<p>The file is stored using the <code>SHA256</code> hash of the contents as the file name, and the <code>Document</code> type is serialized to disk using Go&#39;s efficient and lightweight <code>encoding/gob</code> format.  While I&#39;m debugging and playing with this code, I decided to also persist the data in <code>json</code> format so it&#39;s easier to read.  Here&#39;s the method on <code>Document</code> that saves/serializes to disk:</p>\n<pre><code class=\"language-go\">func (d *Document) SaveMetadata() error {\n  fmt.Println(d.Hash)\n  //TODO use new XDG config dir location\n  // https://tip.golang.org/pkg/os/#UserConfigDir\n    filePath := &quot;/home/bjk/.classifier/&quot; + d.Hash // TODO FILEPATH.JOIN\n    fmt.Println(filePath)\n    file, err := os.OpenFile(filePath, os.O_TRUNC|os.O_CREATE|os.O_WRONLY, 0644)\n    if err != nil {\n        return err\n    }\n    defer file.Close()\n    enc := gob.NewEncoder(file)\n    err = enc.Encode(d)\n    if err != nil {\n        return err\n    }\n    jfilePath := &quot;/home/bjk/.classifier/&quot; + d.Hash + &quot;.json&quot; // TODO FILEPATH.JOIN\n    fmt.Println(jfilePath)\n    jfile, err := os.OpenFile(jfilePath, os.O_TRUNC|os.O_CREATE|os.O_WRONLY, 0644)\n    if err != nil {\n        return err\n    }\n    defer jfile.Close()\n    jenc := json.NewEncoder(jfile)\n    return jenc.Encode(d)\n}</code></pre>\n<p>Lots of bad things happening in there, see above caveats about copying/pasting this code.   The important part is the encoding in <code>gob</code> format of the contents of the <code>Document</code> metadata, which is then saved to disk using the <code>SHA256</code> hash as the filename.  This is a nice future-proof solution, and provides several benefits.</p>\n<ul>\n<li>If there is already a file with the same name, it&#39;s been processed once.</li>\n<li>If the <code>.Path</code> is different from the document I&#39;m inspecting, I might have an exact duplicate, which is a candidate for (soft) deleting</li>\n<li>It doesn&#39;t matter where the files get moved, as long as the <code>SHA256</code> hash matches, I&#39;ve got the metadata saved already.</li>\n</ul>\n<p>This is a very low-tech metadata database, of sorts.  It&#39;s definitely not optimized for real-time use, but instead for batch operations.</p>\n<p>Keeping all the metadata in this format means I can write any number of other tools to read and modify the metadata without worrying too much. </p>\n<h3 id=\"step-two\">Step Two</h3>\n<p>At this point, I have a directory full of unprocessed files and a way to process them once and save the results so I don&#39;t have to re-process them later.  It&#39;s time to fire off the processing app.  I used <a href=\"https://github.com/spf13/cobra\">cobra</a> to build the command-line utility, so I made the root/naked command do the actual calls to Azure Cognitive Services:</p>\n<pre><code class=\"language-bash\">go build\n./classifier</code></pre>\n<p>This iterates over every file in the <code>~/Documents/Unfiled</code> directory, calling Cognitive Services OCR for the file types that are supported.  There is no current mechanism to retrieve metadata from other document types (Word documents, text files, etc).  That&#39;s a future addition.</p>\n<p>After receiving the results, the responses are serialized using the above mentioned <code>gob</code> serialization into <code>~/.classifier/HASH</code></p>\n<h3 id=\"classification\">Classification</h3>\n<p>Based on the results there are some simple <code>bag of words</code> matches that can be done.  Some of the documents I have contain very unique text that is indicative of a particular document type.  For example, Bank of America always includes my account number and their address in <code>Wilmington</code>.  No other document in my corpus has those two distinct things together, so I can write a simple classifier for all Bank of America documents.  I decided to use simple TOML for a configuration file here:</p>\n<pre><code>[[entity]]\nname = &quot;Bank of America&quot;\ndirectory = &quot;BOA&quot;\nkeywords = [&quot;Bank of America&quot;,&quot;12345677889&quot;,&quot;Wilmington&quot;]</code></pre><p>Here, I added a sub-command in <code>cobra</code> so I can classify files without re-posting them to Cognitive Services.  So I added the <code>classifier process</code> command:</p>\n<pre><code class=\"language-bash\">./classifier process</code></pre>\n<p>It currently goes through all the files in <code>Unfiled</code> and checks their metadata for matches against the TOML file.   This worked perfectly for several of my external correspondents.  It took all the documents from <code>Unfiled</code> and placed them in <code>Filed/{directory}</code>.</p>\n<h3 id=\"what-about-the-rest\">What About The Rest?</h3>\n<p>There are many documents that aren&#39;t easily processed this way though.  My next inspiration came in the shower (of course).  If you squint enough, or are far enough away, all documents from the same entity of the same type look the same.  So all my mortgage statements look the same, but the numbers are different.</p>\n<p>I installed ImageMagick, and wrote a script to make a low-resolution thumbnail of each PDF.  I made the resolution low enough that the text isn&#39;t readable even if you magnify the image.</p>\n<p>Then I searched for ways to compare images and came across <a href=\"https://github.com/rivo/duplo\">duplo</a>, which appears to do what I need.  It does a hash of the image and allows you to compare other documents to that hash to find a similarity score.  Using this type of process my next goal is to group similar documents together by searching for ones with matching or close-to-matching image hashes.  </p>\n<p>But that&#39;ll be probably next weekend.   It&#39;s been really fun doing this much, and I&#39;m looking forward to seeing how much more I can learn as I go!</p>\n<p>Intermediate results:</p>\n<p>Before:</p>\n<pre><code class=\"language-bash\">2846 Files</code></pre>\n<p>After:</p>\n<pre><code class=\"language-bash\">Unfiled\\\n  2710 Files\nFiled\\\n  136 Files in 2 Directories</code></pre>\n",
       "title": "Organizing Documents with Some AI, ML, and Elbow Grease",
@@ -258,6 +347,40 @@
       }
     },
     {
+      "id": "posts__errgroup",
+      "contents": "<p>In this article for O&#39;Reilly I explore the new sync.ErrGroup package.</p>\n<!-- more -->\n\n\n<p><a href=\"https://www.oreilly.com/learning/run-strikingly-fast-parallel-file-searches-in-go-with-sync-errgroup\">Article</a>\n<a href=\"https://github.com/bketelsen/gogrep\">Source Code</a></p>\n",
+      "author": "Brian Ketelsen",
+      "categories": [
+        "go",
+        "errors",
+        "concurrency"
+      ],
+      "date": "2016-09-19T22:53:00Z",
+      "description": "",
+      "section": "blog",
+      "slug": "errgroup",
+      "images": [
+        "https://images.unsplash.com/photo-1495573258723-2c7be7a646ce?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=5942ab1aa61891b3745a4d63e0b7da5f"
+      ],
+      "aliases": [
+        "/errgroup"
+      ],
+      "tags": [
+        "go",
+        "errors",
+        "concurrency"
+      ],
+      "title": "sync.ErrGroup",
+      "excerpt": "<p>In this article for O&apos;Reilly I explore the new sync.ErrGroup package.</p>",
+      "meta": {
+        "relativePath": "posts/errgroup.html",
+        "createdAt": "2020-11-05T17:28:24.890Z",
+        "lastModified": "2020-11-05T17:28:24.890Z",
+        "size": 690,
+        "formattedSize": "690 Bytes"
+      }
+    },
+    {
       "id": "posts__getting-crazy-with-windows-subsystem-for-linux",
       "contents": "<p>Lately I&#39;ve been on a <a href=\"https://blog.gopheracademy.com/advent-2017/repeatable-isolated-dev-environments/\">mission</a> to separate my development environments by project, and by category (personal/work/Gophercon/etc).  The writeup on the Gopheracademy blog describes a fun way to create an isolated container-based environment for each project by using LXD on Ubuntu.</p>\n<!-- more -->\n\n<p>Last night I wondered to myself if there was a way to get a similar experience by manipulating <a href=\"https://docs.microsoft.com/en-us/windows/wsl/faq\">Windows Subsystem for Linux</a> somehow.  That was a rabbit hole of searching, let me tell ya true.</p>\n<p>Since the <a href=\"http://www.zdnet.com/article/windows-subsystem-for-linux-graduates-in-windows-10-fall-creators-update/\">Fall Creator&#39;s Update</a> WSL has had more than one distribution available to install.  You can install SUSE, Ubuntu, and soon Fedora.  So deep down in my soul, I KNOW that I can have multiple copies of Ubuntu running with separate filesystems.  That would reproduce the LXD environments I created in Linux.</p>\n<p>After some research, it turns out that the WSL management API is available in the Windows SDK, and several projects already take advantage of this fact.  First I found <a href=\"https://github.com/yuk7/WSL-DistroLauncher\">this one</a> which allows you to do a lot of work and install any Linux distro you want.  I knew I was on the right track.  My next big find was <a href=\"https://github.com/DDoSolitary/LxRunOffline\">LxRunOffline</a> which was built to allow you to install WSL without being online.  It also has the secondary ability to let you install any number of WSL instances.  Now we&#39;re cooking with gas!</p>\n<p>I downloaded <code>LxRunOffline</code> and read the <a href=\"https://github.com/DDoSolitary/LxRunOffline/wiki/Ubuntu\">wiki</a>, which has links to the Ubuntu root filesystem that is installed during a regular WSL install.  Following their instructions, I downloaded the rootfs, put it next to the <code>LxRunOffline</code> binary, and installed <em>another</em> copy of Ubuntu as a new WSL instance.  </p>\n<pre><code>LxRunOffline 2.1.1\nCopyright (C) 2017 DDoSolitary\n\nERROR(S):\n  No verb selected.\n\n  list                List all installed distributions.\n\n  default             Get or set the default distribution, which is used by bash.exe.\n\n  install             Install a new distribution.\n\n  register            Register an existing installation directory.\n\n  uninstall           Uninstall a distribution\n\n  unregister          Unregister a distribution but not delete the directory containing it.\n\n  move                Move a distribution to a new directory.\n\n  run                 Run a command in a distribution.\n\n  dir                 Get the installation directory of a distribution.\n\n  config-env          Get or set the default environment variables of a distribution. (Currently unusable because of a problem of the command line\n                      parser library.)\n\n  config-uid          Get or set the UID of the default user of a distribution.\n\n  config-kernelcmd    Get or set the default kernel command line of a distribution.\n\n  config-flag         Get or set some flags of a distribution. See https://msdn.microsoft.com/en-us/library/windows/desktop/mt826872(v=vs.85).aspx for\n                      details.\n\n  help                Display more information on a specific command.\n\n  version             Display version information.\n\n\nC:\\Users\\bkete\\Downloads\\LxRunOffline-v2.1.1\\LxRunOffline-v2.1.1&gt;</code></pre><p><em>SuccessKid.jpg</em></p>\n<p>I repeated this process several times until I had enough instances of WSL for my current project load, each time putting the storage folder in a new path named for its usage -- like <code>c:\\microsoftfs</code> or <code>c:\\gopherconfs</code>.</p>\n<p>The last step was to figure out how to launch them.  I use <a href=\"https://github.com/mintty/wsltty\">wsltty</a> sometimes as my terminal emulator, and it comes with convenient batch files to launch WSL as a user, as root, and other scenarios.  I copied one of those batch files and modified it to point to one of my new Ubuntu instances like this:</p>\n<h3 id=\"original\">Original</h3>\n<pre><code>%LOCALAPPDATA%\\wsltty\\bin\\mintty.exe -i &quot;%PROGRAMFILES%/WindowsApps/CanonicalGroupLimited.UbuntuonWindows_1604.2017.922.0_x64__79rhkp1fndgsc/images/icon.ico&quot; --WSL= -h err --configdir=&quot;%APPDATA%\\wsltty&quot;  -~  </code></pre><h3 id=\"modified\">Modified</h3>\n<pre><code>%LOCALAPPDATA%\\wsltty\\bin\\mintty.exe -i &quot;%PROGRAMFILES%/WindowsApps/CanonicalGroupLimited.UbuntuonWindows_1604.2017.922.0_x64__79rhkp1fndgsc/images/icon.ico&quot; --WSL=&quot;Gophercon&quot; -h err --configdir=&quot;%APPDATA%\\wsltty&quot;  -~  </code></pre><p>In the modified batch file, the <code>--WSL=&quot;Gophercon&quot;</code> references a registered WSL distribution called <code>Gophercon</code> which I created with <code>LxRunOffline</code>.  I repeated this process for each of the new instances, and changed the icons for them so I can launch them easily from the start menu.</p>\n<p>Now I have multiple installations of WSL/Ubuntu that are isolated from each other.  Exactly what I wanted.  The development workflow is nearly identical to the Linux/LXD version, I open a terminal and start coding.  </p>\n<p>The end result is that each WSL Ubuntu installation has a separate filesystem, so each project is isolated.  Using <a href=\"https://thelocehiliosan.github.io/yadm/\">yadm</a> I can clone my <a href=\"https://github.com/bketelsen/dotfiles\">dotfiles</a> and run the included <code>bootstrap</code> script which updates the system and installs all the packages I need for development with a single command.  That&#39;s quick and easy.</p>\n<p>Windows looks better and better for Linux development.  And the webcam always works...</p>\n<p>:)</p>\n<p>If you like this post and want to caffeinate me even more:</p>\n<style>.bmc-button img{width: 27px !important;margin-bottom: 3px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-block !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 23px !important;letter-spacing:0.6px !important;;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href=\"https://fonts.googleapis.com/css?family=Cookie\" rel=\"stylesheet\"><a class=\"bmc-button\" target=\"_blank\" href=\"https://www.buymeacoffee.com/bketelsen\"><img src=\"https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg\" alt=\"Buy me a coffee\"><span style=\"margin-left:5px\">Buy me a coffee</span></a>\n",
       "author": "Brian Ketelsen",
@@ -284,35 +407,6 @@
         "lastModified": "2020-11-05T17:28:24.890Z",
         "size": 7439,
         "formattedSize": "7.3 KB"
-      }
-    },
-    {
-      "id": "posts__go17",
-      "contents": "<p>Release day is always fun, and Go releases get me pretty excited.  The 1.7 release is especially nice, so I&#39;m going to mention some of my favorite changes in this release.</p>\n<!-- more -->\n<h3 id=\"ibm-z-system-support\">IBM z System Support</h3>\n<p>Bill O&#39;Farrell gave a <a href=\"https://github.com/gophercon/2016-talks/blob/master/BillO&#39;Farrell-GoForLinuxOnZ.pptx\">talk</a> at GopherCon 2016 about this port and I found it fascinating.  Supporting Go on big iron can only be good for the language and for Go users everywhere.  This is an exciting development and I&#39;m looking forward to see what comes next from the IBM team.</p>\n<h3 id=\"ssa-in-the-compiler\">SSA In the Compiler</h3>\n<p>The compiler got an upgrade in Go 1.7 -- with Static Single Assignment, or SSA support.  This new SSA support means that it will be easier in the future to analyze and optimize your code while it&#39;s being compiled.  Coupled with other changes in the compiler toolchain, we&#39;ve already seen some nice improvements both in compile times and binary size decreases.  Kudos to the Go team for putting in the hard work and planning for future optimizations.  SSA is going to bring us big things.</p>\n<h3 id=\"context-is-now-in-standard-library\">Context is now in standard library</h3>\n<p>Perhaps my favorite new feature: the x/net/context package has been moved into the standard library.  Additionally, packages like net/http and os/exec have gained support for this new package without breaking the Go 1 compatibility contract.  The Context package allows you to support cancelation, timeouts, and stores interesting request-specific data -- allowing you to have more control over the network requests that you make.</p>\n<h3 id=\"macos-sierra\">macOS Sierra</h3>\n<p>A big caveat with this release:  If you compile binaries for macOS Sierra you&#39;ll need to use either Go 1.6.3 or Go 1.7.  Binaries compiled with older versions of Go won&#39;t work reliably on macOS Sierra.  They may appear to be working, but I&#39;ve seen firsthand that they&#39;ll eventually fail in spectacular ways.  If you distribute binaries using an automated build system, please update your automation to use Go 1.6.3 or Go 1.7.</p>\n<p>** UPDATE ** Go 1.6.3 was re-broken with the new macOS Sierra beta 4.  Use 1.7.</p>\n<h3 id=\"performance\">Performance</h3>\n<p>Changes to the garbage collector and other runtime components should result in a &quot;5-35%&quot; improvement in the speed of your application.  I absolutely love that Go gets better and faster with each release.  Compile times are coming back down after the big spike in the 1.5 release.</p>\n<h3 id=\"hooray\">Hooray!</h3>\n<p>Check out all of the changes over on the Go <a href=\"https://golang.org/doc/go1.7\">blog</a>.  And fire up your <a href=\"https://golang.org/dl/\">downloads</a>.</p>\n",
-      "author": "Brian Ketelsen",
-      "categories": [
-        "go",
-        "release"
-      ],
-      "date": "2016-08-15T22:55:00Z",
-      "description": "",
-      "section": "blog",
-      "images": [
-        "https://images.unsplash.com/photo-1487505983481-9aa2d9f9901a?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=beb2fdb8e2d1f0b888d896ae904bbb9d"
-      ],
-      "slug": "go17",
-      "tags": [
-        "go",
-        "release"
-      ],
-      "title": "Go 1.7 Released",
-      "excerpt": "<p>Release day is always fun, and Go releases get me pretty excited.  The 1.7 release is especially nice, so I&apos;m going to mention some of my favorite changes in this release.</p>",
-      "meta": {
-        "relativePath": "posts/go17.html",
-        "createdAt": "2020-11-05T17:28:24.890Z",
-        "lastModified": "2020-11-05T17:28:24.890Z",
-        "size": 2910,
-        "formattedSize": "2.8 KB"
       }
     },
     {
@@ -347,37 +441,32 @@
       }
     },
     {
-      "id": "posts__errgroup",
-      "contents": "<p>In this article for O&#39;Reilly I explore the new sync.ErrGroup package.</p>\n<!-- more -->\n\n\n<p><a href=\"https://www.oreilly.com/learning/run-strikingly-fast-parallel-file-searches-in-go-with-sync-errgroup\">Article</a>\n<a href=\"https://github.com/bketelsen/gogrep\">Source Code</a></p>\n",
+      "id": "posts__go17",
+      "contents": "<p>Release day is always fun, and Go releases get me pretty excited.  The 1.7 release is especially nice, so I&#39;m going to mention some of my favorite changes in this release.</p>\n<!-- more -->\n<h3 id=\"ibm-z-system-support\">IBM z System Support</h3>\n<p>Bill O&#39;Farrell gave a <a href=\"https://github.com/gophercon/2016-talks/blob/master/BillO&#39;Farrell-GoForLinuxOnZ.pptx\">talk</a> at GopherCon 2016 about this port and I found it fascinating.  Supporting Go on big iron can only be good for the language and for Go users everywhere.  This is an exciting development and I&#39;m looking forward to see what comes next from the IBM team.</p>\n<h3 id=\"ssa-in-the-compiler\">SSA In the Compiler</h3>\n<p>The compiler got an upgrade in Go 1.7 -- with Static Single Assignment, or SSA support.  This new SSA support means that it will be easier in the future to analyze and optimize your code while it&#39;s being compiled.  Coupled with other changes in the compiler toolchain, we&#39;ve already seen some nice improvements both in compile times and binary size decreases.  Kudos to the Go team for putting in the hard work and planning for future optimizations.  SSA is going to bring us big things.</p>\n<h3 id=\"context-is-now-in-standard-library\">Context is now in standard library</h3>\n<p>Perhaps my favorite new feature: the x/net/context package has been moved into the standard library.  Additionally, packages like net/http and os/exec have gained support for this new package without breaking the Go 1 compatibility contract.  The Context package allows you to support cancelation, timeouts, and stores interesting request-specific data -- allowing you to have more control over the network requests that you make.</p>\n<h3 id=\"macos-sierra\">macOS Sierra</h3>\n<p>A big caveat with this release:  If you compile binaries for macOS Sierra you&#39;ll need to use either Go 1.6.3 or Go 1.7.  Binaries compiled with older versions of Go won&#39;t work reliably on macOS Sierra.  They may appear to be working, but I&#39;ve seen firsthand that they&#39;ll eventually fail in spectacular ways.  If you distribute binaries using an automated build system, please update your automation to use Go 1.6.3 or Go 1.7.</p>\n<p>** UPDATE ** Go 1.6.3 was re-broken with the new macOS Sierra beta 4.  Use 1.7.</p>\n<h3 id=\"performance\">Performance</h3>\n<p>Changes to the garbage collector and other runtime components should result in a &quot;5-35%&quot; improvement in the speed of your application.  I absolutely love that Go gets better and faster with each release.  Compile times are coming back down after the big spike in the 1.5 release.</p>\n<h3 id=\"hooray\">Hooray!</h3>\n<p>Check out all of the changes over on the Go <a href=\"https://golang.org/doc/go1.7\">blog</a>.  And fire up your <a href=\"https://golang.org/dl/\">downloads</a>.</p>\n",
       "author": "Brian Ketelsen",
       "categories": [
         "go",
-        "errors",
-        "concurrency"
+        "release"
       ],
-      "date": "2016-09-19T22:53:00Z",
+      "date": "2016-08-15T22:55:00Z",
       "description": "",
       "section": "blog",
-      "slug": "errgroup",
       "images": [
-        "https://images.unsplash.com/photo-1495573258723-2c7be7a646ce?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=5942ab1aa61891b3745a4d63e0b7da5f"
+        "https://images.unsplash.com/photo-1487505983481-9aa2d9f9901a?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=beb2fdb8e2d1f0b888d896ae904bbb9d"
       ],
-      "aliases": [
-        "/errgroup"
-      ],
+      "slug": "go17",
       "tags": [
         "go",
-        "errors",
-        "concurrency"
+        "release"
       ],
-      "title": "sync.ErrGroup",
-      "excerpt": "<p>In this article for O&apos;Reilly I explore the new sync.ErrGroup package.</p>",
+      "title": "Go 1.7 Released",
+      "excerpt": "<p>Release day is always fun, and Go releases get me pretty excited.  The 1.7 release is especially nice, so I&apos;m going to mention some of my favorite changes in this release.</p>",
       "meta": {
-        "relativePath": "posts/errgroup.html",
+        "relativePath": "posts/go17.html",
         "createdAt": "2020-11-05T17:28:24.890Z",
         "lastModified": "2020-11-05T17:28:24.890Z",
-        "size": 690,
-        "formattedSize": "690 Bytes"
+        "size": 2910,
+        "formattedSize": "2.8 KB"
       }
     },
     {
@@ -482,41 +571,6 @@
       }
     },
     {
-      "id": "posts__install-func",
-      "contents": "<p>This bash setup is the latest evolution of my quest to make a new system install as fast as possible.</p>\n<!-- more -->\n\n<h2 id=\"speed-up-software-installs-with-this-bash-trick\">Speed Up Software Installs with this Bash Trick</h2>\n<p>I&#39;ve created a <code>bash</code> function that enables quick software installs without being as heavy as something like <code>ansible</code>. The system relies on a single function in my <code>bashrc</code> and a directory full of bash scripts. Let&#39;s dive in and see how it works.</p>\n<h3 id=\"installation-scripts\">Installation Scripts</h3>\n<p>In my dotfiles directory, which is stored at <code>~/dotfiles</code> there&#39;s a subdirectory called <code>install</code>. That directory contains a few dozen bash scripts that install the various software components and packages I might use. Some of them are needed on all the computers I use, some of them are used only infrequently for certain projects. Here&#39;s an example that installs Go:</p>\n<pre><code class=\"language-bash\">❯ go.sh \n#! /bin/bash\nset -e\nVERSION=1.15\n# Delete existing Go installation\nsudo rm -rf /usr/local/go\n# Install Go in /usr/local\nsudo mkdir -p /usr/local/go &amp;&amp; curl -Ls https://storage.googleapis.com/golang/go$VERSION.linux-amd64.tar.gz | sudo tar xvzf - -C /usr/local/go --strip-components=1</code></pre>\n<p>The script declares a <code>VERSION</code> variable so I can change the version to be installed when there&#39;s a new release of Go. Then it deletes the existing Go installation and replaces it with a freshly downloaded version. Because it deletes the existing install and replaces it, it can be run more than once with no unwanted side-effects. I&#39;ve attempted to make all my scripts idempotent like this, but some of them just aren&#39;t because my bash skills are just mediocre.</p>\n<h3 id=\"installation-function\">Installation Function</h3>\n<p>To use these installation scripts I&#39;ve created a bash function that searches for scripts in the <code>~/dotfiles/install</code> folder matching the first argument of the function:</p>\n<pre><code class=\"language-bash\">inst() {\n    if [ -f $HOME/dotfiles/install/$1.sh ] ; then\n        echo Installing $1\n        . $HOME/dotfiles/install/$1.sh    \n    else\n        echo $1 not found\n    fi\n}</code></pre>\n<p>To install Go using this function I would type <code>$&gt; inst go</code>, which would search for a script called <code>~/dotfiles/install/go.sh</code> and execute it if it exists. It&#39;s not complicated, and only took a few minutes to write the function, but I&#39;m getting a lot of ROI on the time I spend writing installation scripts. When I spin up a new VM somewhere, I can quickly clone my dotfiles and install just the bits I need for a particular task.</p>\n<h3 id=\"direnv-integration\">Direnv integration</h3>\n<p>I&#39;ve been playing with <code>direnv</code> integrations to make the installation of required tools or commands automatic when entering a project directory. I haven&#39;t found anything yet that doesn&#39;t feel too &quot;hacky&quot;, so I haven&#39;t finished this part.</p>\n<h2 id=\"future-ideas\">Future Ideas</h2>\n<p>In the future I may extend the script to search for installation scripts with an <code>arch</code> component in the file path, like <code>~/dotfiles/install/linux/go.sh</code> or <code>~/dotfiles/install/macos/go.sh</code>.  I don&#39;t have a need for this right now because I&#39;m not using my Mac for development work.</p>\n<p>I may also consider making <code>meta</code> scripts that call others. It might be similar to installing a Development metapackage, where the metapackage simply calls the other packages it wants to wrap. </p>\n",
-      "title": "Bash Helpers for Quick Installs",
-      "layout": "post",
-      "date": "2020-08-14",
-      "slug": "install-func",
-      "section": "blog",
-      "images": [
-        "/images/4pPzKfd6BEg.jpg"
-      ],
-      "thumbnail": "/images/4pPzKfd6BEg-thumb.jpg",
-      "credit": "https://unsplash.com/photos/4pPzKfd6BEg",
-      "description": "A quick helper function and directory layout for repeatable software installs.",
-      "tags": [
-        "linux",
-        "open source"
-      ],
-      "classes": [
-        "feature-hyphenate",
-        "feature-justify",
-        "feature-highlight"
-      ],
-      "categories": [
-        "Linux"
-      ],
-      "excerpt": "<p>This bash setup is the latest evolution of my quest to make a new system install as fast as possible.</p>",
-      "meta": {
-        "relativePath": "posts/install-func.html",
-        "createdAt": "2020-11-05T17:28:24.900Z",
-        "lastModified": "2020-11-05T17:28:24.900Z",
-        "size": 3590,
-        "formattedSize": "3.5 KB"
-      }
-    },
-    {
       "id": "posts__my-cross-platform-dev-setup-on-surface-laptop",
       "contents": "<p>I want to document a setup that I&#39;ve found that works really well for me using Windows 10 and <a href=\"https://blogs.msdn.microsoft.com/wsl/2016/04/22/windows-subsystem-for-linux-overview/\">Windows Subsystem for Linux</a> for general development.  Before we dive into any specifics, though, I want to provide some background and explain my objectives which will help to frame the decisions I&#39;ve made and the trade-offs chosen to reach a more ideal environment.</p>\n<!-- more -->\n\n<h3 id=\"objective\">Objective</h3>\n<p>My objective is to build a development environment that is comfortable for Open Source development with a target of mostly Linux servers.  I develop primarily in <a href=\"https://golang.org\">Go</a> but infrequently do some Javascript and HTML work too.  Prior to this setup, I have been using a Linux dev machine either directly or remotely over SSH.  My ultimate goal is to replicate a Linux development environment without having to use a separate machine.   </p>\n<h3 id=\"trade-offs\">Trade Offs</h3>\n<p>There are some implicit trade-offs in this setup, and I will acknowledge them along the way.  I recognize that this setup isn&#39;t perfect, but I&#39;ve found it to be very comfortable with very few limitations.</p>\n<h3 id=\"preferences\">Preferences</h3>\n<p>It&#39;s also useful to acknowledge my personal preferences, since they obviously inform these decisions.  I prefer to develop completely in Linux.  I prefer not to have to fight to use Linux as a primary desktop operating system.  I prefer to have only one computer.  I prefer [neo]vim for most editing, but reserve the right to use a GUI when I want to.  Another preference that is important here: I really dislike local VM&#39;s for development.  They get lost, they aren&#39;t sharable, file sharing between host and VM is flaky.  I just can&#39;t use a local VM for development work.</p>\n<h3 id=\"the-tldr\">The TL;DR</h3>\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/_y2e4QaUktQ\" frameborder=\"0\" allowfullscreen=\"allowfullscreen\"></iframe>\n\n<h3 id=\"the-setup\">The Setup</h3>\n<ul>\n<li><strong>Surface Laptop:</strong> i7, 16GB RAM, 512GB SSD, Surface Dock</li>\n<li><strong>Operating System:</strong> Windows 10 - Insider Edition</li>\n<li><strong>Shell:</strong> Windows Subsystem for Linux (also called Windows Bash)</li>\n<li><strong>Code Editors:</strong> neovim and Visual Studio Code</li>\n</ul>\n<h3 id=\"configuration\">Configuration</h3>\n<p>There are a few key components to this configuration that make it unique, and improved my happiness dramatically.</p>\n<h4 id=\"where-to-put-the-code\">Where to put the code</h4>\n<p>I store my code in Windows.  For the past year I treated the WSL filesystem and the Windows filesystem as two separate entities with a hard border between them.  WSL allows you to access the Windows filesystem through a mount at &#39;/mnt/c&#39; which is awesome, but viewing those files in WSL just bothered me because the permissions show as &#39;777&#39; with an owner of &#39;root&#39;.  This bothers me most because of the ugly display of these permissions in bash.  Like many people, I had an alias in my bash settings to append &quot;--color=auto&quot; to my &#39;ls&#39; calls.  This causes files with excessive permissions to show up in black text with a bright green background.  </p>\n<blockquote>\n<p>It drove me crazy, and blocked me from even looking at the windows filesystem from bash.  </p>\n</blockquote>\n<p><img src=\"/images/2017/09/uglycolors.png\" alt=\"uglycolors\"></p>\n<p>That meant that my source code was only in WSL&#39;s filesystem, and completely invisible to Windows.   In turn, this caused limitations on what I could do with the code.  Because it was only in WSL, I had to operate on the files using either command-line tools, or X Windows tools using an X Client from Windows.  It wasn&#39;t a show-stopper, but it was a little awkward.</p>\n<p>I don&#39;t know why it didn&#39;t occur to me before, but I just removed the &quot;--color=auto&quot; settings in my .bashrc last weekend, and suddenly I was perfectly happy looking at files on the Windows filesystem from WSL&#39;s bash. <img src=\"/content/images/2017/09/nouglycolors.png\" alt=\"nouglycolors\">  No strange colors, no mental block about viewing the files!  This was actually a pretty big turning point for me.  As crazy as it may sound, just removing coloring from my bash prompt unblocked me from using and viewing the Windows filesystem from WSL.  Tiny change, huge mental gain.  I moved my code from WSL to the Windows filesystem:</p>\n<pre><code>mv ~/src /mnt/c/projects</code></pre><p>Then I set my $GOPATH to &quot;/mnt/c/projects&quot; and Go worked beautifully from WSL.  I also installed Go on Windows and set my GOPATH to &quot;C:\\projects&quot;, which is the same folder.  Now I have one folder accessible to both WSL and Windows. Because Go stores compiled libraries in a folder named after the architecture under &quot;$GOPATH/pkg&quot;, I can compile from both Windows and Linux without overwriting any object files or binaries.  </p>\n<blockquote>\n<p>That&#39;s pretty damn nice.</p>\n</blockquote>\n<p>On the Windows side, I installed Visual Studio Code and set it up to use the Windows installation of Go for all the tooling required by the VSCode plugin for Go.   The only change to my VS Code configuration file was to specify the global $GOPATH:</p>\n<pre><code>{\n    &quot;go.gopath&quot;: &quot;c:\\\\projects&quot;\n}</code></pre><p>This setup uses the Windows Go installation to do code linting and other niceties that the VS Code Go plugin provides.  It also allows me to switch Go toolsets easily between Windows and Linux.  To build in Windows, I just open Powershell.  To build in Linux, I open a WSL prompt.   90% of the time, I&#39;m using Neovim in WSL anyway, but it&#39;s really nice to have VS Code working on the same files.  It&#39;s also really nice to be able to build and test an app in Windows easily.</p>\n<h3 id=\"docker\">Docker</h3>\n<p>I installed Docker for Windows, and installed the &quot;docker&quot; command in WSL.  To let Docker work against the Windows installation, I needed to export &quot;DOCKER_HOST&quot; in my .bashrc</p>\n<pre><code>export DOCKER_HOST=tcp://127.0.0.1:2375</code></pre><p>It&#39;s also necessary to tell Docker for Windows to listen on TCP:\n<img src=\"/images/2017/09/dockersettings.png\" alt=\"dockersettings\"></p>\n<p>Now Docker works from both Windows and WSL.  All my code and scripts that expected a local Docker instance continue to work as they did when I was developing directly on a Linux host.</p>\n<h3 id=\"the-kicker\">The Kicker</h3>\n<p>The Surface Laptop is an awesome little machine.  It is roughly the same size as a MacBook Air, but it has a full touch screen that allows you to use the Surface Pen to draw.  The sound is fantastic; some of the best speakers I&#39;ve ever heard on a laptop.  The keyboard is comfortable, and the cool fuzzy leather keyboard cover is comfortable and prevents that awful pain many of us experience when resting your hands on a MacBook for too long -- from those sharp edges on the case.</p>\n<p>But maybe most exciting is using the Surface Laptop with the <a href=\"https://www.microsoft.com/en-us/store/d/microsoft-surface-dock/8qrh2npz0s0p/hpr1?OCID=AID620866_SEM_WcsVqgAABYJtT8Nn%3a20170929022339%3as\">Surface Dock</a>.  The dock has several USB ports, two mini Display Port ports, and audio out.  When I want to work at my desk, I just plug the single (slightly awkward) dock plug in to the side of the laptop and close the lid.  I get my nice WASD Code mechanical keyboard, a big 4k monitor, and all the comforts of working on a desktop.  Reliable and easy docking is something I missed terribly in both Linux laptops and macOS.  Single plug, simple docking experience.  I love this probably most of all.</p>\n<h3 id=\"summary\">Summary</h3>\n<p>None of this is revolutionary, but the setup as a whole makes me happy.  I have all the comforts of a consumer-grade operating system (Windows), so I can easily use Skype, Slack, Microsoft Teams, Outlook, etc without fighting to install them on Linux, or worse -- settling for a nasty web interface. \nI also have all the benefits of a full Linux development environment.  I can use &quot;apt&quot; to install any packages I want, I use Neovim, all my dotfiles work perfectly in WSL.  It&#39;s a full Linux development environment without a VM.\n<strong>This setup has enabled me to go down to a single computer for my day-to-day usage.</strong>  Only one computer on my desk now, instead of the three that were there before.   I haven&#39;t turned on my MacBook Pro in almost a week. </p>\n",
       "author": "Brian Ketelsen",
@@ -545,6 +599,42 @@
         "lastModified": "2020-11-05T17:28:24.890Z",
         "size": 8187,
         "formattedSize": "8.0 KB"
+      }
+    },
+    {
+      "id": "posts__install-func",
+      "contents": "<p>This bash setup is the latest evolution of my quest to make a new system install as fast as possible.</p>\n<!-- more -->\n\n<h2 id=\"speed-up-software-installs-with-this-bash-trick\">Speed Up Software Installs with this Bash Trick</h2>\n<p>I&#39;ve created a <code>bash</code> function that enables quick software installs without being as heavy as something like <code>ansible</code>. The system relies on a single function in my <code>bashrc</code> and a directory full of bash scripts. Let&#39;s dive in and see how it works.</p>\n<h3 id=\"installation-scripts\">Installation Scripts</h3>\n<p>In my dotfiles directory, which is stored at <code>~/dotfiles</code> there&#39;s a subdirectory called <code>install</code>. That directory contains a few dozen bash scripts that install the various software components and packages I might use. Some of them are needed on all the computers I use, some of them are used only infrequently for certain projects. Here&#39;s an example that installs Go:</p>\n<pre><code class=\"language-bash\">❯ go.sh \n#! /bin/bash\nset -e\nVERSION=1.15\n# Delete existing Go installation\nsudo rm -rf /usr/local/go\n# Install Go in /usr/local\nsudo mkdir -p /usr/local/go &amp;&amp; curl -Ls https://storage.googleapis.com/golang/go$VERSION.linux-amd64.tar.gz | sudo tar xvzf - -C /usr/local/go --strip-components=1</code></pre>\n<p>The script declares a <code>VERSION</code> variable so I can change the version to be installed when there&#39;s a new release of Go. Then it deletes the existing Go installation and replaces it with a freshly downloaded version. Because it deletes the existing install and replaces it, it can be run more than once with no unwanted side-effects. I&#39;ve attempted to make all my scripts idempotent like this, but some of them just aren&#39;t because my bash skills are just mediocre.</p>\n<h3 id=\"installation-function\">Installation Function</h3>\n<p>To use these installation scripts I&#39;ve created a bash function that searches for scripts in the <code>~/dotfiles/install</code> folder matching the first argument of the function:</p>\n<pre><code class=\"language-bash\">inst() {\n    if [ -f $HOME/dotfiles/install/$1.sh ] ; then\n        echo Installing $1\n        . $HOME/dotfiles/install/$1.sh    \n    else\n        echo $1 not found\n    fi\n}</code></pre>\n<p>To install Go using this function I would type <code>$&gt; inst go</code>, which would search for a script called <code>~/dotfiles/install/go.sh</code> and execute it if it exists. It&#39;s not complicated, and only took a few minutes to write the function, but I&#39;m getting a lot of ROI on the time I spend writing installation scripts. When I spin up a new VM somewhere, I can quickly clone my dotfiles and install just the bits I need for a particular task.</p>\n<h3 id=\"direnv-integration\">Direnv integration</h3>\n<p>I&#39;ve been playing with <code>direnv</code> integrations to make the installation of required tools or commands automatic when entering a project directory. I haven&#39;t found anything yet that doesn&#39;t feel too &quot;hacky&quot;, so I haven&#39;t finished this part.</p>\n<h2 id=\"future-ideas\">Future Ideas</h2>\n<p>In the future I may extend the script to search for installation scripts with an <code>arch</code> component in the file path, like <code>~/dotfiles/install/linux/go.sh</code> or <code>~/dotfiles/install/macos/go.sh</code>.  I don&#39;t have a need for this right now because I&#39;m not using my Mac for development work.</p>\n<p>I may also consider making <code>meta</code> scripts that call others. It might be similar to installing a Development metapackage, where the metapackage simply calls the other packages it wants to wrap. </p>\n",
+      "title": "Bash Helpers for Quick Installs",
+      "layout": "post",
+      "date": "2020-08-14",
+      "featured": true,
+      "slug": "install-func",
+      "section": "blog",
+      "images": [
+        "/images/4pPzKfd6BEg.jpg"
+      ],
+      "thumbnail": "/images/4pPzKfd6BEg-thumb.jpg",
+      "credit": "https://unsplash.com/photos/4pPzKfd6BEg",
+      "description": "A quick helper function and directory layout for repeatable software installs.",
+      "tags": [
+        "linux",
+        "open source"
+      ],
+      "classes": [
+        "feature-hyphenate",
+        "feature-justify",
+        "feature-highlight"
+      ],
+      "categories": [
+        "Linux"
+      ],
+      "excerpt": "<p>This bash setup is the latest evolution of my quest to make a new system install as fast as possible.</p>",
+      "meta": {
+        "relativePath": "posts/install-func.html",
+        "createdAt": "2020-11-06T12:46:23.600Z",
+        "lastModified": "2020-11-06T12:46:23.600Z",
+        "size": 3605,
+        "formattedSize": "3.5 KB"
       }
     },
     {
@@ -660,6 +750,40 @@
       }
     },
     {
+      "id": "posts__switchers",
+      "contents": "<p>TLDR; I&#39;ve traded in my Mac on a Surface Pro.  Here&#39;s why:<!-- more --></p>\n<p>I&#39;ve been whining about Apple and the way they&#39;ve ignored the power users for quite some time now.  I&#39;ve been using Linux for development for several years, and always wanted a way to run Linux as my primary OS.  But the sad truth (for me) is that there are just some things that prevent me from using Linux as my full time operating system.  Email might be the biggest, but there are other apps that are missing or just sub-par.</p>\n<p>MacOS was always &quot;close-enough&quot; to Linux that most things worked well.  Docker made things a little more difficult initially, then a little better with the new Docker for Mac.  But it still wasn&#39;t Linux, and it&#39;s hard to argue that developing on the platform you ship to is the right choice.  The OS itself is still visually superior to anything else, but it&#39;s been showing the signs of neglect for a few years now.  It&#39;s clear from Apple&#39;s recent announcements that they are a mobile OS/hardware company that happens to sell computers too.  They&#39;re not sad to lose me, I&#39;m sure.  </p>\n<p>My article in July about <a href=\"/blog/i3-windows/\">Windows Subsystem for Linux</a> hinted at my excitement about being able to run a solid desktop OS but still do the open source sort of development that really needs to be done on a Linux type operating system.  I abandoned that effort in July because it was still too alpha quality.  Too many things didn&#39;t work.  But it&#39;s November now, several builds later and Microsoft is shipping Ubuntu 16.04.1 in the latest Windows Insider releases.</p>\n<p>I took the plunge and bought a Surface Pro 4 when Microsoft announced the trade in program (still good until the 10th of November I think...) to give up to $650 off of a Surface device.  This Surface is just the right size for an airplane tray, has an i7 and 16GB of RAM, and most importantly the Linux subsystem just works for the most part.  I haven&#39;t done anything yet that failed.  I&#39;m sure there are still things that won&#39;t work, but for my primary use -- writing Go applications, teaching Kubernetes and Go, hacking on open source projects -- it all works.</p>\n<p>I was even able to run i3 Window manager again.  No flaws, no errors.  Windows has solid email and calendar applications, and let&#39;s face it; Chrome is Chrome on every OS, and we spend more time there than any other app besides the terminal.  SPEAKING OF THE TERMINAL, Microsoft has done some serious house cleaning there.  The terminal is fast, has true color support, transparency, auto layout correction on resizing, who knows what else has been fixed under the covers?  It&#39;s 80% of what you&#39;d expect from gnome-terminal.  And that&#39;s a far cry from the old CMD.exe days.</p>\n<p>I don&#39;t expect to be running X Windows often, when I&#39;m deep in a hacking session I&#39;ll probably open up i3 window manager, it&#39;s still the most productive way to code.  Neovim and vim-go work perfectly in Windows bash, so it&#39;s not a stretch to think I could just have a couple of bash windows open and alt-tab between them.  SSH and SCP work perfectly, and I can still cross-compile Go binaries for any platform (like my Raspberry Pi for my bbq app!). </p>\n<p>The most amazing part of all of this is that I simply git cloned my <a href=\"https://github.com/bketelsen/dotfiles\">dotfiles</a> from my Ubuntu installs and ran them un-altered.  It&#39;s the same experience, but without the hardware headaches that Linux always brings, nor the lack of good quality applications.  </p>\n<hr/>\nI think Apple has lost its hunger, and Microsoft found it.  The tables have turned from the funny switching campaigns with Justin Long looking hip and making fun of the frumpy John Hodgman.  Today's Microsoft is a completely different animal.  They're contributing heavily to open source projects, they've opened up the .Net platform, they're embracing developers and open source enthusiasts openly while Apple counts dollar bills from iPhone sales in a vault in Switzerland somewhere.\n\n<p>I got a lot of amused responses on Twitter when I announced my switch.  This environment may not yet be perfect, but my bet is on Microsoft for the future.  I&#39;m surprised to be saying that, but the evidence is clear that Apple isn&#39;t the company it was under Steve Jobs.  And Microsoft isn&#39;t the company it was under Balmer.  The irony hurts.  </p>\n<p><a href=\"https://en.wikipedia.org/w/index.php?curid=26608065\">image credit wikipedia</a></p>\n",
+      "author": "Brian Ketelsen",
+      "section": "blog",
+      "categories": [
+        "hacks",
+        "i3",
+        "windows",
+        "linux",
+        "mac"
+      ],
+      "date": "2016-11-07T00:07:00Z",
+      "images": [
+        "/images/2017/09/getamac.png"
+      ],
+      "slug": "switchers",
+      "tags": [
+        "hacks",
+        "i3",
+        "windows",
+        "linux",
+        "mac"
+      ],
+      "title": "Switching - Irony and Operating systems",
+      "excerpt": "<p>TLDR; I&apos;ve traded in my Mac on a Surface Pro.  Here&apos;s why:<!-- more --></p>",
+      "meta": {
+        "relativePath": "posts/switchers.html",
+        "createdAt": "2020-11-05T17:28:24.890Z",
+        "lastModified": "2020-11-05T17:28:24.890Z",
+        "size": 4696,
+        "formattedSize": "4.6 KB"
+      }
+    },
+    {
       "id": "posts__ssh-to-wsl2",
       "contents": "<p>In this article I share my learnings on remotely accessing your Windows 10 computer. My motivation was to determine efficient ways to access both the Windows environment, and the WSL2 development environment from another computer.</p>\n<!-- more -->\n\n\n<h2 id=\"remote-access-for-new-windows-users\">Remote Access for New Windows Users</h2>\n<p>Find other articles in this series <a href=\"/tags/30daywslchallenge/\">with this link</a>.</p>\n<p>For emphasis in this article, many of the screenshots are taken from my iPad Pro accessing my desktop computer running Windows 10 and WSL2.</p>\n<h3 id=\"windows\">Windows</h3>\n<p>Accessing a Windows computer remotely is extremely simple and performant compared to options for macOS and Linux. Windows users have long enjoyed the <a href=\"https://docs.microsoft.com/en-us/windows/win32/termserv/remote-desktop-protocol\">Remote Desktop Protocol</a>. An over-simplified description of the RDP protocol would state that it encodes user interface changes as network packets and sends them to the client. RDP has hooks deep into the operating system, so it&#39;s a very efficient protocol. On the same local network, an RDP connection is nearly indistinguishable from a local login. Even over the internet, or a VPN, RDP is extremely usable. </p>\n<h4 id=\"enabling-remote-desktop\">Enabling Remote Desktop</h4>\n<p>To enable RDP, go to <code>Start &gt; Settings &gt; System &gt; Remote Desktop</code>, and enable the slider.</p>\n<p><img src=\"/images/wsl/rdp.png\" alt=\"Remote Desktop\"></p>\n<p>If you intend to connect from a client that isn&#39;t running Windows (like my iPad, for example) you&#39;ll also want to click the <code>Advanced Settings</code> link and disable Network Level Authentication. This reduces security slightly, so be sure to research the implications and assess your risk before exposing your computers over untrusted networks. My desktop is only available on my local network, or when I use the VPN I&#39;ve created on my Unifi Edge Router.</p>\n<p><img src=\"/images/wsl/nla.png\" alt=\"Network Level Auth\"></p>\n<p>That&#39;s all you need to do on the host side. On the client, grab a Remote Desktop Client from whichever App Store or software source you usually use for downloads.  On my iPad I searched for &quot;Remote Desktop&quot; in the App Store, and downloaded the official Microsoft remote desktop client.</p>\n<p>To connect, find your host&#39;s IP address and configure the remote desktop client to connect by IP address.</p>\n<h3 id=\"wsl2\">WSL2</h3>\n<p>Here&#39;s where the fun starts.  I&#39;m quite used to connecting to my development environments via ssh. When I moved to Windows, that seemed like something I&#39;d have to give up because it didn&#39;t look possible.  Then I stumbled on a <a href=\"https://community.ui.com/questions/UNMS-running-on-Windows-10-Subsystem-Linux-2-WSL2/552f3b66-c1f0-41f1-8aa5-f2e6e0f56a5a\">post</a> on the Unifi forums that mentioned a Windows command I vaguely remember from 15 years ago.  <code>netsh</code></p>\n<p>Start by installing the package <code>openssh-server</code>.  Then edit <code>/etc/ssh/sshd_config</code> to change the <code>Listen</code> port to something other than 22.  I set mine to <code>2222</code>.</p>\n<pre><code>❯ cat /etc/ssh/sshd_config\n#       $OpenBSD: sshd_config,v 1.101 2017/03/14 07:19:07 djm Exp $\n\n# ... snipped lines ...\nPort 2222\n\n# ... more snipped lines ...\nPasswordAuthentication no</code></pre><p>I also set <code>PasswordAuthentication</code> to <code>no</code>, which means I&#39;ll be using SSH keys to authenticate.  Put authorized public keys in <code>~/.ssh/authorized_keys</code> in order to use this setting.  If you don&#39;t allow Password Authentication, you have to have keys setup, so don&#39;t enable this without understanding what&#39;s going on.</p>\n<p>Now, using <code>netsh</code> I can port forward connections from Windows to the VM that&#39;s running WSL2.  To do this you&#39;ll need to get the IP address of your WSL2 instance.  <code>ip addr</code> or <code>ifconfig</code> should do the trick.  Mine is <code>172.19.149.102</code>, so the PowerShell command to forward port 2222 from Windows to my WSL2 instance is this:</p>\n<pre><code>netsh interface portproxy add v4tov4 listenport=2222 listenaddress=0.0.0.0 connectport=2222 connectaddress=172.19.149.102</code></pre><p>Finally I had to allow port 2222 through the Windows Firewall.  The simplest way to do this is using the advanced firewall configuration.</p>\n<p><img src=\"/images/wsl/firewall.png\" alt=\"Firewall Settings\"></p>\n<p>Then open the Advanced Firewall settings:</p>\n<p><img src=\"/images/wsl/advancefw.png\" alt=\"Advanced Firewall Settings\"></p>\n<p>Click &quot;Inbound&quot; in the left pane, then &quot;New...&quot; on the right pane.  Choose &quot;Port&quot;:</p>\n<p><img src=\"/images/wsl/port.png\" alt=\"Port\"></p>\n<p>Then specify port 2222:</p>\n<p><img src=\"/images/wsl/port2222.png\" alt=\"Port 2222\"></p>\n<p>Specify &quot;Allow&quot;</p>\n<p><img src=\"/images/wsl/allow.png\" alt=\"Allow\"></p>\n<p>Then uncheck &quot;Public&quot; when it asks which networks to apply these rules to.  If you&#39;re on a public network, we don&#39;t want anybody trying to get ssh access anywhere.</p>\n<h4 id=\"profit\">Profit</h4>\n<p>Now from anywhere on your LAN, you can ssh to the IP of your Windows computer on port 2222.  I used the Blink app on my iPad Pro and connected with the following command:</p>\n<pre><code>ssh -p 2222 bjk@192.0.1.100</code></pre><p>where the <code>192.0.1.100</code> is the IP address of my Windows machine.</p>\n<h3 id=\"update-august-2020\">Update August 2020</h3>\n<p>The failing of this method is that your WSL2 instance gets a new IP address each time it restarts. Based on several of the suggestions in <a href=\"https://github.com/microsoft/WSL/issues/4150\">this Github issue</a> I&#39;ve created a successful workaround.</p>\n<p>Start by using Windows Powershell ISE to create a new script called <code>WSL.ps1</code>.  I saved mine in the root of my User directory in Windows.  <code>C:\\Users\\me\\WSL.ps1</code> Add this script as the contents of the file then save it:</p>\n<pre><code>$remoteport = bash.exe -c &quot;ifconfig eth0 | grep &#39;inet &#39;&quot;\n$found = $remoteport -match &#39;\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}&#39;;\n\nif( $found  ){\n  $remoteport = $matches[0];\n\n} else{\n  echo &quot;The Script Exited, the ip address of WSL 2 cannot be found&quot;;\n    exit;\n\n}\n\n#[Ports]\n\n#All the ports you want to forward separated by comma\n$ports=@(2222);\n\n\n#[Static ip]\n#You can change the addr to your ip config to listen to a specific address\n$addr=&#39;0.0.0.0&#39;;\n$ports_a = $ports -join &quot;,&quot;;\n\n\n#Remove Firewall Exception Rules\niex &quot;Remove-NetFireWallRule -DisplayName &#39;WSL 2 Firewall Unlock&#39; &quot;;\n\n#adding Exception Rules for inbound and outbound Rules\niex &quot;New-NetFireWallRule -DisplayName &#39;WSL 2 Firewall Unlock&#39; -Direction Outbound -LocalPort $ports_a -Action Allow -Protocol TCP&quot;;\niex &quot;New-NetFireWallRule -DisplayName &#39;WSL 2 Firewall Unlock&#39; -Direction Inbound -LocalPort $ports_a -Action Allow -Protocol TCP&quot;;\n\nfor( $i = 0; $i -lt $ports.length; $i++  ){\n  $port = $ports[$i];\n    iex &quot;netsh interface portproxy delete v4tov4 listenport=$port listenaddress=$addr&quot;;\n      iex &quot;netsh interface portproxy add v4tov4 listenport=$port listenaddress=$addr connectport=$port connectaddress=$remoteport&quot;;\n\n}</code></pre><p>Next click on the Start menu and type <code>scheduler</code>. Open <code>Task Scheduler</code>.</p>\n<p>In the right side menu bar, select <code>Create Task</code>. Give it a name (I chose &#39;WSL&#39;), then choose the <code>triggers</code> tab. Select &#39;At Log On&#39; for the trigger, and &#39;for any user&#39;.</p>\n<p>Now go to the <code>Actions</code> tab and create a new action. Choose <code>Start a program</code>, type <code>powershell.exe</code> as the program name, then type <code>-ExecutionPolicy Bypass c:\\Users\\me\\WSL.ps1</code> in the &#39;arguments&#39; box. Ensure that the path to the script file is correct based on where you saved the script above.</p>\n<p>I&#39;ve also added a few lines to the end of my <code>.bashrc</code> to ensure <code>ssh</code> is running:</p>\n<pre><code class=\"language-bash\">SERVICE=&#39;ssh&#39;\n\nif ps ax | grep -v grep | grep $SERVICE &gt; /dev/null\nthen\n    echo &quot;$SERVICE service running.&quot;\nelse\n    sudo /etc/init.d/ssh start\nfi</code></pre>\n<p>I&#39;ll probably extract that out into a bash function called <code>ensure</code> so I can use it for more than this task.</p>\n<h4 id=\"extra-credit\">Extra Credit</h4>\n<p>For extra credit you can set up port forwarding on your internet router to forward to this same service. I picked a random high port (like 28945), and set up port forwarding from that port to port 2222 on my Windows machine.  Because it&#39;s an uncommon port, it won&#39;t get the usual SSH bot scanning traffic, and I don&#39;t have root login or password authentication enabled in the ssh daemon configuration.  So I feel relatively good about the security risk.  Be sure to understand your security profile before undertaking something like this.</p>\n<h2 id=\"references-and-further-information\">References and Further Information</h2>\n<ul>\n<li><a href=\"https://wsl.dev\">WSL Tips and Tricks</a></li>\n<li><a href=\"https://github.com/sirredbeard/Awesome-WSL/blob/master/README.md\">Awesome WSL</a></li>\n<li><a href=\"https://docs.microsoft.com/en-us/windows/wsl/about\">Windows Subsystem for Linux Documentation</a></li>\n<li><a href=\"https://aka.ms/wslstore\">All WSL distributions in the Microsoft Store</a></li>\n</ul>\n",
       "title": "Remote SSH Connections to WSL2",
@@ -699,40 +823,6 @@
       }
     },
     {
-      "id": "posts__switchers",
-      "contents": "<p>TLDR; I&#39;ve traded in my Mac on a Surface Pro.  Here&#39;s why:<!-- more --></p>\n<p>I&#39;ve been whining about Apple and the way they&#39;ve ignored the power users for quite some time now.  I&#39;ve been using Linux for development for several years, and always wanted a way to run Linux as my primary OS.  But the sad truth (for me) is that there are just some things that prevent me from using Linux as my full time operating system.  Email might be the biggest, but there are other apps that are missing or just sub-par.</p>\n<p>MacOS was always &quot;close-enough&quot; to Linux that most things worked well.  Docker made things a little more difficult initially, then a little better with the new Docker for Mac.  But it still wasn&#39;t Linux, and it&#39;s hard to argue that developing on the platform you ship to is the right choice.  The OS itself is still visually superior to anything else, but it&#39;s been showing the signs of neglect for a few years now.  It&#39;s clear from Apple&#39;s recent announcements that they are a mobile OS/hardware company that happens to sell computers too.  They&#39;re not sad to lose me, I&#39;m sure.  </p>\n<p>My article in July about <a href=\"/blog/i3-windows/\">Windows Subsystem for Linux</a> hinted at my excitement about being able to run a solid desktop OS but still do the open source sort of development that really needs to be done on a Linux type operating system.  I abandoned that effort in July because it was still too alpha quality.  Too many things didn&#39;t work.  But it&#39;s November now, several builds later and Microsoft is shipping Ubuntu 16.04.1 in the latest Windows Insider releases.</p>\n<p>I took the plunge and bought a Surface Pro 4 when Microsoft announced the trade in program (still good until the 10th of November I think...) to give up to $650 off of a Surface device.  This Surface is just the right size for an airplane tray, has an i7 and 16GB of RAM, and most importantly the Linux subsystem just works for the most part.  I haven&#39;t done anything yet that failed.  I&#39;m sure there are still things that won&#39;t work, but for my primary use -- writing Go applications, teaching Kubernetes and Go, hacking on open source projects -- it all works.</p>\n<p>I was even able to run i3 Window manager again.  No flaws, no errors.  Windows has solid email and calendar applications, and let&#39;s face it; Chrome is Chrome on every OS, and we spend more time there than any other app besides the terminal.  SPEAKING OF THE TERMINAL, Microsoft has done some serious house cleaning there.  The terminal is fast, has true color support, transparency, auto layout correction on resizing, who knows what else has been fixed under the covers?  It&#39;s 80% of what you&#39;d expect from gnome-terminal.  And that&#39;s a far cry from the old CMD.exe days.</p>\n<p>I don&#39;t expect to be running X Windows often, when I&#39;m deep in a hacking session I&#39;ll probably open up i3 window manager, it&#39;s still the most productive way to code.  Neovim and vim-go work perfectly in Windows bash, so it&#39;s not a stretch to think I could just have a couple of bash windows open and alt-tab between them.  SSH and SCP work perfectly, and I can still cross-compile Go binaries for any platform (like my Raspberry Pi for my bbq app!). </p>\n<p>The most amazing part of all of this is that I simply git cloned my <a href=\"https://github.com/bketelsen/dotfiles\">dotfiles</a> from my Ubuntu installs and ran them un-altered.  It&#39;s the same experience, but without the hardware headaches that Linux always brings, nor the lack of good quality applications.  </p>\n<hr/>\nI think Apple has lost its hunger, and Microsoft found it.  The tables have turned from the funny switching campaigns with Justin Long looking hip and making fun of the frumpy John Hodgman.  Today's Microsoft is a completely different animal.  They're contributing heavily to open source projects, they've opened up the .Net platform, they're embracing developers and open source enthusiasts openly while Apple counts dollar bills from iPhone sales in a vault in Switzerland somewhere.\n\n<p>I got a lot of amused responses on Twitter when I announced my switch.  This environment may not yet be perfect, but my bet is on Microsoft for the future.  I&#39;m surprised to be saying that, but the evidence is clear that Apple isn&#39;t the company it was under Steve Jobs.  And Microsoft isn&#39;t the company it was under Balmer.  The irony hurts.  </p>\n<p><a href=\"https://en.wikipedia.org/w/index.php?curid=26608065\">image credit wikipedia</a></p>\n",
-      "author": "Brian Ketelsen",
-      "section": "blog",
-      "categories": [
-        "hacks",
-        "i3",
-        "windows",
-        "linux",
-        "mac"
-      ],
-      "date": "2016-11-07T00:07:00Z",
-      "images": [
-        "/images/2017/09/getamac.png"
-      ],
-      "slug": "switchers",
-      "tags": [
-        "hacks",
-        "i3",
-        "windows",
-        "linux",
-        "mac"
-      ],
-      "title": "Switching - Irony and Operating systems",
-      "excerpt": "<p>TLDR; I&apos;ve traded in my Mac on a Surface Pro.  Here&apos;s why:<!-- more --></p>",
-      "meta": {
-        "relativePath": "posts/switchers.html",
-        "createdAt": "2020-11-05T17:28:24.890Z",
-        "lastModified": "2020-11-05T17:28:24.890Z",
-        "size": 4696,
-        "formattedSize": "4.6 KB"
-      }
-    },
-    {
       "id": "posts__tastyworms",
       "contents": "<p>A coworker sent me a link to this recipe and I have to share it.  It&#39;s the tastiest looking sandworm ever.</p>\n<!-- more -->\n<p><a href=\"http://kitchenoverlord.com/2015/12/03/dune-week-spice-filled-sandworm/\">Spice Filled Sandworm</a></p>\n<p>If you make one let me know... Looks delicious.  Blessed be the maker.</p>\n<p><em>image courtesy of kitchenoverlord.com</em></p>\n",
       "author": "Brian Ketelsen",
@@ -758,41 +848,6 @@
         "lastModified": "2020-11-05T17:28:24.890Z",
         "size": 570,
         "formattedSize": "570 Bytes"
-      }
-    },
-    {
-      "id": "posts__vscode-remote",
-      "contents": "<p>The <a href=\"https://code.visualstudio.com/\">Visual Studio Code</a> team just <a href=\"https://cda.ms/RN\">announced</a> perhaps the most eagerly anticipated feature yet.  Remote editing.</p>\n<!-- more -->\n<p><a href=\"https://www.twitch.tv/videos/419428954##\">Twitch Stream - Mac to SSH</a>\n<a href=\"https://www.twitch.tv/videos/419800747\">Twitch Stream - WSL &amp; Containers</a></p>\n<h3 id=\"remote-editing\">Remote Editing</h3>\n<p>An <a href=\"https://aka.ms/VSCodeRemoteExtensionPack\">extension pack</a> was released today that consists of three related extensions to Code.</p>\n<ul>\n<li><a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl\">Remote - WSL</a></li>\n<li><a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers\">Remote - Container</a></li>\n<li><a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh\">Remote - SSH</a></li>\n</ul>\n<p>These extensions enable development from a local VS Code instance against a remote environment.  And they&#39;re a dream come true for me.</p>\n<p>Each of these extensions allows you to run VS Code on <code>some computer</code> but the code and tools are on <code>some other compute device</code>.</p>\n<h4 id=\"remote---wsl\">Remote - WSL</h4>\n<p>If you&#39;re a Windows user, you know the frustration of working on a project that expects to be developed in Linux.  There are hacks and workarounds for using VS Code in Windows and keeping the development tools in WSL, but the <a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl\">remote-wsl</a> extension solves this problem officially.  You use Code in Windows, but the dev tools and environment live in WSL.  Talk about the best of both worlds!</p>\n<h4 id=\"remote---container\">Remote - Container</h4>\n<p>With the <a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers\">remote-containers</a> plugin, you add a Dockerfile and a configuration file to your project and VS Code will automatically prompt you to spin up the container as your development environment.  It will mount your code inside the container, and run as if you are developing inside the target environment. </p>\n<p>This is the <code>perfect</code> way to ship a pre-configured development environment for an Open Source project, for example.  I&#39;m really excited to add this to several of my projects.</p>\n<h4 id=\"remote---ssh\">Remote - SSH</h4>\n<p>Of the three, I will probably use this one the most.  In fact I&#39;m using it to write this blog post.</p>\n<p><img src=\"/images/remotessh.png\" alt=\"remote-ssh\"></p>\n<p>The <a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh\">remote-ssh</a> extension uses an SSH client on the host to communicate with a remote computer.  If you have a beefy development machine (either locally or in the cloud), this is the perfect way to keep your development experience stable no matter what computer you&#39;re sitting at.  No more syncing unfinished code between machines for me.</p>\n<p>The extension even does port forwarding over your ssh connection.  When you start your website or service, it will forward that port for you to the local machine.</p>\n<p><img src=\"/images/remotemenu.png\" alt=\"remote-menu\"></p>\n<p>I&#39;ve been using the preview version of these three extensions for a few weeks now, and I couldn&#39;t be happier with the setup.  I&#39;ve used them from a Mac, from a Chromebook with Crostini, from Linux, and from Windows.  It works equally well across all platforms.</p>\n<p>Go forth and remotely develop!</p>\n",
-      "title": "VS Code Remote Development",
-      "section": "blog",
-      "layout": "post",
-      "date": "2019-05-02",
-      "slug": "vscode-remote-development",
-      "images": [
-        "/images/fpoHihXiMhg.jpg"
-      ],
-      "thumbnail": "/images/fpoHihXiMhg-thumb.jpg",
-      "credit": "https://unsplash.com/photos/fpoHihXiMhg",
-      "description": "Use VS Code against a remote computer or container",
-      "tags": [
-        "vscode",
-        "development"
-      ],
-      "classes": [
-        "feature-hyphenate",
-        "feature-justify",
-        "feature-highlight"
-      ],
-      "categories": [
-        "Development"
-      ],
-      "excerpt": "<p>The <a href=\"https://code.visualstudio.com/\">Visual Studio Code</a> team just <a href=\"https://cda.ms/RN\">announced</a> perhaps the most eagerly anticipated feature yet.  Remote editing.</p>",
-      "meta": {
-        "relativePath": "posts/vscode-remote.html",
-        "createdAt": "2020-11-05T17:28:24.890Z",
-        "lastModified": "2020-11-05T17:28:24.890Z",
-        "size": 3666,
-        "formattedSize": "3.6 KB"
       }
     },
     {
@@ -834,6 +889,7 @@
       "title": "Windows for Open Source Development",
       "section": "blog",
       "layout": "post",
+      "featured": true,
       "date": "2020-02-24",
       "slug": "windows-for-open-source-development",
       "images": [
@@ -861,41 +917,45 @@
       "excerpt": "<p>I&apos;ve long used macOS or Linux when I make my Open Source contributions, but I think that the time is right to try Windows as a full-time development environment.  If you want to jump on board, this article series is for you!</p>",
       "meta": {
         "relativePath": "posts/win-the-dev-box.html",
-        "createdAt": "2020-11-05T17:28:24.890Z",
-        "lastModified": "2020-11-05T17:28:24.890Z",
-        "size": 12236,
-        "formattedSize": "11.9 KB"
+        "createdAt": "2020-11-06T12:46:03.200Z",
+        "lastModified": "2020-11-06T12:46:03.200Z",
+        "size": 12251,
+        "formattedSize": "12.0 KB"
       }
     },
     {
-      "id": "projects__captainhook",
-      "contents": "<p>Captain Hook Project</p>\n",
-      "author": "Brian Ketelsen",
-      "categories": [
-        "go",
-        "errors",
-        "concurrency"
-      ],
-      "date": "2016-09-19T22:53:00Z",
-      "description": "",
-      "section": "projects",
+      "id": "posts__vscode-remote",
+      "contents": "<p>The <a href=\"https://code.visualstudio.com/\">Visual Studio Code</a> team just <a href=\"https://cda.ms/RN\">announced</a> perhaps the most eagerly anticipated feature yet.  Remote editing.</p>\n<!-- more -->\n<p><a href=\"https://www.twitch.tv/videos/419428954##\">Twitch Stream - Mac to SSH</a>\n<a href=\"https://www.twitch.tv/videos/419800747\">Twitch Stream - WSL &amp; Containers</a></p>\n<h3 id=\"remote-editing\">Remote Editing</h3>\n<p>An <a href=\"https://aka.ms/VSCodeRemoteExtensionPack\">extension pack</a> was released today that consists of three related extensions to Code.</p>\n<ul>\n<li><a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl\">Remote - WSL</a></li>\n<li><a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers\">Remote - Container</a></li>\n<li><a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh\">Remote - SSH</a></li>\n</ul>\n<p>These extensions enable development from a local VS Code instance against a remote environment.  And they&#39;re a dream come true for me.</p>\n<p>Each of these extensions allows you to run VS Code on <code>some computer</code> but the code and tools are on <code>some other compute device</code>.</p>\n<h4 id=\"remote---wsl\">Remote - WSL</h4>\n<p>If you&#39;re a Windows user, you know the frustration of working on a project that expects to be developed in Linux.  There are hacks and workarounds for using VS Code in Windows and keeping the development tools in WSL, but the <a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl\">remote-wsl</a> extension solves this problem officially.  You use Code in Windows, but the dev tools and environment live in WSL.  Talk about the best of both worlds!</p>\n<h4 id=\"remote---container\">Remote - Container</h4>\n<p>With the <a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers\">remote-containers</a> plugin, you add a Dockerfile and a configuration file to your project and VS Code will automatically prompt you to spin up the container as your development environment.  It will mount your code inside the container, and run as if you are developing inside the target environment. </p>\n<p>This is the <code>perfect</code> way to ship a pre-configured development environment for an Open Source project, for example.  I&#39;m really excited to add this to several of my projects.</p>\n<h4 id=\"remote---ssh\">Remote - SSH</h4>\n<p>Of the three, I will probably use this one the most.  In fact I&#39;m using it to write this blog post.</p>\n<p><img src=\"/images/remotessh.png\" alt=\"remote-ssh\"></p>\n<p>The <a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh\">remote-ssh</a> extension uses an SSH client on the host to communicate with a remote computer.  If you have a beefy development machine (either locally or in the cloud), this is the perfect way to keep your development experience stable no matter what computer you&#39;re sitting at.  No more syncing unfinished code between machines for me.</p>\n<p>The extension even does port forwarding over your ssh connection.  When you start your website or service, it will forward that port for you to the local machine.</p>\n<p><img src=\"/images/remotemenu.png\" alt=\"remote-menu\"></p>\n<p>I&#39;ve been using the preview version of these three extensions for a few weeks now, and I couldn&#39;t be happier with the setup.  I&#39;ve used them from a Mac, from a Chromebook with Crostini, from Linux, and from Windows.  It works equally well across all platforms.</p>\n<p>Go forth and remotely develop!</p>\n",
+      "title": "VS Code Remote Development",
+      "section": "blog",
+      "layout": "post",
+      "date": "2019-05-02",
+      "slug": "vscode-remote-development",
       "images": [
-        "https://images.unsplash.com/photo-1495573258723-2c7be7a646ce?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=5942ab1aa61891b3745a4d63e0b7da5f"
+        "/images/fpoHihXiMhg.jpg"
       ],
-      "slug": "captainhook",
+      "thumbnail": "/images/fpoHihXiMhg-thumb.jpg",
+      "credit": "https://unsplash.com/photos/fpoHihXiMhg",
+      "description": "Use VS Code against a remote computer or container",
       "tags": [
-        "go",
-        "errors",
-        "concurrency"
+        "vscode",
+        "development"
       ],
-      "title": "Captain Hook",
-      "excerpt": "<p>Captain Hook Project</p>",
+      "classes": [
+        "feature-hyphenate",
+        "feature-justify",
+        "feature-highlight"
+      ],
+      "categories": [
+        "Development"
+      ],
+      "excerpt": "<p>The <a href=\"https://code.visualstudio.com/\">Visual Studio Code</a> team just <a href=\"https://cda.ms/RN\">announced</a> perhaps the most eagerly anticipated feature yet.  Remote editing.</p>",
       "meta": {
-        "relativePath": "projects/captainhook.html",
-        "createdAt": "2020-11-05T17:49:36.330Z",
-        "lastModified": "2020-11-05T17:49:36.330Z",
-        "size": 439,
-        "formattedSize": "439 Bytes"
+        "relativePath": "posts/vscode-remote.html",
+        "createdAt": "2020-11-05T17:28:24.890Z",
+        "lastModified": "2020-11-05T17:28:24.890Z",
+        "size": 3666,
+        "formattedSize": "3.6 KB"
       }
     }
   ]
