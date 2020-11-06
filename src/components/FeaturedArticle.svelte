@@ -10,6 +10,6 @@
 <h2><a href="/{page.section}/{page.slug}">{page.title}</a></h2>
 <h5>Title description, {adate}</h5>
 <div class="fakeimg" style="height:200px;">Image</div>
-<p>Summary:</p>
+
 <p>{page.description}</p>
 <br />

@@ -10,6 +10,7 @@
 	"devDependencies": {
 		"@rollup/plugin-json": "^4.1.0",
 		"@snowpack/plugin-optimize": "^0.2.7",
+		"@snowpack/plugin-sass": "^1.1.1",
 		"@sveltejs/adapter-static": "0.0.14",
 		"@sveltejs/app-utils": "0.0.17",
 		"@sveltejs/kit": "0.0.23",
